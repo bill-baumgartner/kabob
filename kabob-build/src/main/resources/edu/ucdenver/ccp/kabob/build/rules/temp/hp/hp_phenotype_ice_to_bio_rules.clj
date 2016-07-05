@@ -16,11 +16,11 @@
   (?/record obo/BFO_0000051 ?/phenoIdField)
   (?/phenoIdField kiao/hasTemplate iaohp/HpAnnotationFileRecord_hpoTermDataField1)
   (?/phenoIdField obo/IAO_0000219 ?/phenoIce)
-  (?/phenoIce obo/IAO_0000219 ?/pheno))
+  (?/phenoIce obo/IAO_0000219 ?/hp))
 
-  :reify ([?/pheno {:ln (:sha-1 ?/pheno ?/hr1)
+  :reify ([?/pheno {:ln (:sha-1 ?/hp ?/hr1)
                  :ns "kbio" :prefix "PHENO_"}]
-          [?/gene {:ln (:sha-1 ?/pheno ?/bioentity)
+          [?/gene {:ln (:sha-1 ?/hp ?/bioentity)
                     :ns "kbio" :prefix "G_"}]
           [?/hr1 {:ln (:restriction)
                  :ns "kbio" :prefix "RESTR_"}])
