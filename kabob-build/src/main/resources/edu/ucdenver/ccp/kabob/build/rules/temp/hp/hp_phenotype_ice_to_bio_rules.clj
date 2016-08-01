@@ -21,7 +21,7 @@
   (?/phenoIce obo/IAO_0000219 ?/hp)
   (?/hp rdfs/label ?/hp_label))
 
-  :reify ([?/pheno {:ln (:sha-1 ?/hp ?/hr1)
+  :reify ([?/pheno {:ln (:sha-1 ?/hp ?/bioentity) 
                  :ns "kbio" :prefix "PHENO_"}]
           [?/gene {:ln (:sha-1 ?/hp ?/bioentity)
                     :ns "kbio" :prefix "G_"}]
