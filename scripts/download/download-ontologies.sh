@@ -29,7 +29,7 @@ http://purl.obolibrary.org/obo/iao.owl
 http://purl.obolibrary.org/obo/ncbitaxon.owl
 http://www.openannotation.org/spec/core/20130208/oa.owl
 http://purl.obolibrary.org/obo/oba.owl
-http://purl.obofoundry.org/obo/obi.owl
+http://purl.obolibrary.org/obo/obi.owl
 http://purl.obolibrary.org/obo/pato.owl
 http://purl.obolibrary.org/obo/po.owl
 http://purl.obolibrary.org/obo/pr.owl
