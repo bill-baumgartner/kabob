@@ -36,7 +36,9 @@ http://purl.obolibrary.org/obo/pr.owl
 http://purl.obolibrary.org/obo/ro.owl
 http://purl.obolibrary.org/obo/so.owl
 http://purl.obolibrary.org/obo/uberon/ext.owl
-http://purl.obolibrary.org/obo/mi.owl"
+http://purl.obolibrary.org/obo/mi.owl
+http://purl.obolibrary.org/obo/hp.owl
+http://purl.obolibrary.org/obo/nbo.owl"
 
 exit_code=0
 for url in $URLS
