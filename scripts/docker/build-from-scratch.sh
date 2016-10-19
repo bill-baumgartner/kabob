@@ -36,30 +36,30 @@ echo "KB_DATA_DIR=$KB_DATA_DIR"
 #  $KB_DATA_DIR/file-lists/owl-files.$KB_NAME.list \
 #  "rdfxml"
 
-$SCRIPT_DIR/RUN_RULES_AND_LOAD.sh rules/bio_to_ice
+#$SCRIPT_DIR/RUN_RULES_AND_LOAD.sh rules/bio_to_ice
 
 ### load the ICE schema RDF ...
-$SCRIPT_DIR/load-list-file.sh \
-  $AG_BIN \
-  $AG_PORT \
-  $AG_INDICES \
-  $KB_NAME \
-  $KB_DATA_DIR/file-lists/schema-files.$KB_NAME.list
+#$SCRIPT_DIR/load-list-file.sh \
+#  $AG_BIN \
+#  $AG_PORT \
+#  $AG_INDICES \
+#  $KB_NAME \
+#  $KB_DATA_DIR/file-lists/schema-files.$KB_NAME.list
 
 ### ... and then the ICE RDF
-$SCRIPT_DIR/load-list-file.sh \
-  $AG_BIN \
-  $AG_PORT \
-  $AG_INDICES \
-  $KB_NAME \
-  $KB_DATA_DIR/file-lists/ice-files.$KB_NAME.list
+#$SCRIPT_DIR/load-list-file.sh \
+#  $AG_BIN \
+#  $AG_PORT \
+#  $AG_INDICES \
+#  $KB_NAME \
+#  $KB_DATA_DIR/file-lists/ice-files.$KB_NAME.list
 
-$SCRIPT_DIR/load-list-file.sh \
-  $AG_BIN \
-  $AG_PORT \
-  $AG_INDICES \
-  $KB_NAME \
-  $KB_DATA_DIR/file-lists/large-ice-files.$KB_NAME.list
+#$SCRIPT_DIR/load-list-file.sh \
+#  $AG_BIN \
+#  $AG_PORT \
+#  $AG_INDICES \
+#  $KB_NAME \
+#  $KB_DATA_DIR/file-lists/large-ice-files.$KB_NAME.list
 
 ### Index optimization
 $SCRIPT_DIR/optimize.sh \
