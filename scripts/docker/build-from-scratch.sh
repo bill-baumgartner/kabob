@@ -48,12 +48,13 @@ $SCRIPT_DIR/load-list-file.sh \
 $SCRIPT_DIR/load-list-file.sh \
   $AG_PORT \
   $KB_NAME \
-  $KB_DATA_DIR/file-lists/ice-files.$KB_NAME.list
+  $KB_DATA_DIR/file-lists/ice-files.nt.$KB_NAME.list
 
 $SCRIPT_DIR/load-list-file.sh \
   $AG_PORT \
   $KB_NAME \
-  $KB_DATA_DIR/file-lists/large-ice-files.$KB_NAME.list
+  $KB_DATA_DIR/file-lists/ice-files.ttl.$KB_NAME.list \
+  "turtle"
 
 ### Index optimization
 $SCRIPT_DIR/optimize.sh \
