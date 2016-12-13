@@ -24,7 +24,7 @@ echo "Saving files to: $TARGET_DIR"
 mkdir -p $TARGET_DIR
 cd $TARGET_DIR
 
-wget -r -nd -l1 --no-parent -A.gz ftp://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBL-RDF/latest/
+wget -r -nd -nc -l1 --no-parent -A.gz ftp://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBL-RDF/latest/
 
 # remove an extraneous line break on lines 16185-6
 gunzip -c chembl_22.1_cellline.ttl.gz | sed 's/6286$/6286> ;/' | sed '/^> ;/d' | gzip -c > chembl_22.1_cellline.FIXED.ttl.gz
