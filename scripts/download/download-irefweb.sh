@@ -26,7 +26,7 @@ URL="http://irefindex.org/download/irefindex/data/archive/release_14.0/psi_mitab
 
 exit_code=0
 echo "downloading $url"
-$DIR/download-and-log.sh $LOG_FILE $TARGET_DIR $url
+$DIR/download-and-log.sh $LOG_FILE $TARGET_DIR $URL
 e=$?
 if [ $e -ne 0 ]; then
     exit $e
