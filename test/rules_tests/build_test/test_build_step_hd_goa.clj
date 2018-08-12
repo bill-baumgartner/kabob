@@ -23,7 +23,7 @@
                                                             build-rules-step-ga build-rules-step-gb build-rules-step-gca
                                                             build-rules-step-gcb build-rules-step-gcc
                                                             build-rules-step-ha build-rules-step-hb build-rules-step-hca
-                                                            build-rules-step-hcb build-rules-step-hcc build-rules-step-hcd
+                                                            build-rules-step-hcb build-rules-step-hcca build-rules-step-hccb build-rules-step-hcd
                                                             build-rules-step-hd-goa
                                                             validation-rules-list validation-rules-restriction
                                                             expected-subpropertyof-links expected-inverseof-links
@@ -77,7 +77,8 @@
                (run-build-rules source-kb build-rules-step-hb)
                (run-build-rules source-kb build-rules-step-hca)
                (run-build-rules source-kb build-rules-step-hcb)
-               (run-build-rules source-kb build-rules-step-hcc)
+               (run-build-rules source-kb build-rules-step-hcca)
+               (run-build-rules source-kb build-rules-step-hccb)
                (run-build-rules source-kb build-rules-step-hcd)
                source-kb))
 

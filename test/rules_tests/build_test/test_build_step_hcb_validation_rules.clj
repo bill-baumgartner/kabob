@@ -1,4 +1,4 @@
-(ns rules-tests.build_test.test_build_step_hca
+(ns rules-tests.build_test.test_build_step_hcb_validation_rules
   (use clojure.test
        kr.sesame.kb
        kr.sesame.sparql
@@ -23,7 +23,7 @@
                                                             build-rules-step-ga build-rules-step-gb build-rules-step-gca
                                                             build-rules-step-gcb build-rules-step-gcc
                                                             build-rules-step-ha build-rules-step-hb
-                                                            build-rules-step-hca
+                                                            build-rules-step-hca build-rules-step-hcb
                                                             validation-rules-list validation-rules-restriction
                                                             expected-subpropertyof-links expected-inverseof-links
                                                             expected-subclassof-links expected-disjointwith-links
@@ -74,57 +74,15 @@
                (run-build-rules source-kb build-rules-step-gcc)
                (run-build-rules source-kb build-rules-step-ha)
                (run-build-rules source-kb build-rules-step-hb)
+               (run-build-rules source-kb build-rules-step-hca)
                source-kb))
 
 
-(deftest step-hca-central-dogma
-  (let [source-kb base-kb
-        target-kb (test-kb '())]
-
-    ;; there should be 1 has_gene_template relation in the kb (brought in via pr.owl)
-    ;; 1 from pr.owl and 1 that has been copied into bio-world
-    (is (= 2 (count (query source-kb '((?/r rdf/type owl/Restriction)
-                                        (?/r owl/onProperty ?/prop)
-                                        (kice/pr#has_gene_template obo/IAO_0000219 ?/prop))))))
-
-    ;(run-build-rule source-kb source-kb build-rules-step-hca 0)
-
-    (run-build-rule source-kb target-kb build-rules-step-hca 0)
-
-    ;; and there should be one new relation added
-    (is (= 1 (count (query target-kb '((?/r rdf/type owl/Restriction)
-                                        (?/r owl/onProperty ?/prop)
-                                        ;(kice/pr#has_gene_template obo/IAO_0000219 ?/prop)
-                                        )))))
-
-    (let [log-kb (output-kb "/tmp/triples.nt")]
-      (run-build-rule source-kb log-kb build-rules-step-hca 0)
-      (close log-kb))
-
-
-    ; (prn (str "--------------------------------"))
-    ; (doall (map #(prn (str %)) (sparql-query source-kb
-    ;"PREFIX obo: <http://purl.obolibrary.org/obo/>
-    ;PREFIX obo_pr: <http://purl.obolibrary.org/obo/pr#>
-    ;PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
-    ;PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    ; PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    ; SELECT *
-    ; WHERE {
-    ;       ?s ?p ?o
-    ;       }"
-    ;)))
-    ;
-    ;     (prn (str "--------------------------------"))
-
-    ))
-
-
 ;; validate list structures
-(deftest step-hca-test-with-validation-rules-lists
+(deftest step-hcc-test-with-validation-rules-lists
   (let [source-kb base-kb
         target-kb (test-kb '())]
-    (run-build-rules source-kb build-rules-step-ha)
+    (run-build-rules source-kb build-rules-step-hcb)
 
     (run-build-rule source-kb target-kb validation-rules-list 0)
     ;; add 4 for the rule metadata
@@ -156,10 +114,10 @@
 
 
 ;; validate restriction structures
-(deftest step-hca-test-with-validation-rules-restrictions
+(deftest step-hcc-test-with-validation-rules-restrictions
   (let [source-kb base-kb
         target-kb (test-kb '())]
-    (run-build-rules source-kb build-rules-step-ha)
+    (run-build-rules source-kb build-rules-step-hcb)
 
     (run-build-rule source-kb target-kb validation-rules-restriction 0)
     ;; add 4 for the rule metadata
@@ -180,14 +138,6 @@
     (run-build-rule source-kb target-kb validation-rules-restriction 4)
     ;; add 4 for the rule metadata
     (is (= 20 (count (query target-kb '((?/s ?/p ?/o))))))))
-
-
-
-
-
-
-
-
 
 
 

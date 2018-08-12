@@ -79,9 +79,9 @@
     (run-build-rule source-kb source-kb build-rules-step-a 0)
     (run-build-rule source-kb target-kb build-rules-step-a 1)
 
-    ;; 24 rules are run, so 96 metadata triples
+    ;; 30 rules are run, so 96 metadata triples
     ;; there should be no new triples generated
-    (is (= 96 (count (query target-kb '((?/s ?/p ?/o))))))
+    (is (= 120 (count (query target-kb '((?/s ?/p ?/o))))))
 
     ;(let [log-kb (output-kb "/tmp/triples.nt")
     ;      src-kb (test-kb input-triples)]
@@ -352,20 +352,19 @@
                   (get-only-files tmp-dir))))
 
     (run-build-rule source-kb target-kb build-rules-step-fa 0)
-    (run-build-rule source-kb target-kb build-rules-step-fa 1)
     (run-build-rule source-kb target-kb build-rules-step-fb 0)
 
-    ;; 3 rules are run, so 12 metadata triples
+    ;; 2 rules are run, so 8 metadata triples
     ;; there should be two triple from identifier_denotes_bioentity
-    ;; there should be two triple from idset_mentions_bioentity
-    (is (= 16 (count (query target-kb '((?/s ?/p ?/o))))))
 
+    (is (= 10 (count (query target-kb '((?/s ?/p ?/o))))))
 
-    (is (ask target-kb '((kice/RO_0002379 obo/IAO_0000219 ?/bio)
-                          (?/idset obo/IAO_0000142 ?/bio))))
-
-    (is (ask target-kb '((kice/RO_0001025 obo/IAO_0000219 ?/bio)
-                          (?/idset obo/IAO_0000142 ?/bio))))
+; this rule was deprecated
+    ;(is (ask target-kb '((kice/RO_0002379 obo/IAO_0000219 ?/bio)
+    ;                      (?/idset obo/IAO_0000142 ?/bio))))
+    ;
+    ;(is (ask target-kb '((kice/RO_0001025 obo/IAO_0000219 ?/bio)
+    ;                      (?/idset obo/IAO_0000142 ?/bio))))
 
 
 
@@ -413,26 +412,52 @@
     (run-build-rules source-kb build-rules-step-fa)
     (run-build-rules source-kb build-rules-step-fb)
 
-    (run-build-rule source-kb target-kb build-rules-step-ga 1)
-    ;; 1 rule run, so 4 metadata triples
-    ;; there should be no output triples from the copy_owl_alldisjointclasses_to_bio rule
-    (is (= 4 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;(run-build-rule source-kb target-kb build-rules-step-ga 0)
+    ;;; 1 rule run, so 4 metadata triples
+    ;;; there should be no output triples from the copy_owl_alldisjointclasses_to_bio rule
+    ;(is (= 4 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;
+    ;(run-build-rule source-kb target-kb build-rules-step-ga 2)
+    ;;; 2 rules run, so 8 metadata triples
+    ;;; there should be no output triples from the copy_owl_restriction_to_bio rule
+    ;(is (= 8 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;
+    ;;; copy_anonymous_nodes_to_bio rule
+    ;(run-build-rule source-kb target-kb build-rules-step-ga 3)
+    ;;; 8 from above + 4 metadata triples + 0
+    ;;; there should be 0output triples from the this rule
+    ;(is (= 12 (count (query target-kb '((?/s ?/p ?/o))))))
 
-    (run-build-rule source-kb target-kb build-rules-step-ga 2)
-    ;; 2 rules run, so 8 metadata triples
-    ;; there should be no output triples from the copy_owl_restriction_to_bio rule
-    (is (= 8 (count (query target-kb '((?/s ?/p ?/o))))))
-
-    ;; copy_anonymous_nodes_to_bio rule
-    (run-build-rule source-kb target-kb build-rules-step-ga 3)
-    ;; 8 from above + 4 metadata triples + 0
-    ;; there should be 0output triples from the this rule
-    (is (= 12 (count (query target-kb '((?/s ?/p ?/o))))))
-
-    (run-build-rule source-kb target-kb build-rules-step-ga 4)
-    ;; 12 from above + 4  metadata triples + 7
+    (run-build-rule source-kb target-kb build-rules-step-ga 0)
+    ;; 4  metadata triples + 2 * 8 (2 list nodes)
     ;; there should be 7 output triples from the copy_anonymous_nodes_to_bio rule; 1 anon node copied
-    (is (= 23 (count (query target-kb '((?/s ?/p ?/o))))))
+    (is (= 20 (count (query target-kb '((?/s ?/p ?/o))))))
+
+    (is (ask target-kb '( (?/anon_record rdf/type ccp/IAO_EXT_0001707)
+                                                (?/anon_record obo/BFO_0000051 ?/id_field_value) ; has part
+                                                (?/id_field_value rdf/type ccp/IAO_EXT_0001709)
+                                                (?/id_field_value rdf/type ?/id)
+                                                (?/id rdf/type ccp/IAO_EXT_0001710)
+                                                (?/id obo/IAO_0000219 bnode/BN_4a04e50456eba3289575a72ed00dd981568abd5cc2ee87c91fb071eed178ef15)
+                                                (?/id obo/IAO_0000219 ?/bio_listmember) ; IAO:denotes
+                                                (?/bio_listmember rdf/type rdf/List))))
+
+                          (is (ask target-kb '( (?/anon_record rdf/type ccp/IAO_EXT_0001707) ; ccp:RDF list record
+                                                (?/anon_record obo/BFO_0000051 ?/id_field_value) ; has part
+                                                (?/id_field_value rdf/type ccp/IAO_EXT_0001709) ; ccp:RDF list identifier field value
+                                                (?/id_field_value rdf/type ?/id)
+                                                (?/id rdf/type ccp/IAO_EXT_0001710)
+                                                (?/id obo/IAO_0000219 bnode/BN_cef3a1fcf6869771b8404c040e994c6e05c8ca2171a0fd0eb8f3185439586ff3)
+                                                (?/id obo/IAO_0000219 ?/bio_listmember) ; IAO:denotes
+                                                (?/bio_listmember rdf/type rdf/List))))
+
+
+
+    ;; copy_list_nodes_to_bio rule
+    (run-build-rule source-kb target-kb build-rules-step-ga 1)
+    ;;; 20 from above + 4 metadata triples + 7
+
+    (is (= 31 (count (query target-kb '((?/s ?/p ?/o))))))
 
     (is (ask target-kb '((?/anon_record rdf/type ccp/IAO_EXT_0001707) ; ccp:anonymous_node_record
                           (?/anon_record obo/BFO_0000051 ?/id_field_value) ; has part
@@ -442,43 +467,12 @@
                           (?/id obo/IAO_0000219 bnode/BN_0605b7be27965a4e35d0cfa66604d11b4108c6fee811db19245f2024408dd6bb)
                           (?/id obo/IAO_0000219 ?/bio_blank_node))))
 
-    ;; copy_list_nodes_to_bio rule
-    (run-build-rule source-kb target-kb build-rules-step-ga 0)
-    ;; 23 from above + 4 metadata triples + 16
-    ;; there should be 2 * 8 = 16 triples from the copy_list_nodes_to_bio rule
-    (is (= 43 (count (query target-kb '((?/s ?/p ?/o))))))
-
-
-    (is (ask target-kb '( (?/list_record rdf/type ccp/IAO_EXT_0000317) ; ccp:RDF list record
-                          (?/list_record obo/BFO_0000051 ?/id_field_value) ; has part
-                          (?/id_field_value rdf/type ccp/IAO_EXT_0000346) ; ccp:RDF list identifier field value
-                          (?/id_field_value rdf/type ?/id)
-                          (?/id rdf/type ccp/IAO_EXT_0000354)
-                          (?/id obo/IAO_0000219 bnode/BN_4a04e50456eba3289575a72ed00dd981568abd5cc2ee87c91fb071eed178ef15)
-                          (?/id obo/IAO_0000219 ?/bio_listmember) ; IAO:denotes
-                          (?/bio_listmember rdf/type rdf/List))))
-
-    (is (ask target-kb '( (?/list_record rdf/type ccp/IAO_EXT_0000317) ; ccp:RDF list record
-                          (?/list_record obo/BFO_0000051 ?/id_field_value) ; has part
-                          (?/id_field_value rdf/type ccp/IAO_EXT_0000346) ; ccp:RDF list identifier field value
-                          (?/id_field_value rdf/type ?/id)
-                          (?/id rdf/type ccp/IAO_EXT_0000354)
-                          (?/id obo/IAO_0000219 bnode/BN_cef3a1fcf6869771b8404c040e994c6e05c8ca2171a0fd0eb8f3185439586ff3)
-                          (?/id obo/IAO_0000219 ?/bio_listmember) ; IAO:denotes
-                          (?/bio_listmember rdf/type rdf/List))))
-
-
 
     (let [log-kb (output-kb "/tmp/triples.nt")]
-      (run-build-rule source-kb log-kb build-rules-step-ga 2)
+      (run-build-rule source-kb log-kb build-rules-step-ga 1)
       (close log-kb))
 
     ))
-
-;; todo -- write step gc tests
-;; todo -- make sure all kabob tests work with new rule
-;; todo -- try it out in the may build
-
 
 (deftest test-step-gc
   (let [source-kb (test-kb input-triples)

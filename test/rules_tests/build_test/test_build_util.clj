@@ -69,10 +69,19 @@
                          "RO_0000081" "RO_0000085" "RO_0000086" "RO_0000087" "RO_0000091" "RO_0000092"
                          "pr#has_gene_template" "RO_0002339" "RO_0002313" "mi#part_of"})
 
-(def ice-identifiers #{"UNIPROT_P37173" "UNIPROT_P37173-1" "UNIPROT_P37173-2"
-                       "UNIPROT_Q9UER7" "UNIPROT_P62258" "UNIPROT_P62258-1" "HGNC_11773" "HGNC_TGFBR2" "NCBI_GENE_7048"
-                       "REFSEQ_NP_001020018" "REFSEQ_NP_003233" "REFSEQ_NP_006752" "UNIPROTENTRYNAME_TGFR2_HUMAN"
-                       "UNIPROTENTRYNAME_1433E_HUMAN" "NCBI_GENE_1" "HGNC_5" "HGNC_A1BG"})
+(def ice-identifiers #{"HGNC_5"
+                       "HGNC_A1BG"
+                       "HGNC_TGFBR2"
+                       "NCBI_GENE_1"
+                       "NCBI_GENE_7048"
+                       "REFSEQ_NP_001020018" "REFSEQ_NP_003233" "REFSEQ_NP_006752"
+                       "UNIPROTENTRYNAME_TGFR2_HUMAN"
+                       "UNIPROTENTRYNAME_1433E_HUMAN"
+                       "UNIPROT_P37173" "UNIPROT_P37173-1" "UNIPROT_P37173-2"
+                       "UNIPROT_P62258" "UNIPROT_P62258-1"
+                       "UNIPROT_Q9UER7"
+                       ;"HGNC_11773"
+                       })
 
 (def other-identifiers-mentioned-in-records #{"CCDS_CCDS2648"
                                               "CCDS_CCDS33727"
@@ -159,7 +168,9 @@
                                   ("BFO_0000028" "BFO_0000006") ("BFO_0000141" "BFO_0000004") ("BFO_0000004" "BFO_0000002")
                                   ("BFO_0000031" "BFO_0000002") ("BFO_0000040" "BFO_0000004") ("BFO_0000024" "BFO_0000040")
                                   ("BFO_0000027" "BFO_0000040") ("BFO_0000030" "BFO_0000040") ("BFO_0000145" "BFO_0000019")
-                                  ("PATO_0000122" "BFO_0000019") ("PATO_0000125" "BFO_0000019") ("BFO_0000019" "BFO_0000020")
+                                  ("PATO_0000122" "BFO_0000019") ("PATO_0000125" "BFO_0000019")
+
+                                  ("BFO_0000019" "BFO_0000020")
                                   ("BFO_0000017" "BFO_0000020") ("BFO_0000016" "BFO_0000017") ("BFO_0000023" "BFO_0000017")
                                   ("BFO_0000034" "BFO_0000016") ("OBI_0000066" "OBI_0000011") ("OBI_0000471" "OBI_0000011")
                                   ("OBI_0000011" "BFO_0000015") ("BFO_0000182" "BFO_0000015") ("BFO_0000144" "BFO_0000015")
@@ -269,18 +280,16 @@
 
 (def build-rules-step-dc '("rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_dc_more_identifier_exact_match/refseq_protein_uniprot_identifier_exact_match"))
 
-(def build-rules-step-fa '("rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links/identifier_denotes_bioentity"
-                            "rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links/idset_mentions_bioentity"))
+(def build-rules-step-fa '("rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links/identifier_denotes_bioentity"))
 
 (def build-rules-step-fb '("rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fb_obsolete_identifier_bioentity_links/obsolete_uniprot_identifier_denotes_bioentity"))
 
-(def build-rules-step-ga '("rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio/copy_list_nodes_to_bio"
-                            "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio/copy_owl_alldisjointclasses_to_bio"
-                            "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio/copy_owl_restriction_to_bio"
-                            "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio/copy_anonymous_nodes_to_bio"
+(def build-rules-step-ga '("rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio/copy_anonymous_nodes_to_bio"
                             "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio/copy_anonymous_nodes_in_lists_to_bio"))
 
-(def build-rules-step-gb '("rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/transfer_ontology_labels"))
+(def build-rules-step-gb '("rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gba_copy_rdfs_labels_to_bio/transfer_ontology_labels"
+                            "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gbb_derive_missing_labels_to_bio/transfer_concept_uris_as_labels"
+                            "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gbb_derive_missing_labels_to_bio/transfer_property_uris_as_labels"))
 
 (def build-rules-step-gca '("rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gca_links_to_nil/transfer_links_to_nil"))
 (def build-rules-step-gcb '("rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcb_temp_link_ont_to_bio_concepts/temp_link_ont_to_bio_concepts"))
@@ -307,26 +316,37 @@
 (def build-rules-step-hca '("rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma/uniprot_protein_entrez_gene_mapping"))
 
 
-(def build-rules-step-hcb '("rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_generate_missing_ggp_entities/missing_gene_gen"
-                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_generate_missing_ggp_entities/missing_ncrna_gen"
-                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_generate_missing_ggp_entities/missing_protein_gen"
-                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_generate_missing_ggp_entities/missing_rrna_gen"
-                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_generate_missing_ggp_entities/missing_scrna_gen"
-                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_generate_missing_ggp_entities/missing_snorna_gen"
-                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_generate_missing_ggp_entities/missing_snrna_gen"
-                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_generate_missing_ggp_entities/missing_trna_gen"))
+(def build-rules-step-hcb '("/Users/bill/Dropbox/work/eclipse/eclipse-projects/kabob.bill.git.0/resources/rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/ncbi/entrez_gene_assign_taxon"
+                             "/Users/bill/Dropbox/work/eclipse/eclipse-projects/kabob.bill.git.0/resources/rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/refseq/refseq_catalog_assign_taxon"
+                             "/Users/bill/Dropbox/work/eclipse/eclipse-projects/kabob.bill.git.0/resources/rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/uniprot/uniprot_protein_assign_taxon"
+                             "/Users/bill/Dropbox/work/eclipse/eclipse-projects/kabob.bill.git.0/resources/rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template/gene_assign_taxon_via_has_gene_template"
+                             "/Users/bill/Dropbox/work/eclipse/eclipse-projects/kabob.bill.git.0/resources/rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template/protein_assign_taxon_via_has_gene_template"))
 
-(def build-rules-step-hcc '("rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_assign_taxon/ncbi/entrez_gene_assign_taxon"
-                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_assign_taxon/refseq/refseq_catalog_assign_taxon"
-                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_assign_taxon/uniprot/uniprot_swissprot_protein_assign_taxon"))
+
+(def build-rules-step-hcca '("/Users/bill/Dropbox/work/eclipse/eclipse-projects/kabob.bill.git.0/resources/rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a/temporary_missing_ncrna_gen"
+                            "/Users/bill/Dropbox/work/eclipse/eclipse-projects/kabob.bill.git.0/resources/rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a/temporary_missing_rrna_gen"
+                            "/Users/bill/Dropbox/work/eclipse/eclipse-projects/kabob.bill.git.0/resources/rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a/temporary_missing_scrna_gen"
+                            "/Users/bill/Dropbox/work/eclipse/eclipse-projects/kabob.bill.git.0/resources/rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a/temporary_missing_snorna_gen"
+                            "/Users/bill/Dropbox/work/eclipse/eclipse-projects/kabob.bill.git.0/resources/rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a/temporary_missing_snrna_gen"
+                            "/Users/bill/Dropbox/work/eclipse/eclipse-projects/kabob.bill.git.0/resources/rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a/temporary_missing_trna_gen"))
+
+(def build-rules-step-hccb '("rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b/missing_gene_gen"
+                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b/missing_ncrna_gen"
+                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b/missing_protein_gen"
+                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b/missing_rrna_gen"
+                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b/missing_scrna_gen"
+                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b/missing_snorna_gen"
+                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b/missing_snrna_gen"
+                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b/missing_trna_gen"))
+
 
 (def build-rules-step-hcd '("rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcd_generate_gene_abstractions/gene_abstraction_gen"))
 
 (def build-rules-step-hce '("rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hce_link_to_gp_abstractions/link_proteins_to_gp_abstractions"))
 
-(def build-rules-step-hd-goa '("rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/goa_biological_process_ice_to_bio"
-                                "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/goa_cellular_component_ice_to_bio"
-                                "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/goa_molecular_function_ice_to_bio"))
+(def build-rules-step-hd-goa '("rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_a/goa_biological_process_ice_to_bio"
+                                "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_a/goa_cellular_component_ice_to_bio"
+                                "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_a/goa_molecular_function_ice_to_bio"))
 
 
 (def validation-rules-list '("rules/validation/valid_owl/list/rdf_list_does_not_end_with_nil"

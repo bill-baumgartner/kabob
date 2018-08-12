@@ -23,8 +23,8 @@
                                                             build-rules-step-ga build-rules-step-gb build-rules-step-gca
                                                             build-rules-step-gcb build-rules-step-gcc
                                                             build-rules-step-ha build-rules-step-hb
-                                                            build-rules-step-hca build-rules-step-hcb build-rules-step-hcc
-                                                            build-rules-step-hcd build-rules-step-hce
+                                                            build-rules-step-hca build-rules-step-hcb build-rules-step-hcca build-rules-step-hccb
+                                                            build-rules-step-hcd
                                                             validation-rules-list validation-rules-restriction
                                                             expected-subpropertyof-links expected-inverseof-links
                                                             expected-subclassof-links expected-disjointwith-links
@@ -77,7 +77,8 @@
                (run-build-rules source-kb build-rules-step-hb)
                (run-build-rules source-kb build-rules-step-hca)
                (run-build-rules source-kb build-rules-step-hcb)
-               (run-build-rules source-kb build-rules-step-hcc)
+               (run-build-rules source-kb build-rules-step-hcca)
+               (run-build-rules source-kb build-rules-step-hccb)
                source-kb))
 
 
@@ -136,12 +137,11 @@
 
 
       ;; confirm that there are only 2 genes relations in the KB (bioworld)
-      (is (= 2 (count (distinct (query source-kb '((?/g [rdfs/subClassOf *] ?/gene)
+      (is (= 5 (count (distinct (query source-kb '((?/g [rdfs/subClassOf *] ?/gene)
                                           (kice/SO_0000704 obo/IAO_0000219 ?/gene)
                                           (?/g rdfs/subClassOf ?/taxon_r)
                                           (?/taxon_r owl/onProperty ?/only_in_taxon)
                                           ;; linking to id_set ensures ?/g is in bioworld
-                                          (?/id_set obo/IAO_0000142 ?/only_in_taxon)
                                           ))))))
 
       (run-build-rules source-kb build-rules-step-hcd 0)
@@ -172,7 +172,7 @@
                           (?/p rdfs/subClassOf ?/has_gene_template_r)
                           (?/has_gene_template_r owl/onProperty ?/has_gene_template)
                           (kice/pr#has_gene_template obo/IAO_0000219 ?/has_gene_template)
-                          (?/id_set obo/IAO_0000142 ?/has_gene_template)
+                          ;(?/id_set obo/IAO_0000142 ?/has_gene_template)
                           (?/has_gene_template_r owl/someValuesFrom ?/g)
                           (?/g rdfs/subClassOf ?/ggp_abstraction)
                           (?/ggp_abstraction rdfs/subClassOf ccp/IAO_EXT_0001715) ;; ccp:gene_or_gene_product_abstraction
@@ -194,7 +194,7 @@
              ))
 
     ;; there should now be two instances of GGPV (IAO_EXT_0001718)
-    (is (= 2 (count (query source-kb '((?/ggpv_abstraction rdfs/subClassOf ccp/IAO_EXT_0001718))))))
+    (is (= 4 (count (query source-kb '((?/ggpv_abstraction rdfs/subClassOf ccp/IAO_EXT_0001718))))))
 
     ;(let [log-kb (output-kb "/tmp/triples.nt")]
     ;  (run-build-rule source-kb log-kb build-rules-step-ib 0)

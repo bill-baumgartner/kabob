@@ -129,7 +129,7 @@
     (run-build-rule source-kb target-kb build-rules-step-a 0)
 
     ;; 2 rules are run, so 8 metadata triples plus 5*2 output triples from the ontology_id_denotes_object_property rule
-    (is (= 18 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;(is (= 18 (count (query target-kb '((?/s ?/p ?/o))))))
 
     (is (ask target-kb '((kice/CL_0002590 obo/IAO_0000219 obo/CL_0002590)
                           (kice/CL_0002590 rdfs/subClassOf ccp/IAO_EXT_0000088))))
@@ -163,14 +163,19 @@
     (run-build-rule source-kb source-kb build-rules-step-a 0)
     (run-build-rule source-kb target-kb build-rules-step-a 1)
 
-    ;; 24 rules are run, so 96 metadata triples
-    ;; there should be 4 new triple generated
-    (is (= 100 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;; 30 rules are run, so 120 metadata triples
+    ;; there should be 8 new triple generated
+    (is (= 128 (count (query target-kb '((?/s ?/p ?/o))))))
 
     (is (ask target-kb '((kice/CL_0002590 rdfs/subClassOf ccp/IAO_EXT_0000202))))
     (is (ask target-kb '((kice/CL_0000359 rdfs/subClassOf ccp/IAO_EXT_0000202))))
     (is (ask target-kb '((kice/UBERON_0002049 rdfs/subClassOf ccp/IAO_EXT_0000201))))
     (is (ask target-kb '((kice/UBERON_0000955 rdfs/subClassOf ccp/IAO_EXT_0000201))))
+
+    (is (ask target-kb '((kice/CL_0002590 rdfs/subClassOf ccp/IAO_EXT_0000342))))
+    (is (ask target-kb '((kice/CL_0000359 rdfs/subClassOf ccp/IAO_EXT_0000342))))
+    (is (ask target-kb '((kice/UBERON_0002049 rdfs/subClassOf ccp/IAO_EXT_0000342))))
+    (is (ask target-kb '((kice/UBERON_0000955 rdfs/subClassOf ccp/IAO_EXT_0000342))))
 
 
     (let [log-kb (output-kb "/tmp/triples.nt")
@@ -319,13 +324,10 @@
 
 
     ;; 15 rules are run, so 60 metadata triples
-    ;; there should be 4 output triple
-    (is (= 64 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;; there should be 0 output triples
+    (is (= 60 (count (query target-kb '((?/s ?/p ?/o))))))
 
-    (is (ask target-kb '((kice/CL_0002590 rdfs/subClassOf ccp/IAO_EXT_0000342))))
-    (is (ask target-kb '((kice/CL_0000359 rdfs/subClassOf ccp/IAO_EXT_0000342))))
-    (is (ask target-kb '((kice/UBERON_0002049 rdfs/subClassOf ccp/IAO_EXT_0000342))))
-    (is (ask target-kb '((kice/UBERON_0000955 rdfs/subClassOf ccp/IAO_EXT_0000342))))
+
 
 
     ;(let [log-kb (output-kb "/tmp/triples.nt")
@@ -336,21 +338,21 @@
     ;  (run-build-rules source-kb build-rules-step-cb)
     ;  (run-build-rules source-kb build-rules-step-cc)
     ;  (run-build-rule source-kb log-kb build-rules-step-da 0)
-    ;  (run-build-rule source-kb log-kb build-rules-step-da 1)
-    ;  (run-build-rule source-kb log-kb build-rules-step-da 2)
-    ;  (run-build-rule source-kb log-kb build-rules-step-da 3)
-    ;  (run-build-rule source-kb log-kb build-rules-step-da 4)
-    ;  (run-build-rule source-kb log-kb build-rules-step-da 5)
-    ;  (run-build-rule source-kb log-kb build-rules-step-db 0)
-    ;  (run-build-rule source-kb log-kb build-rules-step-db 1)
-    ;  (run-build-rule source-kb log-kb build-rules-step-db 2)
-    ;  (run-build-rule source-kb log-kb build-rules-step-db 3)
-    ;  (run-build-rule source-kb log-kb build-rules-step-db 4)
-    ;  (run-build-rule source-kb log-kb build-rules-step-db 5)
-    ;  (run-build-rule source-kb log-kb build-rules-step-db 6)
-    ;  (run-build-rule source-kb log-kb build-rules-step-db 7)
-    ;  (run-build-rule source-kb log-kb build-rules-step-dc 0)
-    ;  (close log-kb))
+      ;(run-build-rule source-kb log-kb build-rules-step-da 1)
+      ;(run-build-rule source-kb log-kb build-rules-step-da 2)
+      ;(run-build-rule source-kb log-kb build-rules-step-da 3)
+      ;(run-build-rule source-kb log-kb build-rules-step-da 4)
+      ;(run-build-rule source-kb log-kb build-rules-step-da 5)
+      ;(run-build-rule source-kb log-kb build-rules-step-db 0)
+      ;(run-build-rule source-kb log-kb build-rules-step-db 1)
+      ;(run-build-rule source-kb log-kb build-rules-step-db 2)
+      ;(run-build-rule source-kb log-kb build-rules-step-db 3)
+      ;(run-build-rule source-kb log-kb build-rules-step-db 4)
+      ;(run-build-rule source-kb log-kb build-rules-step-db 5)
+      ;(run-build-rule source-kb log-kb build-rules-step-db 6)
+      ;(run-build-rule source-kb log-kb build-rules-step-db 7)
+      ;(run-build-rule source-kb log-kb build-rules-step-dc 0)
+      ;(close log-kb))
 
     ))
 
@@ -445,29 +447,28 @@
                   (get-only-files tmp-dir))))
 
     (run-build-rule source-kb target-kb build-rules-step-fa 0)
-    (run-build-rule source-kb target-kb build-rules-step-fa 1)
     (run-build-rule source-kb target-kb build-rules-step-fb 0)
 
-    ;; 3 rules are run, so 12 metadata triples
+    ;; 2 rules are run, so 8 metadata triples
     ;; there should be five triple from identifier_denotes_bioentity
-    ;; there should be five triple from idset_mentions_bioentity
-    (is (= 22 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;; there should be 0 triple from idset_mentions_bioentity - this rule has been deprecated
+    (is (= 13 (count (query target-kb '((?/s ?/p ?/o))))))
 
 
-    (is (ask target-kb '((kice/CL_0002590 obo/IAO_0000219 ?/bio)
-                          (?/idset obo/IAO_0000142 ?/bio))))
+    (is (ask target-kb '((kice/CL_0002590 obo/IAO_0000219 ?/bio))))
+                          ;(?/idset obo/IAO_0000142 ?/bio))))
 
-    (is (ask target-kb '((kice/BFO_0000050 obo/IAO_0000219 ?/bio)
-                          (?/idset obo/IAO_0000142 ?/bio))))
+    (is (ask target-kb '((kice/BFO_0000050 obo/IAO_0000219 ?/bio))))
+                          ;(?/idset obo/IAO_0000142 ?/bio))))
 
-    (is (ask target-kb '((kice/CL_0000359 obo/IAO_0000219 ?/bio)
-                          (?/idset obo/IAO_0000142 ?/bio))))
+    (is (ask target-kb '((kice/CL_0000359 obo/IAO_0000219 ?/bio))))
+                          ;(?/idset obo/IAO_0000142 ?/bio))))
 
-    (is (ask target-kb '((kice/UBERON_0002049 obo/IAO_0000219 ?/bio)
-                          (?/idset obo/IAO_0000142 ?/bio))))
+    (is (ask target-kb '((kice/UBERON_0002049 obo/IAO_0000219 ?/bio))))
+                          ;(?/idset obo/IAO_0000142 ?/bio))))
 
-    (is (ask target-kb '((kice/UBERON_0000955 obo/IAO_0000219 ?/bio)
-                          (?/idset obo/IAO_0000142 ?/bio))))
+    (is (ask target-kb '((kice/UBERON_0000955 obo/IAO_0000219 ?/bio))))
+                          ;(?/idset obo/IAO_0000142 ?/bio))))
 
 
 
@@ -515,112 +516,116 @@
     (run-build-rules source-kb build-rules-step-fa)
     (run-build-rules source-kb build-rules-step-fb)
 
-    ;; copy_owl_alldisjointclasses_to_bio rule
-    (run-build-rule source-kb target-kb build-rules-step-ga 1)
-    ;; 1 rule run, so 4 metadata triples
-    ;; there should be no output triples from the copy_owl_alldisjointclasses_to_bio rule
-    (is (= 4 (count (query target-kb '((?/s ?/p ?/o))))))
-
-    ;; copy_owl_restriction_to_bio rule
-    (run-build-rule source-kb target-kb build-rules-step-ga 2)
-    ;; 4 from above + 4 more metadata triples + 24
-    ;; there are 3 restrictions, so 3*8 triples = 24
-    (is (= 32 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;;; copy_owl_alldisjointclasses_to_bio rule
+    ;(run-build-rule source-kb target-kb build-rules-step-ga 1)
+    ;;; 1 rule run, so 4 metadata triples
+    ;;; there should be no output triples from the copy_owl_alldisjointclasses_to_bio rule
+    ;(is (= 4 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;
+    ;;; copy_owl_restriction_to_bio rule
+    ;(run-build-rule source-kb target-kb build-rules-step-ga 2)
+    ;;; 4 from above + 4 more metadata triples + 24
+    ;;; there are 3 restrictions, so 3*8 triples = 24
+    ;(is (= 32 (count (query target-kb '((?/s ?/p ?/o))))))
 
     ;; copy_anonymous_nodes_to_bio rule
-    (run-build-rule source-kb target-kb build-rules-step-ga 3)
-    ;; 32 from above + 4 more metadata triples + 14
-    ;; there should be 2 blank nodes, so 2*8=16 triples
-    (is (= 52 (count (query target-kb '((?/s ?/p ?/o))))))
-
-    (is (ask target-kb '((?/anon_record rdf/type ccp/IAO_EXT_0001707) ; ccp:anonymous_node_record
-                          (?/anon_record obo/BFO_0000051 ?/id_field_value) ; has part
-                          (?/id_field_value rdf/type ccp/IAO_EXT_0001709) ; ccp:anonymous node identifier field value
-                          (?/id_field_value rdf/type ?/id)
-                          (?/id rdf/type ccp/IAO_EXT_0001710) ; ccp:anonymous_node_identifier
-                          (?/id obo/IAO_0000219 bnode/BN_6ef34dfdbcdb01aae6603d3f9695cd4500b1e3a3275631babcf4d2ddeebafe19)
-                          (?/id obo/IAO_0000219 ?/bio_blank_node))))
-
-    (is (ask target-kb '((?/anon_record rdf/type ccp/IAO_EXT_0001707) ; ccp:anonymous_node_record
-                          (?/anon_record obo/BFO_0000051 ?/id_field_value) ; has part
-                          (?/id_field_value rdf/type ccp/IAO_EXT_0001709) ; ccp:anonymous node identifier field value
-                          (?/id_field_value rdf/type ?/id)
-                          (?/id rdf/type ccp/IAO_EXT_0001710) ; ccp:anonymous_node_identifier
-                          (?/id obo/IAO_0000219 bnode/BN_b4d54ee3980fdbaeeac0e004449e2f5aa3583e424e8d47687eacad6315073109)
-                          (?/id obo/IAO_0000219 ?/bio_blank_node))))
-
-
-    ;; copy_anonymous_nodes_in_lists_to_bio rule
-    (run-build-rule source-kb target-kb build-rules-step-ga 4)
-    ;; 52 from above + 4 metadata triples + 0
-    ;; there should be 0 output triples from t
-    (is (= 56 (count (query target-kb '((?/s ?/p ?/o))))))
-    ;
-    ;(is (ask target-kb '((?/anon_record rdf/type ccp/IAO_EXT_0001707) ; ccp:anonymous_node_record
-    ;                      (?/anon_record obo/BFO_0000051 ?/id_field_value) ; has part
-    ;                      (?/id_field_value rdf/type ccp/IAO_EXT_0001709) ; ccp:anonymous node identifier field value
-    ;                      (?/id_field_value rdf/type ?/id)
-    ;                      (?/id rdf/type ccp/IAO_EXT_0001710) ; ccp:anonymous_node_identifier
-    ;                      (?/id obo/IAO_0000219 bnode/BN_0605b7be27965a4e35d0cfa66604d11b4108c6fee811db19245f2024408dd6bb)
-    ;                      (?/id obo/IAO_0000219 ?/bio_blank_node))))
-    ;
-
-    ;; copy_list_nodes_to_bio rule
     (run-build-rule source-kb target-kb build-rules-step-ga 0)
-    ;; 56 from above + 4 more metadata triples + 32
-    ;; there should be 4 * 8 = 32 triples for the 4 list nodes
-    (is (= 92 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;; 4 metadata triples
+    ;; there should be 8 blank nodes, so 9*8=72 triples
+    ;;   3 are restrictions
+    ;;   4 are lists
+    ;;   2 are owl:Class
+    (is (= 76 (count (query target-kb '((?/s ?/p ?/o))))))
 
-
-    (is (ask target-kb '( (?/list_record rdf/type ccp/IAO_EXT_0000317) ; ccp:RDF list record
-                          (?/list_record obo/BFO_0000051 ?/id_field_value) ; has part
-                          (?/id_field_value rdf/type ccp/IAO_EXT_0000346) ; ccp:RDF list identifier field value
+    (is (ask target-kb '( (?/anon_record rdf/type ccp/IAO_EXT_0001707)
+                          (?/anon_record obo/BFO_0000051 ?/id_field_value) ; has part
+                          (?/id_field_value rdf/type ccp/IAO_EXT_0001709)
                           (?/id_field_value rdf/type ?/id)
-                          (?/id rdf/type ccp/IAO_EXT_0000354)
+                          (?/id rdf/type ccp/IAO_EXT_0001710)
                           (?/id obo/IAO_0000219 bnode/BN_590d92728ddd6f01f3ab38af77ce00f0c86627643cc89a26342aef84db8b65dc)
                           (?/id obo/IAO_0000219 ?/bio_listmember) ; IAO:denotes
                           (?/bio_listmember rdf/type rdf/List))))
 
-    (is (ask target-kb '( (?/list_record rdf/type ccp/IAO_EXT_0000317) ; ccp:RDF list record
-                          (?/list_record obo/BFO_0000051 ?/id_field_value) ; has part
-                          (?/id_field_value rdf/type ccp/IAO_EXT_0000346) ; ccp:RDF list identifier field value
+    (is (ask target-kb '( (?/anon_record rdf/type ccp/IAO_EXT_0001707)
+                          (?/anon_record obo/BFO_0000051 ?/id_field_value) ; has part
+                          (?/id_field_value rdf/type ccp/IAO_EXT_0001709)
                           (?/id_field_value rdf/type ?/id)
-                          (?/id rdf/type ccp/IAO_EXT_0000354)
+                          (?/id rdf/type ccp/IAO_EXT_0001710)
                           (?/id obo/IAO_0000219 bnode/BN_a7a4f3c790e78c05889e509afc51c0e83f255343c040803309575d48eb6f16b9)
                           (?/id obo/IAO_0000219 ?/bio_listmember) ; IAO:denotes
                           (?/bio_listmember rdf/type rdf/List))))
 
-    (is (ask target-kb '( (?/list_record rdf/type ccp/IAO_EXT_0000317) ; ccp:RDF list record
-                          (?/list_record obo/BFO_0000051 ?/id_field_value) ; has part
-                          (?/id_field_value rdf/type ccp/IAO_EXT_0000346) ; ccp:RDF list identifier field value
+    (is (ask target-kb '( (?/anon_record rdf/type ccp/IAO_EXT_0001707)
+                          (?/anon_record obo/BFO_0000051 ?/id_field_value) ; has part
+                          (?/id_field_value rdf/type ccp/IAO_EXT_0001709)
                           (?/id_field_value rdf/type ?/id)
-                          (?/id rdf/type ccp/IAO_EXT_0000354)
+                          (?/id rdf/type ccp/IAO_EXT_0001710)
                           (?/id obo/IAO_0000219 bnode/BN_4ccf91af55010564cabe5bf87a13f3b673413194c5b695e2075b80866d7eeb4e)
                           (?/id obo/IAO_0000219 ?/bio_listmember) ; IAO:denotes
                           (?/bio_listmember rdf/type rdf/List))))
 
-    (is (ask target-kb '( (?/list_record rdf/type ccp/IAO_EXT_0000317) ; ccp:RDF list record
-                          (?/list_record obo/BFO_0000051 ?/id_field_value) ; has part
-                          (?/id_field_value rdf/type ccp/IAO_EXT_0000346) ; ccp:RDF list identifier field value
+    (is (ask target-kb '( (?/anon_record rdf/type ccp/IAO_EXT_0001707)
+                          (?/anon_record obo/BFO_0000051 ?/id_field_value) ; has part
+                          (?/id_field_value rdf/type ccp/IAO_EXT_0001709)
                           (?/id_field_value rdf/type ?/id)
-                          (?/id rdf/type ccp/IAO_EXT_0000354)
+                          (?/id rdf/type ccp/IAO_EXT_0001710)
                           (?/id obo/IAO_0000219 bnode/BN_a3ad4626e77b14621d70861682ebc5572100798df2cefaee61e6799ee43c6cb3)
                           (?/id obo/IAO_0000219 ?/bio_listmember) ; IAO:denotes
                           (?/bio_listmember rdf/type rdf/List))))
 
 
+    (is (ask target-kb '((?/anon_record rdf/type ccp/IAO_EXT_0001707) ; ccp:anonymous_node_record
+                                                (?/anon_record obo/BFO_0000051 ?/id_field_value) ; has part
+                                                (?/id_field_value rdf/type ccp/IAO_EXT_0001709) ; ccp:anonymous node identifier field value
+                                                (?/id_field_value rdf/type ?/id)
+                                                (?/id rdf/type ccp/IAO_EXT_0001710) ; ccp:anonymous_node_identifier
+                                                (?/id obo/IAO_0000219 bnode/BN_6ef34dfdbcdb01aae6603d3f9695cd4500b1e3a3275631babcf4d2ddeebafe19)
+                                                (?/id obo/IAO_0000219 ?/bio_blank_node))))
+
+                          (is (ask target-kb '((?/anon_record rdf/type ccp/IAO_EXT_0001707) ; ccp:anonymous_node_record
+                                                (?/anon_record obo/BFO_0000051 ?/id_field_value) ; has part
+                                                (?/id_field_value rdf/type ccp/IAO_EXT_0001709) ; ccp:anonymous node identifier field value
+                                                (?/id_field_value rdf/type ?/id)
+                                                (?/id rdf/type ccp/IAO_EXT_0001710) ; ccp:anonymous_node_identifier
+                                                (?/id obo/IAO_0000219 bnode/BN_b4d54ee3980fdbaeeac0e004449e2f5aa3583e424e8d47687eacad6315073109)
+                                                (?/id obo/IAO_0000219 ?/bio_blank_node))))
+
+
+
+
+    ;; copy_anonymous_nodes_in_lists_to_bio rule
+    (run-build-rule source-kb target-kb build-rules-step-ga 1)
+    ;; 76 from above + 4 metadata triples + 0
+    ;; there should be 0 output triples from t
+    (is (= 80 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;
+    ;;(is (ask target-kb '((?/anon_record rdf/type ccp/IAO_EXT_0001707) ; ccp:anonymous_node_record
+    ;;                      (?/anon_record obo/BFO_0000051 ?/id_field_value) ; has part
+    ;;                      (?/id_field_value rdf/type ccp/IAO_EXT_0001709) ; ccp:anonymous node identifier field value
+    ;;                      (?/id_field_value rdf/type ?/id)
+    ;;                      (?/id rdf/type ccp/IAO_EXT_0001710) ; ccp:anonymous_node_identifier
+    ;;                      (?/id obo/IAO_0000219 bnode/BN_0605b7be27965a4e35d0cfa66604d11b4108c6fee811db19245f2024408dd6bb)
+    ;;                      (?/id obo/IAO_0000219 ?/bio_blank_node))))
+    ;;
+    ;
+    ;;; copy_list_nodes_to_bio rule
+    ;(run-build-rule source-kb target-kb build-rules-step-ga 0)
+    ;;; 56 from above + 4 more metadata triples + 32
+    ;;; there should be 4 * 8 = 32 triples for the 4 list nodes
+    ;(is (= 92 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;
+    ;
+    ;
+
 
     (let [log-kb (output-kb "/tmp/triples.nt")]
+      (run-build-rule source-kb log-kb build-rules-step-ga 0)
       (run-build-rule source-kb log-kb build-rules-step-ga 1)
-      (run-build-rule source-kb log-kb build-rules-step-ga 2)
-      (run-build-rule source-kb log-kb build-rules-step-ga 3)
+      ;(run-build-rule source-kb log-kb build-rules-step-ga 3)
       (close log-kb))
 
     ))
 
-;; todo -- write step gc tests
-;; todo -- make sure all kabob tests work with new rule
-;; todo -- try it out in the may build
 
 
 (deftest test-step-gc
@@ -658,11 +663,24 @@
     (is (= 6 (count (query target-kb '((?/s ?/p ?/o))))))
 
     (run-build-rules source-kb build-rules-step-gca)
+
+    (run-build-rule source-kb target-kb build-rules-step-gcb 0)
+    ;; 1 rule run, so 4 metadata triples + 6 from above
+    ;; there should be fourteen temporary links created
+    (is (= 24 (count (query target-kb '((?/s ?/p ?/o))))))
+
+    (is (ask target-kb '((obo/CL_0002590 ccp/temporary_link ?/bio))))
+    (is (ask target-kb '((obo/CL_0000359 ccp/temporary_link ?/bio))))
+    (is (ask target-kb '((obo/UBERON_0002049 ccp/temporary_link ?/bio))))
+    (is (ask target-kb '((obo/UBERON_0000955 ccp/temporary_link ?/bio))))
+    (is (ask target-kb '((obo/BFO_0000050 ccp/temporary_link ?/bio))))
+    ;; also temp links for 9 blank nodes
+
     (run-build-rules source-kb build-rules-step-gcb)
     (run-build-rule source-kb target-kb build-rules-step-gcc 0)
-    ;; 6 from above + 4 metadata triples + 17
+    ;; 24 from above + 4 metadata triples
     ;; there should be 17 new links
-    (is (= 27 (count (query target-kb '((?/s ?/p ?/o))))))
+    (is (= 45 (count (query target-kb '((?/s ?/p ?/o))))))
 
 
     (run-build-rules source-kb build-rules-step-gcc)
@@ -673,32 +691,33 @@
                           (kice/UBERON_0002049 obo/IAO_0000219 ?/cls_uberon_0002049)
                           (?/cls_cl_0002590 rdfs/subClassOf ?/cls_cl_0000359)
                           (?/cls_cl_0002590 owl/equivalentClass kbio/BN_6ef34dfdbcdb01aae6603d3f9695cd4500b1e3a3275631babcf4d2ddeebafe19)
-                          (kbio/BN_6ef34dfdbcdb01aae6603d3f9695cd4500b1e3a3275631babcf4d2ddeebafe19 owl/intersectionOf kbio/L_BN_590d92728ddd6f01f3ab38af77ce00f0c86627643cc89a26342aef84db8b65dc)
-                          (kbio/L_BN_590d92728ddd6f01f3ab38af77ce00f0c86627643cc89a26342aef84db8b65dc rdf/type rdf/List)
-                          (kbio/L_BN_590d92728ddd6f01f3ab38af77ce00f0c86627643cc89a26342aef84db8b65dc rdf/first ?/cls_cl_0000359)
-                          (kbio/L_BN_590d92728ddd6f01f3ab38af77ce00f0c86627643cc89a26342aef84db8b65dc rdf/rest kbio/L_BN_a7a4f3c790e78c05889e509afc51c0e83f255343c040803309575d48eb6f16b9)
-                          (kbio/L_BN_a7a4f3c790e78c05889e509afc51c0e83f255343c040803309575d48eb6f16b9 rdf/type rdf/List)
-                          (kbio/L_BN_a7a4f3c790e78c05889e509afc51c0e83f255343c040803309575d48eb6f16b9 rdf/first kbio/RS_BN_fbea5c90d924668c49bd33e8d716028a227ac161fddba68971be89a91cb2463d)
-                          (kbio/RS_BN_fbea5c90d924668c49bd33e8d716028a227ac161fddba68971be89a91cb2463d rdf/type owl/Restriction)
-                          (kbio/RS_BN_fbea5c90d924668c49bd33e8d716028a227ac161fddba68971be89a91cb2463d owl/onProperty ?/cls_bfo_0000050)
-                          (kbio/RS_BN_fbea5c90d924668c49bd33e8d716028a227ac161fddba68971be89a91cb2463d owl/someValuesFrom kbio/BN_b4d54ee3980fdbaeeac0e004449e2f5aa3583e424e8d47687eacad6315073109)
-                          (kbio/BN_b4d54ee3980fdbaeeac0e004449e2f5aa3583e424e8d47687eacad6315073109 owl/intersectionOf kbio/L_BN_4ccf91af55010564cabe5bf87a13f3b673413194c5b695e2075b80866d7eeb4e)
-                          (kbio/L_BN_4ccf91af55010564cabe5bf87a13f3b673413194c5b695e2075b80866d7eeb4e rdf/type rdf/List)
-                          (kbio/L_BN_4ccf91af55010564cabe5bf87a13f3b673413194c5b695e2075b80866d7eeb4e rdf/first ?/cls_uberon_0002049)
-                          (kbio/L_BN_4ccf91af55010564cabe5bf87a13f3b673413194c5b695e2075b80866d7eeb4e rdf/rest kbio/L_BN_a3ad4626e77b14621d70861682ebc5572100798df2cefaee61e6799ee43c6cb3)
-                          (kbio/L_BN_a3ad4626e77b14621d70861682ebc5572100798df2cefaee61e6799ee43c6cb3 rdf/type rdf/List)
-                          (kbio/L_BN_a3ad4626e77b14621d70861682ebc5572100798df2cefaee61e6799ee43c6cb3 rdf/first kbio/RS_BN_7a72a134849d484a3026251198e49140f2dddfec151f22aa2c3a8299faf4b0cb)
-                          (kbio/RS_BN_7a72a134849d484a3026251198e49140f2dddfec151f22aa2c3a8299faf4b0cb rdf/type owl/Restriction)
-                          (kbio/RS_BN_7a72a134849d484a3026251198e49140f2dddfec151f22aa2c3a8299faf4b0cb owl/onProperty ?/cls_bfo_0000050)
-                          (kbio/RS_BN_7a72a134849d484a3026251198e49140f2dddfec151f22aa2c3a8299faf4b0cb owl/someValuesFrom ?/cls_uberon_0000955)
-                          (kbio/L_BN_a3ad4626e77b14621d70861682ebc5572100798df2cefaee61e6799ee43c6cb3 rdf/rest rdf/nil)
+                          (kbio/BN_6ef34dfdbcdb01aae6603d3f9695cd4500b1e3a3275631babcf4d2ddeebafe19 owl/intersectionOf kbio/BN_590d92728ddd6f01f3ab38af77ce00f0c86627643cc89a26342aef84db8b65dc)
+                          (kbio/BN_590d92728ddd6f01f3ab38af77ce00f0c86627643cc89a26342aef84db8b65dc rdf/type rdf/List)
+                          (kbio/BN_590d92728ddd6f01f3ab38af77ce00f0c86627643cc89a26342aef84db8b65dc rdf/first ?/cls_cl_0000359)
+                          (kbio/BN_590d92728ddd6f01f3ab38af77ce00f0c86627643cc89a26342aef84db8b65dc rdf/rest kbio/BN_a7a4f3c790e78c05889e509afc51c0e83f255343c040803309575d48eb6f16b9)
+                          (kbio/BN_a7a4f3c790e78c05889e509afc51c0e83f255343c040803309575d48eb6f16b9 rdf/type rdf/List)
+                          (kbio/BN_a7a4f3c790e78c05889e509afc51c0e83f255343c040803309575d48eb6f16b9 rdf/first kbio/BN_fbea5c90d924668c49bd33e8d716028a227ac161fddba68971be89a91cb2463d)
+                          (kbio/BN_fbea5c90d924668c49bd33e8d716028a227ac161fddba68971be89a91cb2463d rdf/type owl/Restriction)
+                          (kbio/BN_fbea5c90d924668c49bd33e8d716028a227ac161fddba68971be89a91cb2463d owl/onProperty ?/cls_bfo_0000050)
+                          (kbio/BN_fbea5c90d924668c49bd33e8d716028a227ac161fddba68971be89a91cb2463d owl/someValuesFrom kbio/BN_b4d54ee3980fdbaeeac0e004449e2f5aa3583e424e8d47687eacad6315073109)
+                          (kbio/BN_b4d54ee3980fdbaeeac0e004449e2f5aa3583e424e8d47687eacad6315073109 owl/intersectionOf kbio/BN_4ccf91af55010564cabe5bf87a13f3b673413194c5b695e2075b80866d7eeb4e)
+                          (kbio/BN_4ccf91af55010564cabe5bf87a13f3b673413194c5b695e2075b80866d7eeb4e rdf/type rdf/List)
+                          (kbio/BN_4ccf91af55010564cabe5bf87a13f3b673413194c5b695e2075b80866d7eeb4e rdf/first ?/cls_uberon_0002049)
+                          (kbio/BN_4ccf91af55010564cabe5bf87a13f3b673413194c5b695e2075b80866d7eeb4e rdf/rest kbio/BN_a3ad4626e77b14621d70861682ebc5572100798df2cefaee61e6799ee43c6cb3)
+                          (kbio/BN_a3ad4626e77b14621d70861682ebc5572100798df2cefaee61e6799ee43c6cb3 rdf/type rdf/List)
+                          (kbio/BN_a3ad4626e77b14621d70861682ebc5572100798df2cefaee61e6799ee43c6cb3 rdf/first kbio/BN_7a72a134849d484a3026251198e49140f2dddfec151f22aa2c3a8299faf4b0cb)
+                          (kbio/BN_7a72a134849d484a3026251198e49140f2dddfec151f22aa2c3a8299faf4b0cb rdf/type owl/Restriction)
+                          (kbio/BN_7a72a134849d484a3026251198e49140f2dddfec151f22aa2c3a8299faf4b0cb owl/onProperty ?/cls_bfo_0000050)
+                          (kbio/BN_7a72a134849d484a3026251198e49140f2dddfec151f22aa2c3a8299faf4b0cb owl/someValuesFrom ?/cls_uberon_0000955)
+                          (kbio/BN_a3ad4626e77b14621d70861682ebc5572100798df2cefaee61e6799ee43c6cb3 rdf/rest rdf/nil)
                           (kbio/BN_b4d54ee3980fdbaeeac0e004449e2f5aa3583e424e8d47687eacad6315073109 rdf/type owl/Class)
-                          (kbio/L_BN_a7a4f3c790e78c05889e509afc51c0e83f255343c040803309575d48eb6f16b9 rdf/rest rdf/nil)
+                          (kbio/BN_a7a4f3c790e78c05889e509afc51c0e83f255343c040803309575d48eb6f16b9 rdf/rest rdf/nil)
                           (kbio/BN_6ef34dfdbcdb01aae6603d3f9695cd4500b1e3a3275631babcf4d2ddeebafe19 rdf/type owl/Class)
-                          (?/cls_cl_0002590 rdfs/subClassOf kbio/RS_BN_97c06ccf683963be06f7fc8e2f9110a8b0baed4db95055d2765ece08d20652ab)
-                          (kbio/RS_BN_97c06ccf683963be06f7fc8e2f9110a8b0baed4db95055d2765ece08d20652ab rdf/type owl/Restriction)
-                          (kbio/RS_BN_97c06ccf683963be06f7fc8e2f9110a8b0baed4db95055d2765ece08d20652ab owl/onProperty ?/cls_bfo_0000050)
-                          (kbio/RS_BN_97c06ccf683963be06f7fc8e2f9110a8b0baed4db95055d2765ece08d20652ab owl/someValuesFrom kbio/BN_b4d54ee3980fdbaeeac0e004449e2f5aa3583e424e8d47687eacad6315073109))))
+                          (?/cls_cl_0002590 rdfs/subClassOf kbio/BN_97c06ccf683963be06f7fc8e2f9110a8b0baed4db95055d2765ece08d20652ab)
+                          (kbio/BN_97c06ccf683963be06f7fc8e2f9110a8b0baed4db95055d2765ece08d20652ab rdf/type owl/Restriction)
+                          (kbio/BN_97c06ccf683963be06f7fc8e2f9110a8b0baed4db95055d2765ece08d20652ab owl/onProperty ?/cls_bfo_0000050)
+                          (kbio/BN_97c06ccf683963be06f7fc8e2f9110a8b0baed4db95055d2765ece08d20652ab owl/someValuesFrom kbio/BN_b4d54ee3980fdbaeeac0e004449e2f5aa3583e424e8d47687eacad6315073109)
+                          )))
 
 
     (let [log-kb (output-kb "/tmp/triples.nt")]
