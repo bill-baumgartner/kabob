@@ -60,6 +60,8 @@
         ("semanticscience", "http://semanticscience.org/resource/")
 
         ("reactome_download", "http://www.reactome.org/download/current/")
+
+        ("owlapi_error", "http://org.semanticweb.owlapi/error#")
         ;; ---------------------------------------------------------------------------
 
         ;; the bp namespace is a convenience for working with biopax data
