@@ -62,15 +62,15 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 #############
 ############## create ICE records for all ontology concepts
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_aa_id_denotes_concept_non_obo_ns
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_aa_id_denotes_concept_non_obo_ns
-${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_ab_ontology_id_denotes_concept_obo_ns
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_aa_id_denotes_concept_non_obo_ns
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_ab_ontology_id_denotes_concept_obo_ns
 #
 ### check for http:/ bug before proceeding:
 ### grep -Rle 'http:/[^/]' rules/
 ### grep -Rle 'https:/[^/]' rules/
 #
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_ab_ontology_id_denotes_concept_obo_ns
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_ac_ontology_identifier_typing/step_aca_ontology_identifier_typing_by_obo_ns
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_ab_ontology_id_denotes_concept_obo_ns
+${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_ac_ontology_identifier_typing/step_aca_ontology_identifier_typing_by_obo_ns
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_ac_ontology_identifier_typing/step_aca_ontology_identifier_typing_by_obo_ns
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_ac_ontology_identifier_typing/step_acb_ontology_identifier_typing_by_obo_file
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_ac_ontology_identifier_typing/step_acb_ontology_identifier_typing_by_obo_file
