@@ -107,25 +107,25 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 ##
 ########
 ########
-############# generate other ICE RDF
-${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_ca_reactome_biopax2ice
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_ca_reactome_biopax2ice
-${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cb_reactome_biopax2ice
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cb_reactome_biopax2ice
-${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cc_reactome_biopax2ice
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cc_reactome_biopax2ice
-#####
-############ process ICE identifiers
-${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_da_identifier_typing
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_da_identifier_typing
-${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_db_identifier_exact_match
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_db_identifier_exact_match
-##
-#### todo: restart required here? seems to stall otherwise; maybe try optimize?
-##
-##
-${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_dc_more_identifier_exact_match
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_dc_more_identifier_exact_match
+############## generate other ICE RDF
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_ca_reactome_biopax2ice
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_ca_reactome_biopax2ice
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cb_reactome_biopax2ice
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cb_reactome_biopax2ice
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cc_reactome_biopax2ice
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cc_reactome_biopax2ice
+######
+############# process ICE identifiers
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_da_identifier_typing
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_da_identifier_typing
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_db_identifier_exact_match
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_db_identifier_exact_match
+###
+##### todo: restart required here? seems to stall otherwise; maybe try optimize?
+###
+###
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_dc_more_identifier_exact_match
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_dc_more_identifier_exact_match
 #
 ########
 ##########
@@ -137,8 +137,8 @@ ${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/st
 ##########
 ############ Create the ID sets (step e)
 ##export LEIN_ROOT=true
-#cd /kabob.git && { ${LEININGEN} generate-id-sets ${KB_URL} ${KB_NAME} ${KB_USER} ${KB_PASS} ${KB_DATA_DIR}/id_sets/exact/ ${KB_DATA_DIR}/id_sets/graph_dbs/ ${SERVER_IMPL} ; cd - ; }
-#${BASE_SCRIPT_DIR}/LOAD.sh id_sets/exact
+cd /kabob.git && { ${LEININGEN} generate-id-sets ${KB_URL} ${KB_NAME} ${KB_USER} ${KB_PASS} ${KB_DATA_DIR}/id_sets/exact/ ${KB_DATA_DIR}/id_sets/graph_dbs/ ${SERVER_IMPL} ; cd - ; }
+${BASE_SCRIPT_DIR}/LOAD.sh id_sets/exact
 #
 ####
 ########### OPTIMIZE STORE
