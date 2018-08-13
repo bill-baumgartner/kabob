@@ -137,8 +137,8 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 ##########
 ############ Create the ID sets (step e)
 ##export LEIN_ROOT=true
-cd /kabob.git && { ${LEININGEN} generate-id-sets ${KB_URL} ${KB_NAME} ${KB_USER} ${KB_PASS} ${KB_DATA_DIR}/id_sets/exact/ ${KB_DATA_DIR}/id_sets/graph_dbs/ ${SERVER_IMPL} ; cd - ; }
-${BASE_SCRIPT_DIR}/LOAD.sh id_sets/exact
+#cd /kabob.git && { ${LEININGEN} generate-id-sets ${KB_URL} ${KB_NAME} ${KB_USER} ${KB_PASS} ${KB_DATA_DIR}/id_sets/exact/ ${KB_DATA_DIR}/id_sets/graph_dbs/ ${SERVER_IMPL} ; cd - ; }
+#${BASE_SCRIPT_DIR}/LOAD.sh id_sets/exact
 #
 ####
 ########### OPTIMIZE STORE
@@ -153,15 +153,15 @@ ${BASE_SCRIPT_DIR}/LOAD.sh id_sets/exact
 ########
 ########
 ###########  create bioentity for each id set
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fb_obsolete_identifier_bioentity_links
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fb_obsolete_identifier_bioentity_links
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fb_obsolete_identifier_bioentity_links
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fb_obsolete_identifier_bioentity_links
 ######
 #
 #
 ####### Check for identifiers that denote multiple kabob bioentities
-#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/ice_bio_distinction
+${BASE_SCRIPT_DIR}/RULES.sh rules/validation/ice_bio_distinction
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/ice_bio_distinction
 #
 ####
