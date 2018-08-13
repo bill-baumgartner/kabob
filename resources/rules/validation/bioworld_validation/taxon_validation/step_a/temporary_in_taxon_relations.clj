@@ -1,10 +1,10 @@
-`{:name        "validation_nodes-connected-to-more-than-one-taxon-restriction-EXPECT-0"
+`{:name        "validation_temporary-in-taxon-relations"
   :description "Checks for bioentities that are subClassOf multiple taxonomy restrictions that reference different taxonomies."
-  :head        ()
+  :head        ((?/bioentity ccp/temp_in_taxon ?/taxon))
   :body
                "prefix kice: <http://ccp.ucdenver.edu/kabob/ice/>
                PREFIX obo: <http://purl.obolibrary.org/obo/>
-               select distinct ?bioentity {
+               select distinct ?bioentity ?taxon {
 
                    {
                     select ?only_in_taxon {
@@ -13,13 +13,9 @@
                                            }
                     }
 
-                   ?r1 owl:onProperty ?only_in_taxon .
-                   ?r1 owl:someValuesFrom ?taxon1 .
-                   ?bioentity rdfs:subClassOf ?r1 .
-                   ?bioentity rdfs:subClassOf ?r2 .
-                   ?r2 owl:onProperty ?only_in_taxon .
-                   ?r2 owl:someValuesFrom ?taxon2 .
-                   filter (?taxon1 != ?taxon2)
+                   ?r owl:onProperty ?only_in_taxon .
+                   ?r owl:someValuesFrom ?taxon .
+                   ?bioentity rdfs:subClassOf ?r .
 
                }"
   }
