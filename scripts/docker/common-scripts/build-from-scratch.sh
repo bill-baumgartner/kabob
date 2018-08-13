@@ -153,39 +153,39 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 ########
 ########
 ###########  create bioentity for each id set
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fb_obsolete_identifier_bioentity_links
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fb_obsolete_identifier_bioentity_links
-######
-#
-#
-####### Check for identifiers that denote multiple kabob bioentities
-${BASE_SCRIPT_DIR}/RULES.sh rules/validation/ice_bio_distinction
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/ice_bio_distinction
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fb_obsolete_identifier_bioentity_links
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fb_obsolete_identifier_bioentity_links
+#######
+##
+##
+######## Check for identifiers that denote multiple kabob bioentities
+#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/ice_bio_distinction
+${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/ice_bio_distinction
 #
 ####
 ############ connect bioentities based on ontology hierarchies
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gba_copy_rdfs_labels_to_bio
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gba_copy_rdfs_labels_to_bio
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gbb_derive_missing_labels_to_bio
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gbb_derive_missing_labels_to_bio
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gba_copy_rdfs_labels_to_bio
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gba_copy_rdfs_labels_to_bio
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gbb_derive_missing_labels_to_bio
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gbb_derive_missing_labels_to_bio
 #
 ########## OPTIMIZE STORE
 ###${BASE_SCRIPT_DIR}/OPTIMIZE.sh
 ###sleep 300
 ##
 ##
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gca_links_to_nil
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gca_links_to_nil
-#
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcb_temp_link_ont_to_bio_concepts
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcb_temp_link_ont_to_bio_concepts
-#
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcc_transfer_ontology_links_to_bio
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcc_transfer_ontology_links_to_bio
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gca_links_to_nil
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gca_links_to_nil
+
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcb_temp_link_ont_to_bio_concepts
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcb_temp_link_ont_to_bio_concepts
+
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcc_transfer_ontology_links_to_bio
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcc_transfer_ontology_links_to_bio
 ##
 #
 ## todo: need to have stardog use the admin user to allow kb updates/deletes that are called for in step gcd -- for now do them manually (see queries below)
