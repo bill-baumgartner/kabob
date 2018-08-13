@@ -4,8 +4,12 @@
 `{:name          "step-hda_drugbank-drug-to-protein-target-relation"
   :description   "This rule generates bio-representations for the drug-target relationships cataloged by DrugBank where the target is a protein"
   :head          (
-                   ;; create an interaction from the subclass of direct binding and binding
+                   ;; create temporary links to facilitate labeling of the generated subclasses
                    (?/interaction rdfs/subClassOf ccp/temp_drugbank_interaction)
+                   (?/interaction ccp/temp_drug_participant ?/drug_sc)
+                   (?/interaction ccp/temp_target_participant ?/target_sc)
+
+                   ;; create an interaction from the subclass of direct binding and binding
                    (?/interaction rdfs/subClassOf ?/direct_interaction) ; MI:direct interaction
                    (?/interaction rdfs/subClassOf ?/binding) ; GO:binding
 
