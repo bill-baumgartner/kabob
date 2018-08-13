@@ -1,7 +1,7 @@
 ;; ----------------------------------------------------------------------------------
 ;; --------- Gene Ontology Annotation Molecular Function Concept Assignment ---------
 ;; ----------------------------------------------------------------------------------
-`{:name          "step-hdb0_goa-molecular-function-go-concept-temp-labels"
+`{:name          "step-hdb0_goa-molecular-function-labels"
   :description   "This rule creates a subclass of every molecular function and types it as a gene ontology molecular function concept identifier  (IAO_EXT_0000103)"
   :head          ((?/mf_sc rdfs/label ?/molecular_function_label)
                    (?/participating_bioentity_sc rdfs/label ?/participating_bioentity_label))
@@ -25,10 +25,10 @@
                 minus {?mf rdf:type owl:Restriction}
 
                 optional {?mf rdfs:label ?mfl}
-                bind(coalesce(?mfl, "Unnamed molecular function") as ?mf_name)
+                bind(coalesce(?mfl, \"Unnamed molecular function\") as ?mf_name)
 
                 optional {?participating_bioentity rdfs:label ?bl}
-                bind(coalesce(?bl, "Unnamed molecular function participant") as ?bioentity_name)
+                bind(coalesce(?bl, \"Unnamed molecular function participant\") as ?bioentity_name)
 
                 bind(concat(str(?bioentity_name), \"; participates in \", str(?mf_name)) as ?participating_bioentity_label)
                 bind(concat(str(?mf_name), \" by \", str(?bioentity_name)) as ?molecular_function_label)
