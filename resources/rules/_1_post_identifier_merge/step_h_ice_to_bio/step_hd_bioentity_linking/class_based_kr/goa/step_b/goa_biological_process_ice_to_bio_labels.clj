@@ -22,9 +22,9 @@
                      }
 
 
-                                                ?bp_sc rdfs:subClassOf ccp:temp_biological_process .
-                                                ?bp_sc rdfs:subClassOf ?bp .
-                                                filter (?bp != ccp:temp_biological_process) .
+                    ?bp_sc rdfs:subClassOf ccp:temp_biological_process .
+                    ?bp_sc rdfs:subClassOf ?bp .
+                    filter (?bp != ccp:temp_biological_process) .
 
                     ?bp_sc rdfs:subClassOf ?r1 .
                     ?r1 owl:onProperty ?has_participant .
@@ -37,8 +37,8 @@
                     optional {?participating_bioentity rdfs:label ?bl}
                     bind(coalesce(?bl, \"Unnamed biological process participant\") as ?bioentity_name)
 
-                    bind(concat(str(?bioentity_name), \"; participating in: \", str(?bp_name)) as ?participating_bioentity_label)
-                    bind(concat(str(?bp_name), \"; with participant: \", str(?bioentity_name)) as ?biological_process_label)
+                    bind(concat(str(?bioentity_name), \"; participates in \", str(?bp_name)) as ?participating_bioentity_label)
+                    bind(concat(str(?bp_name), \" by \", str(?bioentity_name)) as ?biological_process_label)
 
 
                     }"

@@ -384,12 +384,12 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 ##${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
 
 # ===== GOA CLASS-BASED =====
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_a
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_a
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_b/_0_go_concept_label
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_b/_0_go_concept_label
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_b/_1_bioentity_label
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_b/_1_bioentity_label
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_a
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_a
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_b
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_b
+
+## todo: remove temporary links here
 
 
 # ----- VALIDATION -----

@@ -44,8 +44,8 @@
                         optional {?localized_bioentity rdfs:label ?bl}
                         bind(coalesce(?bl, \"Unnamed localized bioentity\") as ?bioentity_name)
 
-                        bind(concat(str(?bioentity_name), \"; localized to: \", str(?cc_name)) as ?localized_bioentity_label)
-                        bind(concat(str(?cc_name), \"; with localized bioentity: \", str(?bioentity_name)) as ?cellular_component_label)
+                        bind(concat(str(?bioentity_name), \"; in \", str(?cc_name)) as ?localized_bioentity_label)
+                        bind(concat(str(?cc_name), \"; contains \", str(?bioentity_name)) as ?cellular_component_label)
                         bind(concat(\"Localization of \", str(?bioentity_name), \" to \", str(?cc_name)) as ?localization_process_label)
 
                         }"
