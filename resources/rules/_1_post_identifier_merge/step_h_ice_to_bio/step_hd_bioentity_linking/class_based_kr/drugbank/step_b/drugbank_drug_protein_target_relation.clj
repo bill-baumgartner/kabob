@@ -44,7 +44,10 @@
                    ;; make the interaction be part of these 3 restrictions
                    (?/interaction rdfs/subClassOf ?/target_participant_restriction)
                    (?/interaction rdfs/subClassOf ?/drug_participant_restriction)
-                   (?/interaction rdfs/subClassOf ?/realizes_drug_role_restriction))
+                   (?/interaction rdfs/subClassOf ?/realizes_drug_role_restriction)
+
+                   ;; todo add missing record - denotes links
+                   )
 
   :reify         ([?/interaction {:ln (:sha-1 "interaction" ?/target_protein ?/drug)
                                   :ns "kbio" :prefix "I_"}]
@@ -109,12 +112,7 @@
                                      }
                   }
 
-    ?drugbank_drug_record rdf:type ccp:IAO_EXT_0000426 . # ccp:DrugBank_record
-    ?drugbank_drug_record obo:BFO_0000051 ?drugbank_identifier_field_value .
-    ?drugbank_identifier_field_value rdf:type ccp:IAO_EXT_0000360 . # ccp:Drugbank_drug_record__drugbank_identifier_field_value
-    ?drugbank_identifier_field_value rdf:type ?drugbank_identifier .
-    ?drugbank_identifier rdfs:subClassOf ccp:IAO_EXT_0001309 . # CCP:drugbank_identifier
-    ?drugbank_identifier obo:IAO_0000219 ?drug .
+    ?drugbank_drug_record ccp:temp_drug ?drug .
 
     # retrieve the target bioentity participant identifier
     ?drugbank_drug_record obo:BFO_0000051 ?target_record_as_field_value .
