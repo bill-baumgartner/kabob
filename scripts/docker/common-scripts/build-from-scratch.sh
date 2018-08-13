@@ -82,22 +82,22 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 ########### DEPRECATED ${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/identifier_normalization
 ########### DEPRECATED ${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/ontology_xref
 ########### DEPRECATED${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/ontology_xref
-${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/equivalent_class
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/equivalent_class
-${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/shared_label
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/shared_label
-########
-######### Load the ICE RDF - the rules above process the ontologies only, so we have waited to load the ICE RDF until this point
-${BASE_SCRIPT_DIR}/load-list-file.sh \
-  ${KB_PORT} \
-  ${KB_NAME} \
-  ${KB_DATA_DIR}/file-lists/ice-nt-files.${KB_NAME}.list
-
-${BASE_SCRIPT_DIR}/load-list-file.sh \
-  ${KB_PORT} \
-  ${KB_NAME} \
-  ${KB_DATA_DIR}/file-lists/ice-owl-files.${KB_NAME}.list \
-  "rdfxml"
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/equivalent_class
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/equivalent_class
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/shared_label
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/shared_label
+#########
+########## Load the ICE RDF - the rules above process the ontologies only, so we have waited to load the ICE RDF until this point
+#${BASE_SCRIPT_DIR}/load-list-file.sh \
+#  ${KB_PORT} \
+#  ${KB_NAME} \
+#  ${KB_DATA_DIR}/file-lists/ice-nt-files.${KB_NAME}.list
+#
+#${BASE_SCRIPT_DIR}/load-list-file.sh \
+#  ${KB_PORT} \
+#  ${KB_NAME} \
+#  ${KB_DATA_DIR}/file-lists/ice-owl-files.${KB_NAME}.list \
+#  "rdfxml"
 #
 ######### OPTIMIZE STORE
 ##${BASE_SCRIPT_DIR}/OPTIMIZE.sh
@@ -108,24 +108,24 @@ ${BASE_SCRIPT_DIR}/load-list-file.sh \
 ########
 ########
 ############# generate other ICE RDF
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_ca_reactome_biopax2ice
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_ca_reactome_biopax2ice
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cb_reactome_biopax2ice
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cb_reactome_biopax2ice
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cc_reactome_biopax2ice
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cc_reactome_biopax2ice
+${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_ca_reactome_biopax2ice
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_ca_reactome_biopax2ice
+${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cb_reactome_biopax2ice
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cb_reactome_biopax2ice
+${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cc_reactome_biopax2ice
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cc_reactome_biopax2ice
 #####
 ############ process ICE identifiers
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_da_identifier_typing
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_da_identifier_typing
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_db_identifier_exact_match
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_db_identifier_exact_match
+${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_da_identifier_typing
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_da_identifier_typing
+${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_db_identifier_exact_match
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_db_identifier_exact_match
 ##
 #### todo: restart required here? seems to stall otherwise; maybe try optimize?
 ##
 ##
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_dc_more_identifier_exact_match
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_dc_more_identifier_exact_match
+${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_dc_more_identifier_exact_match
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_dc_more_identifier_exact_match
 #
 ########
 ##########
