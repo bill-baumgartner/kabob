@@ -276,10 +276,10 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template
 
-${BASE_SCRIPT_DIR}/RULES.sh rules/validation/bioworld_validation/taxon_validation/step_a
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/bioworld_validation/taxon_validation/step_a
-#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/bioworld_validation/taxon_validation/step_b
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/bioworld_validation/taxon_validation/step_b
+#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/bioworld_validation/taxon_validation/step_a
+${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/bioworld_validation/taxon_validation/step_a
+${BASE_SCRIPT_DIR}/RULES.sh rules/validation/bioworld_validation/taxon_validation/step_b
+${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/bioworld_validation/taxon_validation/step_b
 #
 #### todo: remove temporary links here
 #####${BASE_SCRIPT_DIR}/RULES.sh rules/validation/bioworld_validation/taxon_validation/step_c
