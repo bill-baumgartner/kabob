@@ -39,7 +39,7 @@
            ?gene_bioentity rdfs:subClassOf kice:temp_snorna_entity .
            optional {?gene_bioentity rdfs:label ?label}
   bind(coalesce(?label, \"Unnamed gene\") as ?gene_name)
-  bind(concat(\"snoRNA encoded by gene: \", str(?gene_name)) as ?rna_label)
+  bind(concat(\"snoRNA encoded by \", str(?gene_name)) as ?rna_label)
            # Exclude any genes that are already the template for an ncRNA
            minus {
                   ?has_gene_template_r owl:someValuesFrom ?gene_bioentity .

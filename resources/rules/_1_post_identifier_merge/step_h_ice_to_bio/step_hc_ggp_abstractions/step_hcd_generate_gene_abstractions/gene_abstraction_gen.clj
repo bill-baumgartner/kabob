@@ -66,13 +66,13 @@
                          ?g rdfs:subClassOf* ?gene .
                          optional {?g rdfs:label ?label}
                          bind(coalesce(?label, \"Unnamed gene\") as ?gene_name)
-                         bind(concat(\"Gene or gene product abstraction for gene: \", str(?gene_name)) as ?ggp_label)
-                         bind(concat(\"Gene product abstraction for gene: \", str(?gene_name)) as ?gp_label)
-                         bind(concat(\"Variant gene product abstraction for gene: \", str(?gene_name)) as ?vgp_label)
-                         bind(concat(\"Variant gene abstraction for gene: \", str(?gene_name)) as ?vg_label)
-                         bind(concat(\"Gene or gene product or variant abstraction for gene: \", str(?gene_name)) as ?ggpv_label)
-                         bind(concat(\"Gene or gene variant abstraction for gene: \", str(?gene_name)) as ?ggv_label)
-                         bind(concat(\"Gene product or gene product variant abstraction for gene: \", str(?gene_name)) as ?gpgpv_label)
+                         bind(concat(\"Gene or gene product for \", str(?gene_name)) as ?ggp_label)
+                         bind(concat(\"Gene product for \", str(?gene_name)) as ?gp_label)
+                         bind(concat(\"Variant gene product for \", str(?gene_name)) as ?vgp_label)
+                         bind(concat(\"Variant gene for \", str(?gene_name)) as ?vg_label)
+                         bind(concat(\"Gene or gene product or variant for \", str(?gene_name)) as ?ggpv_label)
+                         bind(concat(\"Gene or gene variant for \", str(?gene_name)) as ?ggv_label)
+                         bind(concat(\"Gene product or gene product variant for \", str(?gene_name)) as ?gpgpv_label)
                          # to keep from climbing the gene hierarchy we require the genes to have a taxon
                          ?g rdfs:subClassOf ?taxon_r .
                          ?taxon_r rdf:type owl:Restriction .

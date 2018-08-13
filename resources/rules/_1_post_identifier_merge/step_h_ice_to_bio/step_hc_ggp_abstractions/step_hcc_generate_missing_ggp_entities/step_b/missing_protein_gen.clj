@@ -46,7 +46,7 @@
         ?gene_missing_protein rdfs:subClassOf ?protein_coding_gene .
         optional {?gene_missing_protein rdfs:label ?label}
         bind(coalesce(?label, \"Unnamed gene\") as ?gene_name)
-        bind(concat(\"Protein encoded by gene: \", str(?gene_name)) as ?protein_label)
+        bind(concat(\"Protein encoded by \", str(?gene_name)) as ?protein_label)
 
         # exclude genes that already participate in a has_gene_template restriction
         minus {

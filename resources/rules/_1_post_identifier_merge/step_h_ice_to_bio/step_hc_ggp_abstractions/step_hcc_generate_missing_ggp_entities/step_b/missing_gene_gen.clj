@@ -64,7 +64,7 @@
         optional {?protein_missing_gene rdfs:label ?label}
 
         bind(coalesce(?label, \"Unnamed protein\") as ?protein_name)
-        bind(concat(\"Gene for protein: \", str(?protein_name)) as ?protein_coding_gene_label)
+        bind(concat(\"Gene coding \", str(?protein_name)) as ?protein_coding_gene_label)
         ## exclude proteins that already have a has_gene_template restriction (likely imported via pr.owl)
         minus {
                ?protein_missing_gene rdfs:subClassOf ?has_gene_template_r .
