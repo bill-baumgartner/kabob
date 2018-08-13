@@ -322,10 +322,19 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 
 
 # ====== BIOPLEX CLASS-BASED ======
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/bioplex/step_a
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/bioplex/step_a
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/bioplex/step_b
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/bioplex/step_b
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/bioplex/step_a
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/bioplex/step_a
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/bioplex/step_b
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/bioplex/step_b
+
+# todo: remove temporary links here
+##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+##                    select ?s (ccp:temp_bioplex_interaction as ?o) ?g {
+##                      graph ?g {
+##                        ?s rdfs:subClassOf ccp:temp_bioplex_interaction .
+##                      }
+##                    }
+##                  }
 
 # ----- VALIDATION -----
 #${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
