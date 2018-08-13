@@ -162,31 +162,31 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 ##
 ######## Check for identifiers that denote multiple kabob bioentities
 #${BASE_SCRIPT_DIR}/RULES.sh rules/validation/ice_bio_distinction
-${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/ice_bio_distinction
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/ice_bio_distinction
+##
+#####
+############# connect bioentities based on ontology hierarchies
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gba_copy_rdfs_labels_to_bio
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gba_copy_rdfs_labels_to_bio
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gbb_derive_missing_labels_to_bio
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gbb_derive_missing_labels_to_bio
+##
+########### OPTIMIZE STORE
+####${BASE_SCRIPT_DIR}/OPTIMIZE.sh
+####sleep 300
+###
+###
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gca_links_to_nil
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gca_links_to_nil
 #
-####
-############ connect bioentities based on ontology hierarchies
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gba_copy_rdfs_labels_to_bio
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gba_copy_rdfs_labels_to_bio
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gbb_derive_missing_labels_to_bio
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gbb_derive_missing_labels_to_bio
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcb_temp_link_ont_to_bio_concepts
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcb_temp_link_ont_to_bio_concepts
 #
-########## OPTIMIZE STORE
-###${BASE_SCRIPT_DIR}/OPTIMIZE.sh
-###sleep 300
-##
-##
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gca_links_to_nil
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gca_links_to_nil
-
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcb_temp_link_ont_to_bio_concepts
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcb_temp_link_ont_to_bio_concepts
-
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcc_transfer_ontology_links_to_bio
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcc_transfer_ontology_links_to_bio
-##
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcc_transfer_ontology_links_to_bio
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcc_transfer_ontology_links_to_bio
+###
 #
 ## todo: need to have stardog use the admin user to allow kb updates/deletes that are called for in step gcd -- for now do them manually (see queries below)
 #
@@ -210,26 +210,51 @@ ${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio
 ##                  }
 #
 ####### Validate RDF syntax
-#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/restriction
-#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/list
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
+${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
+${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/restriction
+${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/list
+${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
 #
 ############ ice to bio
 ########## typing
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_haa
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_haa
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_hab
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_hab
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_haa
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_haa
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_hab
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_hab
 ####${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_hac
 #### anything to load?? ${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_hac
 #
 ## todo: need to have stardog use the admin user to allow kb updates/deletes that are called for in step hac -- for now do them manually (see queries below)
 #
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_identifier
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_identifier
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_parent_class
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_parent_class
+
+##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+##                    select ?s (kice:temp_bio_region as ?o) ?g {
+##                      graph ?g {
+##                        ?s rdfs:subClassOf kice:temp_bio_region .
+##                      }
+##                    }
+##                  }
+##
+##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+##                    select ?s (kice:temp_protein_coding_gene as ?o) ?g {
+##                      graph ?g {
+##                        ?s rdfs:subClassOf kice:temp_protein_coding_gene .
+##                      }
+##                    }
+##                  }
+##
+##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+##                    select ?s (kice:temp_pseudogene as ?o) ?g {
+##                      graph ?g {
+##                        ?s rdfs:subClassOf kice:temp_pseudogene .
+##                      }
+##                    }
+##                  }
+
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_identifier
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_identifier
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_parent_class
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_parent_class
 #
 #####
 #####
