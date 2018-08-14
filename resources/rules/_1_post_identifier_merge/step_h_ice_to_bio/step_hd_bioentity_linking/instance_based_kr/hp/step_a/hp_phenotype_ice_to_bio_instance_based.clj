@@ -4,6 +4,9 @@
 `{:name          "step-hd_hp-phenotype-ice-to-bio-instance-based-kr"
   :description   "This rule creates a subclass of every human phenotype and types it as a human phenotype concept identifier (IAO_EXT_0000208)"
   :head          (
+                   (?/phenotype_instance rdfs/subClassOf ccp/temp_human_phenotype)
+                   (?/bioentity_instance ccp/temp_causes ?/phenotype_instance)
+
                    ;; create an instance of the human phenotype
                    (?/phenotype_instance rdf/type ?/human_phenotype)
 

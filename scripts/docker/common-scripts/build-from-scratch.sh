@@ -573,17 +573,79 @@ ${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/ste
 ${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/goa/step_b
 
 # todo: remove temporary links here
+##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+##                    select ?s (ccp:temp_biological_process as ?o) ?g {
+##                      graph ?g {
+##                        ?s rdfs:subClassOf ccp:temp_biological_process .
+##                      }
+##                    }
+##                  }
+
+##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+##                    select ?s (ccp:temp_localization as ?o) ?g {
+##                      graph ?g {
+##                        ?s rdfs:subClassOf ccp:temp_localization .
+##                      }
+##                    }
+##                  }
+
+##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+##                    select ?s (ccp:temp_molecular_function as ?o) ?g {
+##                      graph ?g {
+##                        ?s rdfs:subClassOf ccp:temp_biological_process .
+##                      }
+##                    }
+##                  }
 
 
+##delete { graph ?g {?s ?p ?o}} where {
+##                    select ?s (ccp:temp_has_participant as ?p) ?o ?g {
+##                      graph ?g {
+##                        ?s ccp:temp_has_participant ?o .
+##                      }
+##                    }
+##                  }
 
-###${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/hp
-###${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/hp
-#####
-#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/restriction
-##${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/list
-##${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
-##
+##delete { graph ?g {?s ?p ?o}} where {
+##                    select ?s (ccp:temp_transports as ?p) ?o ?g {
+##                      graph ?g {
+##                        ?s ccp:temp_transports ?o .
+##                      }
+##                    }
+##                  }
+
+##delete { graph ?g {?s ?p ?o}} where {
+##                    select ?s (ccp:temp_end_location as ?p) ?o ?g {
+##                      graph ?g {
+##                        ?s ccp:temp_end_location ?o .
+##                      }
+##                    }
+##                  }
+
+# ====== GOA INSTANCE-BASED ======
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/hp/step_a
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/hp/step_a
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/hp/step_b
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/hp/step_b
+
+# todo: remove temporary links here
+
+##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+##                    select ?s (ccp:temp_human_phenotype as ?o) ?g {
+##                      graph ?g {
+##                        ?s rdfs:subClassOf ccp:temp_human_phenotype .
+##                      }
+##                    }
+##                  }
+
+##delete { graph ?g {?s ?p ?o}} where {
+##                    select ?s (ccp:temp_causes as ?p) ?o ?g {
+##                      graph ?g {
+##                        ?s ccp:temp_causes ?o .
+##                      }
+##                    }
+##                  }
+
 ###${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank
 ###${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank
 ####
