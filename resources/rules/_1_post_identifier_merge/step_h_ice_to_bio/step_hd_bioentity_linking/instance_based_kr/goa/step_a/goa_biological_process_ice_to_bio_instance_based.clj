@@ -4,6 +4,10 @@
 `{:name          "step-hd_goa-biological-process-ice-to-bio-instance-based-kr"
   :description   "This rule creates a subclass of every biological process and types it as a gene ontology biological process concept identifier  (IAO_EXT_0000103)"
   :head          (
+
+                   (?/biological_process_instance rdfs/subClassOf ccp/temp_biological_process)
+                   (?/biological_process_instance ccp/temp_has_participant ?/bioentity_instance)
+
                    ;; create an instance of the biological process
                    (?/biological_process_instance rdf/type ?/biological_process)
                    ;; create an instance of the participating bioentity

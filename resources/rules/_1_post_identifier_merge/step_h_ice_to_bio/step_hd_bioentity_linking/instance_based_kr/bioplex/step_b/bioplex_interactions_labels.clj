@@ -1,7 +1,7 @@
 ;; -----------------------------------------------
 ;; --------- IRefWeb Binary Interactions ---------
 ;; -----------------------------------------------
-`{:name          "step-hd_bioplex-interactions"
+`{:name          "step-hd_bioplex-interaction-labels"
   :description   "This rule generates bio-representations the (biophysical) interactions cataloged by BioPlex"
   :head          ((?/interaction rdfs/label ?/interaction_label)
                    (?/bioentity1_instance rdfs/label ?/b1_label)

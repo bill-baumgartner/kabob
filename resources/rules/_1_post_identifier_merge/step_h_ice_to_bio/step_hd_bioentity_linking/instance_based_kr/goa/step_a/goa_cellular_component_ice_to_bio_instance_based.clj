@@ -4,7 +4,12 @@
 `{:name "step-hd_goa-cellular-component-ice-to-bio-instance-based-kr"
   :description "This rule creates a subclass of every cellular component and types it as a gene ontology cellular component concept identifier (IAO_EXT_0000200)"
   :head (
-         ;; create an instance of GO localization
+
+          (?/localization_instance rdfs/subClassOf ccp/temp_localization)
+          (?/localization_instance ccp/temp_transports ?/bioentity_instance)
+          (?/localization_instance ccp/temp_end_location ?/cellular_component_instance)
+
+            ;; create an instance of GO localization
          (?/localization_instance rdf/type ?/localization_process)
          
          ;; create an instance of the participating bioentity
