@@ -711,32 +711,41 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_a
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_b
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_b
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_c
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_c
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_c
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_c
 
 
 # todo: remove temporary links here
 
+### drop graph <file://step-hda_temp-link-drugbank-record-to-drug.nt>
+
 ##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
-##                    select ?s (ccp:temp_human_phenotype as ?o) ?g {
+##                    select ?s (ccp:temp_drugbank_interaction as ?o) ?g {
 ##                      graph ?g {
-##                        ?s rdfs:subClassOf ccp:temp_human_phenotype .
+##                        ?s rdfs:subClassOf ccp:temp_drugbank_interaction .
 ##                      }
 ##                    }
 ##                  }
 
 ##delete { graph ?g {?s ?p ?o}} where {
-##                    select ?s (ccp:temp_causes as ?p) ?o ?g {
+##                    select ?s (ccp:temp_drug_participant as ?p) ?o ?g {
 ##                      graph ?g {
-##                        ?s ccp:temp_causes ?o .
+##                        ?s ccp:temp_drug_participant ?o .
 ##                      }
 ##                    }
 ##                  }
 
+##delete { graph ?g {?s ?p ?o}} where {
+##                    select ?s (ccp:temp_target_participant as ?p) ?o ?g {
+##                      graph ?g {
+##                        ?s ccp:temp_target_participant ?o .
+##                      }
+##                    }
+##
 
 # ----- STEP I INSTANCE-BASED -----
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_a
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_a
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_a
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_a
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_b
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_b
 
