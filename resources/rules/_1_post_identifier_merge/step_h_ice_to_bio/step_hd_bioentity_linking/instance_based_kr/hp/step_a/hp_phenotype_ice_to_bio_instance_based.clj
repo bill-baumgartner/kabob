@@ -28,14 +28,18 @@
                   PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
                   prefix kice: <http://ccp.ucdenver.edu/kabob/ice/>
                   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                  SELECT ?causal_bioentity ?human_phenotype ?record ?cause_or_contributes_to_condition ?human_phenotype_label
-                  WHERE {  ?human_phenotype_identifier rdfs:subClassOf ccp:IAO_EXT_0000208 . # CCP:Human_Phenotype_Ontology_concept_identifier
+                  SELECT ?causal_bioentity ?human_phenotype ?record ?cause_or_contributes_to_condition
+                  WHERE {
+
+                  {
+                            select ?cause_or_contributes_to_condition {
+                                                                       kice:RO_0003302 obo:IAO_0000219 ?cause_or_contributes_to_condition .
+                                                                       filter (?cause_or_contributes_to_condition != obo:RO_0003302) .
+                                                                       }
+                            }
+
+                  ?human_phenotype_identifier rdfs:subClassOf ccp:IAO_EXT_0000208 . # CCP:Human_Phenotype_Ontology_concept_identifier
                            ?human_phenotype_identifier obo:IAO_0000219 ?human_phenotype .
-                           # ensure it is a kabob bioentity
-                           ?id_set obo:IAO_0000142 ?human_phenotype . # obo:mentions
-                           ?id_set rdf:type ccp:IAO_EXT_0000316 . # ccp:identifier_set
-                           # get the hp label
-                           ?human_phenotype rdfs:label ?human_phenotype_label .
 
                            ?hp_identifier_field_value rdf:type ?human_phenotype_identifier .
                            ?hp_identifier_field_value rdf:type ccp:IAO_EXT_0000701 .  # CCP:HPO_annotation_record__HPO_term_field_value
@@ -46,12 +50,6 @@
                            ?bioentity_identifier_field_value rdf:type ?bioentity_identifier .
                            ?bioentity_identifier obo:IAO_0000219 ?causal_bioentity .
 
-                           {
-                             select ?cause_or_contributes_to_condition {
-                                    kice:RO_0003302 obo:IAO_0000219 ?cause_or_contributes_to_condition .
-                                    filter (?cause_or_contributes_to_condition != obo:RO_0003302) .
-                                   }
-                           }
                         }"
 
   }
