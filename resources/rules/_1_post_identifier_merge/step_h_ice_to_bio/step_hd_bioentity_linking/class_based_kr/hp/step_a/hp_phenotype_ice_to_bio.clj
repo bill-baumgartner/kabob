@@ -6,6 +6,8 @@
   :head          (
                    ;; create a subclass of the human phenotype
                    (?/phenotype_sc rdfs/subClassOf ccp/temp_human_phenotype)
+                   (?/bioentity_sc ccp/temp_causes ?/phenotype_sc)
+
                    (?/phenotype_sc rdfs/subClassOf ?/human_phenotype)
 
                    ;; create a sublcass of the participating bioentity
