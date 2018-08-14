@@ -5,8 +5,8 @@
   :description   "This rule generates bio-representations for the drug-target relationships cataloged by DrugBank where the target is a protein"
   :head          (
                    (?/interaction rdfs/subClassOf ccp/temp_drugbank_interaction)
-                   (?/interaction ccp/temp_drug_participant ?drug_instance)
-                   (?/interaction ccp/temp_target_participant ?target_instance)
+                   (?/interaction ccp/temp_drug_participant ?/drug_instance)
+                   (?/interaction ccp/temp_target_participant ?/target_instance)
 
                    ;; create an interaction as instances of both direct binding and binding
                    (?/interaction rdf/type ?/direct_interaction) ; MI:direct interaction
