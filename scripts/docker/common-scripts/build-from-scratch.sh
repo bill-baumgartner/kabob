@@ -514,8 +514,8 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 ######### bioworld expansion
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_i_bio_expansion/class_based_kr/step_a
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_i_bio_expansion/class_based_kr/step_a
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_i_bio_expansion/class_based_kr/step_b
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_i_bio_expansion/class_based_kr/step_b
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_i_bio_expansion/class_based_kr/step_b
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_i_bio_expansion/class_based_kr/step_b
 
 ## todo - remove temporary links
 ##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
@@ -527,9 +527,9 @@ ${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_i_bio_expansion/c
 ##                  }
 
 # ----- VALIDATION -----
-#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
+${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/restriction
-#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/list
+${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/list
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
 
 
