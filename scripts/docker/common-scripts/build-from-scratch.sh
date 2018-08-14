@@ -527,10 +527,10 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 ##                  }
 
 # ----- VALIDATION -----
-${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/restriction
-${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/list
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
+#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
+${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/restriction
+#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/list
+${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
 
 
 # todo - remove temporary links from step hd and step i
