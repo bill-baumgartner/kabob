@@ -3,7 +3,11 @@
 ;; ------------------------------------------------
 `{:name        "step-i_localization-infers-location-instance-based"
   :description "This rule asserts that a protein is located in a cellular component if a localization process results in the localization of a protein and has target end location of a cellular component"
-  :head        ((?/location_instance rdf/type ?/location)
+  :head        (
+                 (?/location_instance rdfs/subClassOf ccp/temp_location)
+                 (?/bioentity_instance ccp/temp_located_in ?/location_instance)
+
+                 (?/location_instance rdf/type ?/location)
                  (?/bioentity_instance rdf/type ?/bioentity)
                  (?/bioentity_instance ?/located_in ?/location_instance))
 
