@@ -432,8 +432,25 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 # ===== HP CLASS-BASED =====
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/hp/step_a
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/hp/step_a
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/hp/step_b
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/hp/step_b
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/hp/step_b
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/hp/step_b
+
+## todo - remove temporary links
+##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+##                    select ?s (ccp:temp_human_phenotype as ?o) ?g {
+##                      graph ?g {
+##                        ?s rdfs:subClassOf ccp:temp_human_phenotype .
+##                      }
+##                    }
+##                  }
+
+##delete { graph ?g {?s ?p ?o}} where {
+##                    select ?s (ccp:temp_causes as ?p) ?o ?g {
+##                      graph ?g {
+##                        ?s ccp:temp_causes ?o .
+##                      }
+##                    }
+##                  }
 
 # ----- VALIDATION -----
 #${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
@@ -442,8 +459,8 @@ ${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step
 ##${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
 
 # ===== IREFWEB CLASS-BASED =====
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/irefweb/step_a
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/irefweb/step_a
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/irefweb/step_a
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/irefweb/step_a
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/irefweb/step_b
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/irefweb/step_b
 
