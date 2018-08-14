@@ -34,8 +34,8 @@
                    bind(coalesce(?label2, \"Unnamed location\") as ?location_name)
 
 
-                   bind(concat(str(?bioentity_name), \"; localized to: \", str(?location_name)) as ?bioentity_label)
-                   bind(concat(str(?location_name), \"; with localized bioentity: \", str(?bioentity_name)) as ?location_label)
+                   bind(concat(str(?bioentity_name), \"; in \", str(?location_name)) as ?bioentity_label)
+                   bind(concat(str(?location_name), \"; contains \", str(?bioentity_name)) as ?location_label)
 
                    }"
 
