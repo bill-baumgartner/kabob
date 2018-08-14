@@ -5,8 +5,8 @@
   :description   "This rule generates bio-representations for all binary protein interactions cataloged by IRefWeb"
   :head          (;; create instances of interaction type and id
                    (?/interaction rdfs/subClassOf ccp/temp_irefweb_binary_interaction) ;interaction
-                   (?/interaction ccp/temp_has_participant ?bioentity1_instance)
-                   (?/interaction ccp/temp_has_participant ?bioentity2_instance)
+                   (?/interaction ccp/temp_has_participant ?/bioentity1_instance)
+                   (?/interaction ccp/temp_has_participant ?/bioentity2_instance)
 
 
                    (?/interaction rdf/type ?/interaction_type) ;interaction

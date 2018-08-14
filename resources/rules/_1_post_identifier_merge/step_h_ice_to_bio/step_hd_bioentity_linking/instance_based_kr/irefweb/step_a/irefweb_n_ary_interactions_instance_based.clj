@@ -5,7 +5,7 @@
   :description "This rule generates bio-representations for all n-ary protein interactions cataloged by IRefWeb, where n>2"
   :head (
           (?/interaction rdfs/subClassOf ccp/temp_irefweb_nary_interaction) ;interaction
-          (?/interaction ccp/temp_has_participant ?bioentity_instance)
+          (?/interaction ccp/temp_has_participant ?/bioentity_instance)
 
          ;; create instance of interaction type and id
          (?/interaction rdf/type ?/interaction_type) ;interaction
