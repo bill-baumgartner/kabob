@@ -650,23 +650,32 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 # ====== IREFWEB INSTANCE-BASED ======
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/irefweb/step_a
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/irefweb/step_a
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/irefweb/step_b
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/irefweb/step_b
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/irefweb/step_b
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/irefweb/step_b
 
 # todo: remove temporary links here
 
 ##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
-##                    select ?s (ccp:temp_human_phenotype as ?o) ?g {
+##                    select ?s (ccp:temp_irefweb_nary_interaction as ?o) ?g {
 ##                      graph ?g {
-##                        ?s rdfs:subClassOf ccp:temp_human_phenotype .
+##                        ?s rdfs:subClassOf ccp:temp_irefweb_nary_interaction .
 ##                      }
 ##                    }
 ##                  }
 
-##delete { graph ?g {?s ?p ?o}} where {
-##                    select ?s (ccp:temp_causes as ?p) ?o ?g {
+##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+##                    select ?s (ccp:temp_irefweb_binary_interaction as ?o) ?g {
 ##                      graph ?g {
-##                        ?s ccp:temp_causes ?o .
+##                        ?s rdfs:subClassOf ccp:temp_irefweb_binary_interaction .
+##                      }
+##                    }
+##                  }
+
+
+##delete { graph ?g {?s ?p ?o}} where {
+##                    select ?s (ccp:temp_has_participant as ?p) ?o ?g {
+##                      graph ?g {
+##                        ?s ccp:temp_has_participant ?o .
 ##                      }
 ##                    }
 ##                  }
@@ -675,33 +684,33 @@ ${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step
 # ====== PHARMGKB INSTANCE-BASED ======
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/pharmgkb/step_a
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/pharmgkb/step_a
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/pharmgkb/step_b
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/pharmgkb/step_b
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/pharmgkb/step_b
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/pharmgkb/step_b
 
 # todo: remove temporary links here
 
 ##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
-##                    select ?s (ccp:temp_human_phenotype as ?o) ?g {
+##                    select ?s (ccp:temp_pharmgkb_interaction as ?o) ?g {
 ##                      graph ?g {
-##                        ?s rdfs:subClassOf ccp:temp_human_phenotype .
+##                        ?s rdfs:subClassOf ccp:temp_pharmgkb_interaction .
 ##                      }
 ##                    }
 ##                  }
 
 ##delete { graph ?g {?s ?p ?o}} where {
-##                    select ?s (ccp:temp_causes as ?p) ?o ?g {
+##                    select ?s (ccp:temp_has_participant as ?p) ?o ?g {
 ##                      graph ?g {
-##                        ?s ccp:temp_causes ?o .
+##                        ?s ccp:temp_has_participant ?o .
 ##                      }
 ##                    }
 ##                  }
 
 
 # ====== DRUGBANK INSTANCE-BASED ======
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_a
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_a
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_b
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_b
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_a
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_a
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_b
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_b
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_c
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/drugbank/step_c
 

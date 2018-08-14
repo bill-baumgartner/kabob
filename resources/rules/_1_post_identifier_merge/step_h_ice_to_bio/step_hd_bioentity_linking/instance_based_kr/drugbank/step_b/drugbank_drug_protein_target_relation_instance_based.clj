@@ -4,6 +4,10 @@
 `{:name          "step-hd_drugbank-drug-to-protein-target-relation-instance-based-kr"
   :description   "This rule generates bio-representations for the drug-target relationships cataloged by DrugBank where the target is a protein"
   :head          (
+                   (?/interaction rdfs/subClassOf ccp/temp_drugbank_interaction)
+                   (?/interaction ccp/temp_drug_participant ?drug_instance)
+                   (?/interaction ccp/temp_target_participant ?target_instance)
+
                    ;; create an interaction as instances of both direct binding and binding
                    (?/interaction rdf/type ?/direct_interaction) ; MI:direct interaction
                    (?/interaction rdf/type ?/binding) ; GO:binding
@@ -36,12 +40,45 @@
   prefix kice: <http://ccp.ucdenver.edu/kabob/ice/>
   SELECT ?target_protein ?drug ?binding ?has_participant ?realizes ?inheres_in ?drug_role ?drugbank_drug_record ?direct_interaction
   WHERE {
-    ?drugbank_drug_record rdf:type ccp:IAO_EXT_0000426 . # ccp:DrugBank_record
-    ?drugbank_drug_record obo:BFO_0000051 ?drugbank_identifier_field_value .
-    ?drugbank_identifier_field_value rdf:type ccp:IAO_EXT_0000360 . # ccp:Drugbank_drug_record__drugbank_identifier_field_value
-    ?drugbank_identifier_field_value rdf:type ?drugbank_identifier .
-    ?drugbank_identifier rdfs:subClassOf ccp:IAO_EXT_0001309 . # CCP:drugbank_identifier
-    ?drugbank_identifier obo:IAO_0000219 ?drug .
+
+  {
+            select ?direct_interaction {
+                                        kice:MI_0407 obo:IAO_0000219 ?direct_interaction .
+                                        filter (?direct_interaction != obo:MI_0407) .
+                                        }
+            }
+                 {
+                  select ?binding {
+                                   kice:GO_0005488 obo:IAO_0000219 ?binding .
+                                   filter (?binding != obo:GO_0005488) .
+                                   }
+                  }
+  {
+   select ?has_participant {
+                            kice:RO_0000057 obo:IAO_0000219 ?has_participant .
+                            filter (?has_participant != obo:RO_0000057) .
+                            }
+   }
+                 {
+                  select ?realizes {
+                                    kice:BFO_0000055 obo:IAO_0000219 ?realizes .
+                                    filter (?realizes != obo:BFO_0000055) .
+                                    }
+                  }
+  {
+   select ?inheres_in {
+                       kice:RO_0000052 obo:IAO_0000219 ?inheres_in .
+                       filter (?inheres_in != obo:RO_0000052) .
+                       }
+   }
+                 {
+                  select ?drug_role {
+                                     kice:CHEBI_23888 obo:IAO_0000219 ?drug_role .
+                                     filter (?drug_role != obo:CHEBI_23888) .
+                                     }
+                  }
+
+    ?drugbank_drug_record ccp:temp_drug ?drug .
 
     # retrieve the target bioentity participant identifier
     ?drugbank_drug_record obo:BFO_0000051 ?target_record_as_field_value .
@@ -57,43 +94,6 @@
     ?target_identifier rdfs:subClassOf* ccp:IAO_EXT_0000188 . # CCP:protein_identifier
     ?target_identifier obo:IAO_0000219 ?target_protein .
 
-
-     {
-              select ?direct_interaction {
-                                         kice:MI_0407 obo:IAO_0000219 ?direct_interaction .
-            filter (?direct_interaction != obo:MI_0407) .
-                                         }
-              }
-            {
-             select ?binding {
-                              kice:GO_0005488 obo:IAO_0000219 ?binding .
-                              filter (?binding != obo:GO_0005488) .
-                              }
-             }
-             {
-              select ?has_participant {
-                                      kice:RO_0000057 obo:IAO_0000219 ?has_participant .
-                                      filter (?has_participant != obo:RO_0000057) .
-                                      }
-              }
-             {
-              select ?realizes {
-                               kice:BFO_0000055 obo:IAO_0000219 ?realizes .
-                               filter (?realizes != obo:BFO_0000055) .
-                               }
-             }
-             {
-              select ?inheres_in {
-                                  kice:RO_0000052 obo:IAO_0000219 ?inheres_in .
-                                  filter (?inheres_in != obo:RO_0000052) .
-                                  }
-              }
-              {
-               select ?drug_role {
-                                 kice:CHEBI_23888 obo:IAO_0000219 ?drug_role .
-                                 filter (?drug_role != obo:CHEBI_23888) .
-                                 }
-               }
      }"
 
   }
