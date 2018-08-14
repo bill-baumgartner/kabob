@@ -744,10 +744,10 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 ##
 
 # ----- STEP I INSTANCE-BASED -----
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_a
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_a
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_b
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_b
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_a
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_a
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_b
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_b
 
 
 # ----- VALIDATION -----
