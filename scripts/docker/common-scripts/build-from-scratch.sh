@@ -528,46 +528,9 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 
 # ----- VALIDATION -----
 #${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
-${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/restriction
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/restriction
 #${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/list
-${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
-
-
-# todo - remove temporary links from step hd and step i
-
-#rdfs/subClassOf ccp/temp_location
-#rdfs/subClassOf ccp/temp_pharmgkb_interaction
-#rdfs/subClassOf ccp/temp_irefweb_nary_interaction
-#rdfs/subClassOf ccp/temp_irefweb_binary_interaction
-#rdfs/subClassOf ccp/temp_human_phenotype
-#rdfs/subClassOf ccp/temp_molecular_function
-#rdfs/subClassOf ccp/temp_localization_process
-#rdfs/subClassOf ccp/temp_biological_process
-#rdfs/subClassOf ccp/temp_drugbank_interaction
-#rdfs/subClassOf ccp/temp_bioplex_interaction
-#rdfs/subClassOf kice/temp_ncrna_entity
-#rdfs/subClassOf kice/temp_rrna_entity
-#rdfs/subClassOf kice/temp_scrna_entity
-#rdfs/subClassOf kice/temp_snorna_entity
-#rdfs/subClassOf kice/temp_snrna_entity
-#rdfs/subClassOf kice/temp_trna_entity
-#ccp/temp_name ?/mf_name
-
-#delete { graph ?g {?s rdfs:subClassOf ?o}} where {
-#  select ?s (ccp:temp_location as ?o) ?g {
-#    graph ?g {
-#      ?s rdfs:subClassOf ccp:temp_location .
-#    }
-#  }
-#}
-
-#delete { graph ?g {?s ccp:temp_name ?o}} where {
-#  select ?s ?o ?g {
-#    graph ?g {
-#      ?s ccp:temp_name ?o .
-#    }
-#  }
-#}
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
 
 
 ######### validation rules (only rule metadata triples added)
@@ -579,13 +542,32 @@ ${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
 # =================================== #
 # =================================== #
 
-###${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/bioplex
-###${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/bioplex
+
+# ====== BIOPLEX CLASS-BASED ======
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/bioplex/step_a
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/bioplex/step_a
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/bioplex/step_b
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/bioplex/step_b
+
+# todo: remove temporary links here
+##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+##                    select ?s (ccp:temp_bioplex_interaction as ?o) ?g {
+##                      graph ?g {
+##                        ?s rdfs:subClassOf ccp:temp_bioplex_interaction .
+##                      }
+##                    }
+##                  }
+
+##delete { graph ?g {?s ?p ?o}} where {
+##                    select ?s (ccp:temp_has_participant as ?p) ?o ?g {
+##                      graph ?g {
+##                        ?s ccp:temp_has_participant ?o .
+##                      }
+##                    }
+##                  }
+
+
 ###
-#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/restriction
-##${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/list
-##${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
 #####
 ###${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/goa
 ###${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/goa

@@ -3,11 +3,17 @@
 ;; -----------------------------------------------
 `{:name          "step-hd_bioplex-interactions-instance-based"
   :description   "This rule generates bio-representations the (biophysical) interactions cataloged by BioPlex"
-  :head          ((?/interaction rdf/type ?/physical_association)
+  :head          ((?/interaction rdfs/subClassOf ccp/temp_bioplex_interaction)
+                   (?/interaction ccp/temp_has_participant ?/bioentity1_instance)
+                   (?/interaction ccp/temp_has_participant ?/bioentity2_instance)
+
+                   (?/interaction rdf/type ?/physical_association)
                    (?/bioentity1_instance rdf/type ?/bioentity1)
                    (?/bioentity2_instance rdf/type ?/bioentity2)
                    (?/interaction ?/has_participant ?/bioentity1_instance)
                    (?/interaction ?/has_participant ?/bioentity2_instance)
+
+
                    (?/record obo/IAO_0000219 ?/interaction))
   :reify         ([?/interaction {:ln (:sha-1 ?/bioentity1 ?/bioentity2 ?/physical_association)
                                   :ns "kbio" :prefix "B_"}]
@@ -41,6 +47,7 @@
       ?uniprot_identifier_a_field_value rdf:type ccp:IAO_EXT_0001765 . # ccp:BIOPLEX_RECORD___UNIPROT_IDENTIFIER_A_FIELD_VALUE
       ?uniprot_identifier_a_field_value rdf:type ?uniprot_a_identifier .
       ?uniprot_a_identifier obo:IAO_0000219 ?bioentity1 .
+
       ?record obo:BFO_0000051 ?uniprot_identifier_b_field_value .
       ?uniprot_identifier_b_field_value rdf:type ccp:IAO_EXT_0001766 . # ccp:BIOPLEX_RECORD___UNIPROT_IDENTIFIER_B_FIELD_VALUE
       ?uniprot_identifier_b_field_value rdf:type ?uniprot_b_identifier .
