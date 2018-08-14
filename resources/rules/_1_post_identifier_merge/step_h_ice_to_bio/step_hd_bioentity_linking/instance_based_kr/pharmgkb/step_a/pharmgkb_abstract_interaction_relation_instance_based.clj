@@ -4,6 +4,11 @@
 `{:name "step-hd_pharmgkb-abstract-interaction-relation-instance-based-kr"
   :description "This rule assigns an abstract interaction relation between pharmgkb entities"
   :head (
+          (?/interaction rdfs/subClassOf ccp/temp_pharmgkb_interaction) ;interaction
+          (?/interaction ccp/temp_has_participant ?bioentity1_instance)
+          (?/interaction ccp/temp_has_participant ?bioentity2_instance)
+
+
           (?/interaction rdf/type ?/abstract_interaction) ;interaction
 
           ;; create subclasses of the proteins
