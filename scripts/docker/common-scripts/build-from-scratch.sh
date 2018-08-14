@@ -569,8 +569,8 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 # ====== GOA INSTANCE-BASED ======
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/goa/step_a
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/goa/step_a
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/goa/step_b
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/goa/step_b
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/goa/step_b
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/goa/step_b
 
 # todo: remove temporary links here
 ##delete { graph ?g {?s rdfs:subClassOf ?o}} where {
@@ -622,11 +622,11 @@ ${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step
 ##                    }
 ##                  }
 
-# ====== GOA INSTANCE-BASED ======
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/hp/step_a
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/hp/step_a
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/hp/step_b
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/hp/step_b
+# ====== HP INSTANCE-BASED ======
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/hp/step_a
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/hp/step_a
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/hp/step_b
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/instance_based_kr/hp/step_b
 
 # todo: remove temporary links here
 
