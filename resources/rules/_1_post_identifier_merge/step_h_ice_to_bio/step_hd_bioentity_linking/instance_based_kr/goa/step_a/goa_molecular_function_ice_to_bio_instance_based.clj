@@ -5,7 +5,7 @@
   :description   "This rule creates a subclass of every molecular function and types it as a gene ontology molecular function concept identifier  (IAO_EXT_0000103)"
   :head          (
                    (?/molecular_function_instance rdfs/subClassOf ccp/temp_molecular_function)
-                   (?/molecular_function_instance ccp/temp_has_participant bioentity_instance)
+                   (?/molecular_function_instance ccp/temp_has_participant ?/bioentity_instance)
 
                    (?/molecular_function_instance rdf/type ?/molecular_function)
                    (?/bioentity_instance rdf/type ?/participating_bioentity)
