@@ -31,29 +31,29 @@ echo "DATASOURCE_ICE_DIR=${DATASOURCE_ICE_DIR}"
 echo "KB_DATA_DIR=${KB_DATA_DIR}"
 echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 
-############# Clean out the directory in which we're going to place our artifacts.
-#######rm -rvf ${KB_DATA_DIR}
-#######mkdir -p ${KB_DATA_DIR}
-##########
-########### create a new database
-#${BASE_SCRIPT_DIR}/create-new-database.sh ${KB_NAME}
-########
-########### generate lists of RDF files that will be loaded in subsequent steps
-#${COMMON_SCRIPT_DIR}/generate-rdf-file-lists.sh ${KB_NAME} ${DOCKER_ENV}
-########
-########## Load the ontologies (note: they will have been converted from OWL to n-triples prior to loading)
-#${BASE_SCRIPT_DIR}/load-list-file.sh \
-#  ${KB_PORT} \
-#  ${KB_NAME} \
-#  ${KB_DATA_DIR}/file-lists/owl-files.${KB_NAME}.list \
-#  "ntriples"
+############ Clean out the directory in which we're going to place our artifacts.
+######rm -rvf ${KB_DATA_DIR}
+######mkdir -p ${KB_DATA_DIR}
+#########
+########## create a new database
+${BASE_SCRIPT_DIR}/create-new-database.sh ${KB_NAME}
+#######
+########## generate lists of RDF files that will be loaded in subsequent steps
+${COMMON_SCRIPT_DIR}/generate-rdf-file-lists.sh ${KB_NAME} ${DOCKER_ENV}
+#######
+######### Load the ontologies (note: they will have been converted from OWL to n-triples prior to loading)
+${BASE_SCRIPT_DIR}/load-list-file.sh \
+  ${KB_PORT} \
+  ${KB_NAME} \
+  ${KB_DATA_DIR}/file-lists/owl-files.${KB_NAME}.list \
+  "ntriples"
+
+######### Check that there are no classes with redundant restrictions after the ontology load
+${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
+${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/restriction
+${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/list
+${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
 #
-########## Check that there are no classes with redundant restrictions after the ontology load
-#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/restriction
-#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/list
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
-##
 ###########
 #############
 ################ ============================================================================================ #
@@ -61,7 +61,7 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 ################ ============================================================================================ #
 #############
 ############## create ICE records for all ontology concepts
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_aa_id_denotes_concept_non_obo_ns
+${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_aa_id_denotes_concept_non_obo_ns
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_aa_id_denotes_concept_non_obo_ns
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_ab_ontology_id_denotes_concept_obo_ns
 #
@@ -746,8 +746,8 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 # ----- STEP I INSTANCE-BASED -----
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_a
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_a
-${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_b
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_b
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_b
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_i_bio_expansion/instance_based_kr/step_b
 
 
 # ----- VALIDATION -----
