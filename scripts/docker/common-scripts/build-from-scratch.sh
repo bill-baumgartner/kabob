@@ -87,19 +87,19 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/shared_label
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/shared_label
 #########
-########## Load the ICE RDF - the rules above process the ontologies only, so we have waited to load the ICE RDF until this point
-${BASE_SCRIPT_DIR}/load-list-file.sh \
-  ${KB_PORT} \
-  ${KB_NAME} \
-  ${KB_DATA_DIR}/file-lists/ice-nt-files.${KB_NAME}.list
-
-${BASE_SCRIPT_DIR}/load-list-file.sh \
-  ${KB_PORT} \
-  ${KB_NAME} \
-  ${KB_DATA_DIR}/file-lists/ice-owl-files.${KB_NAME}.list \
-  "rdfxml"
-
-######### OPTIMIZE STORE
+########### Load the ICE RDF - the rules above process the ontologies only, so we have waited to load the ICE RDF until this point
+#${BASE_SCRIPT_DIR}/load-list-file.sh \
+#  ${KB_PORT} \
+#  ${KB_NAME} \
+#  ${KB_DATA_DIR}/file-lists/ice-nt-files.${KB_NAME}.list
+#
+#${BASE_SCRIPT_DIR}/load-list-file.sh \
+#  ${KB_PORT} \
+#  ${KB_NAME} \
+#  ${KB_DATA_DIR}/file-lists/ice-owl-files.${KB_NAME}.list \
+#  "rdfxml"
+#
+########## OPTIMIZE STORE
 ##${BASE_SCRIPT_DIR}/OPTIMIZE.sh
 ##sleep 300
 ###
@@ -108,9 +108,9 @@ ${BASE_SCRIPT_DIR}/load-list-file.sh \
 ########
 ########
 ############## generate other ICE RDF
-${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_ca_reactome_add_base_types_as_ice
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_ca_reactome_add_base_types_as_ice
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cb_reactome_add_base_type_biopax_fields_1_as_ice
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_ca_reactome_add_base_types_as_ice
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_ca_reactome_add_base_types_as_ice
+${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cb_reactome_add_base_type_biopax_fields_1_as_ice
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cb_reactome_add_base_type_biopax_fields_1_as_ice
 ######
 ############# process ICE identifiers
