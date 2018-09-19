@@ -1,7 +1,7 @@
 ;; ---------------------------------------------------------
 ;; --------- DrugBank Drug Protein Target Relation ---------
 ;; ---------------------------------------------------------
-`{:name        "step-hdb_drugbank-drug-to-protein-target-relation-drug-labels"
+`{:name        "step-hdc_drugbank-drug-to-protein-target-relation-drug-instance-labels"
   :description "This rule generates bio-representations for the drug-target relationships cataloged by DrugBank where the target is a protein"
   :head        ((?/drug_instance rdfs/label ?/drug_label)
                  (?/interaction rdfs/label ?/interaction_label)
@@ -12,7 +12,7 @@
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
   PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
   prefix kice: <http://ccp.ucdenver.edu/kabob/ice/>
-  select  ?drug_instance ?drug_label ?target_instance ?target_label ?interaction ?interaction_label{
+  select  ?drug_instance ?drug_label ?target_instance ?target_label ?interaction ?interaction_label {
 
     ?interaction rdfs:subClassOf ccp:temp_drugbank_interaction .
     ?interaction ccp:temp_drug_participant ?drug_instance .

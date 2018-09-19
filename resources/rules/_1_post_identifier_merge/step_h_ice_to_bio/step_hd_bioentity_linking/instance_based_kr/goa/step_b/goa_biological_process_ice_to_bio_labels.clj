@@ -1,7 +1,7 @@
 ;; ----------------------------------------------------------------------------------
 ;; --------- Gene Ontology Annotation Biological Process Concept Assignment ---------
 ;; ----------------------------------------------------------------------------------
-`{:name          "step-hdb_goa-biological-process-ice-to-bio-labels"
+`{:name          "step-hdb_goa-biological-process-ice-to-bio-instance-labels"
   :description   "This rule creates a subclass of every biological process and types it as a gene ontology biological process concept identifier  (IAO_EXT_0000103)"
   :head          ((?/bp_instance rdfs/label ?/biological_process_label)
                    (?/participating_bioentity_instance rdfs/label ?/participating_bioentity_label))

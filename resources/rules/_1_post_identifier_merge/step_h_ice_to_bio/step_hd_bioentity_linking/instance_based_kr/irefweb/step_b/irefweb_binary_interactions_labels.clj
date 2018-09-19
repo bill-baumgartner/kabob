@@ -1,7 +1,7 @@
 ;; -----------------------------------------------
 ;; --------- IRefWeb Binary Interactions ---------
 ;; -----------------------------------------------
-`{:name          "step-hdb_irefweb-binary-interactions-labels"
+`{:name          "step-hdb_irefweb-binary-interactions-instance-labels"
   :description   "This rule generates bio-representations for all binary protein interactions cataloged by IRefWeb"
   :head          ((?/interaction rdfs/label ?/interaction_label)
                    (?/b1_instance rdfs/label ?/b1_label) ; transfer label to the subclass

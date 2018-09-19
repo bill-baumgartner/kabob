@@ -1,7 +1,7 @@
 ;; -----------------------------------------------------------------------
 ;; --------- Gene Ontology Cellular Component Concept Assignment ---------
 ;; -----------------------------------------------------------------------
-`{:name "step-hdb_goa-cellular-component-ice-to-bio-labels"
+`{:name "step-hdb_goa-cellular-component-ice-to-bio-instance-labels"
   :description "This rule creates a subclass of every cellular component and types it as a gene ontology cellular component concept identifier (IAO_EXT_0000200)"
   :head ((?/loc_process_instance rdfs/label ?/localization_process_label)
           (?/localized_bioentity_instance rdfs/label ?/localized_bioentity_label)

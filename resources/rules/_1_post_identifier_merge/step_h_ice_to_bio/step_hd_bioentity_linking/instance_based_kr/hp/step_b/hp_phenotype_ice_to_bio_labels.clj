@@ -1,7 +1,7 @@
 ;; -------------------------------------------------------------------------
 ;; --------- Human Phenotype Ontology Phenotype Concept Assignment ---------
 ;; -------------------------------------------------------------------------
-`{:name          "step-hdb_hp-phenotype-ice-to-bio-labels"
+`{:name          "step-hdb_hp-phenotype-ice-to-bio-instance-labels"
   :description   "This rule creates a subclass of every human phenotype and types it as a human phenotype concept identifier (IAO_EXT_0000208)"
   :head          ((?/phenotype_instance rdfs/label ?/human_phenotype_label)
                    (?/bioentity_instance rdfs/label ?/causal_bioentity_label))

@@ -1,7 +1,7 @@
 ;; ------------------------------------------------
 ;; --------- Localization Infers Location ---------
 ;; ------------------------------------------------
-`{:name        "step-i_localization-infers-location-labels"
+`{:name        "step-i_localization-infers-location-instance-labels"
   :description "This rule asserts that a protein is located in a cellular component if a localization process results in the localization of a protein and has target end location of a cellular component"
   :head        ((?/location_instance rdfs/label ?/location_label)
                  (?/bioentity_instance rdfs/label ?/bioentity_label))

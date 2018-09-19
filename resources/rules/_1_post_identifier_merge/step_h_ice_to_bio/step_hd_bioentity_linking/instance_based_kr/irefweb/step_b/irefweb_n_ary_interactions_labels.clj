@@ -1,7 +1,7 @@
 ;; ----------------------------------------------
 ;; --------- IRefWeb N-Ary Interactions ---------
 ;; ----------------------------------------------
-`{:name "step-hdb_irefweb-n-ary-interactions-labels"
+`{:name "step-hdb_irefweb-n-ary-interactions-instance-labels"
   :description "This rule generates bio-representations for all n-ary protein interactions cataloged by IRefWeb, where n>2"
   :head ((?/bioentity_instance rdfs/label ?/bioentity_label))
 

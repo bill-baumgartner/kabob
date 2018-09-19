@@ -1,7 +1,7 @@
 ;; ----------------------------------------------------------------------------------
 ;; --------- Gene Ontology Annotation Molecular Function Concept Assignment ---------
 ;; ----------------------------------------------------------------------------------
-`{:name          "step-hdb0_goa-molecular-function-go-concept-temp-labels"
+`{:name          "step-hdb0_goa-molecular-function-go-instance-temp-labels"
   :description   "This rule creates a subclass of every molecular function and types it as a gene ontology molecular function concept identifier  (IAO_EXT_0000103)"
   :head          ((?/mf_instance rdfs/label ?/molecular_function_label)
                    (?/participating_bioentity_instance rdfs/label ?/participating_bioentity_label))

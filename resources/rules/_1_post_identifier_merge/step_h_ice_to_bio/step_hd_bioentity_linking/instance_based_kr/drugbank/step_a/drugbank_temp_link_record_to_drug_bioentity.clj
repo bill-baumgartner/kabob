@@ -1,7 +1,7 @@
 ;; ---------------------------------------------------------
 ;; --------- DrugBank Drug Protein Target Relation ---------
 ;; ---------------------------------------------------------
-`{:name          "step-hda_temp-link-drugbank-record-to-drug"
+`{:name          "step-hda_temp-link-drugbank-record-to-drug-instance"
   :description   "This rule generates bio-representations for the drug-target relationships cataloged by DrugBank where the target is a protein"
   :head          ((?/drugbank_drug_record ccp/temp_drug ?/drug))
 

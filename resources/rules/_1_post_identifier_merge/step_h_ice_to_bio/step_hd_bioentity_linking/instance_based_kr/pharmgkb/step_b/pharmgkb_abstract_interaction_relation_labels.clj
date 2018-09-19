@@ -1,7 +1,7 @@
 ;; --------------------------------------------------------------------
 ;; --------- PharmGKB abstract bioentity interaction Relation ---------
 ;; --------------------------------------------------------------------
-`{:name "step-hdb_pharmgkb-abstract-interaction-relation-labels"
+`{:name "step-hdb_pharmgkb-abstract-interaction-relation-instance-labels"
   :description "This rule assigns an abstract interaction relation between pharmgkb entities"
   :head ((?/interaction rdfs/label ?/interaction_label) ; transfer label to the subclass
           (?/b1_instance rdfs/label ?/bioentity1_label) ; transfer label to the subclass
