@@ -1,8 +1,8 @@
-{:description "This rule finds any previously reified RNA record from Reactome that belongs to a functional group of RNAs/physical entities, and traces out the relation between the group entity and the member entities.",
+`{:description "This rule finds any previously reified RNA record from Reactome that belongs to a functional group of RNAs/physical entities, and traces out the relation between the group entity and the member entities.",
  :name "add_rna_record_member_entity_references_from_human_reactome_to_ice_step_g",
  :head ((?/rna_record obo/BFO_0000051 ?/member_rna_record)
         (?/member_rna_record rdf/type ccp/IAO_EXT_0001528)),
- :sparql-string "#add_rna_record_member_entity_references_from_human_reactome_to_ice_step_g.clj
+  :body "#add_rna_record_member_entity_references_from_human_reactome_to_ice_step_g.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

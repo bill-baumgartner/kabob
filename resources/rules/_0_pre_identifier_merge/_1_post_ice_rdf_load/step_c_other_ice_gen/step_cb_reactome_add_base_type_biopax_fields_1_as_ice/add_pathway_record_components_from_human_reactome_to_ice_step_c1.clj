@@ -1,9 +1,9 @@
-{:description "This rule finds any previously reified pathway record from Reactome and sets its pathway component fields.",
+`{:description "This rule finds any previously reified pathway record from Reactome and sets its pathway component fields.",
  :name "add_pathway_record_components_from_human_reactome_to_ice_step_c1",
  :head ((?/path_record obo/BFO_0000051 ?/pathway_component_record)
         (?/pathway_component_record rdf/type ccp/IAO_EXT_0001541) ;; Reactome payhway component field type
         ),
- :sparql-string "#add_pathway_record_components_from_human_reactome_to_ice_step_c1.clj
+  :body "#add_pathway_record_components_from_human_reactome_to_ice_step_c1.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

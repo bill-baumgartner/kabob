@@ -1,4 +1,4 @@
-{:description "This rule finds any protein record described in Reactome and traces out its link to a unification xref to extract the protein's Reactome ID.  Several Reactome protein records may correspond to the same UniProt ID, but the different records represent the protein in different modified forms or in different cellular compartments.",
+`{:description "This rule finds any protein record described in Reactome and traces out its link to a unification xref to extract the protein's Reactome ID.  Several Reactome protein records may correspond to the same UniProt ID, but the different records represent the protein in different modified forms or in different cellular compartments.",
  :name "add_protein_records_and_reactome_ids_from_human_reactome_to_ice_step_a",
  :reify ([?/record_set {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome v60 record set"), :prefix "R_"}]
          [?/download {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome v60 download"), :prefix "D_"}]
@@ -22,7 +22,7 @@
         (?/xref_id_field rdf/type ccp/IAO_EXT_0001520)
         (?/xref_id_field rdf/type ccp/IAO_EXT_0001517)
         (?/xref_id_field rdfs/label ?/clean_react_id)),
- :sparql-string "#ekw 
+  :body "#ekw
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

@@ -1,4 +1,4 @@
-{:description "This rule finds any previously reified catalysis record from Reactome and annotates its GO MF identifiers if they exist.",
+`{:description "This rule finds any previously reified catalysis record from Reactome and annotates its GO MF identifiers if they exist.",
  :name "add_catalysis_record_go_mf_ids_from_human_reactome_to_ice_step_d",
  :reify ([?/go_db_field {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome relationship xref record database field" "GENE ONTOLOGY"), :prefix "F_"}]
          [?/go_id_field {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome relationship xref record db identifier field" ?/go_mf_id), :prefix "F_"}]
@@ -14,7 +14,7 @@
         (?/go_id_field rdfs/label ?/go_mf_id)
         (?/go_db_field rdf/type ccp/IAO_EXT_0001519)        
         ),
- :sparql-string "#add_catalysis_record_go_mf_ids_from_human_reactome_to_ice_step_d.clj
+  :body "#add_catalysis_record_go_mf_ids_from_human_reactome_to_ice_step_d.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

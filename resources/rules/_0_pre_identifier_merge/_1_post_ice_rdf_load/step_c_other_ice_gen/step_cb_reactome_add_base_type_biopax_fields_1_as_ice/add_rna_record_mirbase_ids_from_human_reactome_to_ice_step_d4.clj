@@ -1,4 +1,4 @@
-{:description "This rule finds any previously reified RNA record from Reactome and traces out its parent entity via a unification xref to extract the RNA's miRBase ID.",
+`{:description "This rule finds any previously reified RNA record from Reactome and traces out its parent entity via a unification xref to extract the RNA's miRBase ID.",
  :name "add_rna_record_mirbase_ids_from_human_reactome_to_ice_step_d4",
  :reify ([?/entity_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome rna reference record" ?/entity_ref), :prefix "R_"}]
          [?/entity_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome unification xref record" ?/entity_xref), :prefix "R_"}]
@@ -17,7 +17,7 @@
         (?/entity_xref_id_field rdf/type ccp/IAO_EXT_0001520)
         (?/entity_xref_id_field rdfs/label ?/clean_up_id)
         (?/entity_xref_id_field rdf/type ccp/IAO_EXT_0001594)),
- :sparql-string "#add_rna_record_mirbase_ids_from_human_reactome_to_ice_step_d4.clj
+  :body "#add_rna_record_mirbase_ids_from_human_reactome_to_ice_step_d4.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes> 
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

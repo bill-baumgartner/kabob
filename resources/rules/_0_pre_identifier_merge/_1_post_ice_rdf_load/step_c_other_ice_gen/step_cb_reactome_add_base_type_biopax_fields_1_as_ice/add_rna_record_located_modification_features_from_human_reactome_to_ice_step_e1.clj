@@ -1,4 +1,4 @@
-{:description "This rule finds any previously reified RNA record from Reactome and traces out any bits of the RNA that have been cleaved off (not its sequence modifications, which are described separately) when those are annoyingly described as modifications.",
+`{:description "This rule finds any previously reified RNA record from Reactome and traces out any bits of the RNA that have been cleaved off (not its sequence modifications, which are described separately) when those are annoyingly described as modifications.",
  :name "add_rna_record_located_modification_features_from_human_reactome_to_ice_step_e1",
  :reify ([?/fragment_feature_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome modification feature record" ?/frag_feature), :prefix "R_"}]
          [?/comment_field {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome record - comment field" ?/c), :prefix "F_"}]
@@ -13,7 +13,7 @@
         (?/comment_field obo/BFO_0000051 ?/end_index)
         (?/start_index rdfs/label ?/start)
         (?/end_index rdfs/label ?/end)),
- :sparql-string "#add_rna_record_located_modification_features_from_human_reactome_to_ice_step_e1.clj
+  :body "#add_rna_record_located_modification_features_from_human_reactome_to_ice_step_e1.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

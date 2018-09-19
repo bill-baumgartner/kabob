@@ -1,4 +1,4 @@
-{:description "This rule finds any previously reified pathway record from Reactome and sets its terminal pathway order step process fields.",
+`{:description "This rule finds any previously reified pathway record from Reactome and sets its terminal pathway order step process fields.",
  :name "add_pathway_record_terminal_pathway_steps_from_human_reactome_to_ice_step_e2",
   :head ((?/path_record obo/BFO_0000051 ?/pathway_step_record)
         (?/pathway_step_record rdf/type ccp/IAO_EXT_0001542) ;; Reactome pathway order field type
@@ -6,7 +6,7 @@
         (?/pathway_step_record obo/BFO_0000051 ?/step_process_record)
         (?/step_process_record rdf/type ccp/IAO_EXT_0001548)        
         ),
- :sparql-string "#add_pathway_record_terminal_pathway_steps_from_human_reactome_to_ice_step_e2.clj
+  :body "#add_pathway_record_terminal_pathway_steps_from_human_reactome_to_ice_step_e2.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

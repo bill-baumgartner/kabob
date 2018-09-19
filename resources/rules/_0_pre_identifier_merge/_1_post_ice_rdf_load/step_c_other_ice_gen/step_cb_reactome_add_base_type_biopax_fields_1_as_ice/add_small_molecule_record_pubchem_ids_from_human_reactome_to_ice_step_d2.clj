@@ -1,4 +1,4 @@
-{:description "This rule finds any previously reified small molecule record from Reactome and traces out its parent entity via a unification xref to extract the small molecule's PubChem Compound ID.",
+`{:description "This rule finds any previously reified small molecule record from Reactome and traces out its parent entity via a unification xref to extract the small molecule's PubChem Compound ID.",
  :name "add_small_molecule_record_pubchem_ids_from_human_reactome_to_ice_step_d2",
  :reify ([?/entity_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome small molecule reference record" ?/entity_ref), :prefix "R_"}]
          [?/entity_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome unification xref record" ?/entity_xref), :prefix "R_"}]
@@ -17,7 +17,7 @@
         (?/entity_xref_id_field rdf/type ccp/IAO_EXT_0001520)
         (?/entity_xref_id_field rdfs/label ?/clean_up_id)
         (?/entity_xref_id_field rdf/type ccp/IAO_EXT_0001942)),
- :sparql-string "#add_small_molecule_record_pubchem_ids_from_human_reactome_to_ice_step_d2.clj
+  :body "#add_small_molecule_record_pubchem_ids_from_human_reactome_to_ice_step_d2.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

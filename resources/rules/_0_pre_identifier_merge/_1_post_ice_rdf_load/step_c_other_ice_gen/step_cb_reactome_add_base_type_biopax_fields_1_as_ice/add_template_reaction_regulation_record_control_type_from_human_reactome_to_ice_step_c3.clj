@@ -1,4 +1,4 @@
-{:description "This rule finds any previously reified template reaction regulation record from Reactome and sets its control type field.",
+`{:description "This rule finds any previously reified template reaction regulation record from Reactome and sets its control type field.",
  :name "add_template_reaction_regulation_record_control_type_from_human_reactome_to_ice_step_c3",
  :reify ([?/control_type_field {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome template reaction regulation record control type field" ?/control_type), :prefix "F_"}]
          ),
@@ -6,7 +6,7 @@
         (?/control_type_field rdf/type ccp/IAO_EXT_0001568) ;; control type field value
         (?/control_type_field rdfs/label ?/control_type)
         ),
- :sparql-string "#add_template_reaction_regulation_record_control_type_from_human_reactome_to_ice_step_c3.clj
+  :body "#add_template_reaction_regulation_record_control_type_from_human_reactome_to_ice_step_c3.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>\nPREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>
 PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>

@@ -1,10 +1,10 @@
-{:description "This rule finds any previously reified biochemical reaction record from Reactome and records its conversion direction field(s).",
+`{:description "This rule finds any previously reified biochemical reaction record from Reactome and records its conversion direction field(s).",
  :name "add_biochemical_reaction_record_conversion_directions_from_human_reactome_to_ice_step_c",
  :reify ([?/direction_field {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome biochemical reaction record conversion direction field" ?/direction), :prefix "F_"}]),
  :head ((?/bcr_record obo/BFO_0000051 ?/direction_field)
         (?/direction_field rdf/type ccp/IAO_EXT_0001546)
         (?/direction_field rdfs/label ?/direction)),
- :sparql-string "#add_biochemical_reaction_record_conversion_directions_from_human_reactome_to_ice_step_c.clj
+  :body "#add_biochemical_reaction_record_conversion_directions_from_human_reactome_to_ice_step_c.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

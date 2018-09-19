@@ -1,4 +1,4 @@
-{:description "This rule finds any previously reified template reaction record from Reactome and annotates its GO BP identifiers if they exist.",
+`{:description "This rule finds any previously reified template reaction record from Reactome and annotates its GO BP identifiers if they exist.",
  :name "add_template_reaction_record_go_bp_ids_from_human_reactome_to_ice_step_d",
  :reify ([?/go_db_field {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome unification xref record database field" "GENE ONTOLOGY"), :prefix "F_"}]
          [?/go_id_field {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome unification xref record db identifier field" ?/go_bp_id), :prefix "F_"}]
@@ -14,7 +14,7 @@
         (?/go_id_field rdfs/label ?/go_bp_id)
         (?/go_db_field rdf/type ccp/IAO_EXT_0001519)        
         ),
- :sparql-string "#add_template_reaction_record_go_bp_ids_from_human_reactome_to_ice_step_d.clj
+  :body "#add_template_reaction_record_go_bp_ids_from_human_reactome_to_ice_step_d.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

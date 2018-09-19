@@ -1,9 +1,9 @@
-{:description "This rule finds any previously reified complex record from Reactome and sets its component fields.",
+`{:description "This rule finds any previously reified complex record from Reactome and sets its component fields.",
  :name "add_complex_record_components_from_human_reactome_to_ice_step_d",
  :head ((?/compl_record obo/BFO_0000051 ?/component_record)
         (?/component_record rdf/type ccp/IAO_EXT_0001544) ;; Reactome component field type
         ),
- :sparql-string "#add_complex_record_components_from_human_reactome_to_ice_step_d.clj
+  :body "#add_complex_record_components_from_human_reactome_to_ice_step_d.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

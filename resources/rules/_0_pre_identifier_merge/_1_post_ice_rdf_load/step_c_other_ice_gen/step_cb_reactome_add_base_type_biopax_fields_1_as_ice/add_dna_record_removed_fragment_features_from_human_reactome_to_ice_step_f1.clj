@@ -1,4 +1,4 @@
-{:description "This rule finds any previously reified DNA record from Reactome and traces out any bits of the DNA that have been cleaved off (not its sequence modifications, which are described separately).",
+`{:description "This rule finds any previously reified DNA record from Reactome and traces out any bits of the DNA that have been cleaved off (not its sequence modifications, which are described separately).",
  :name "add_dna_record_removed_fragment_features_from_human_reactome_to_ice_step_f1",
  :reify ([?/fragment_feature_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome fragment feature record" ?/frag_feature), :prefix "R_"}]
          [?/sequence_interval_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome sequence interval record" ?/removed_chunk), :prefix "R_"}]
@@ -32,7 +32,7 @@
         (?/end_sequence_site_record obo/BFO_0000051 ?/end_sequence_position)
         (?/end_sequence_position rdf/type ccp/IAO_EXT_0001538)
         (?/end_sequence_position rdfs/label ?/end)),
- :sparql-string "#add_dna_record_removed_fragment_features_from_human_reactome_to_ice_step_f1.clj
+  :body "#add_dna_record_removed_fragment_features_from_human_reactome_to_ice_step_f1.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

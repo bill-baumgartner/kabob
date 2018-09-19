@@ -1,4 +1,4 @@
-{:description "This rule finds any previously reified biochemical reaction record from Reactome and sets its participant fields, where the input and output are the same entity.",
+`{:description "This rule finds any previously reified biochemical reaction record from Reactome and sets its participant fields, where the input and output are the same entity.",
  :name "add_biochemical_reaction_record_participants_from_human_reactome_to_ice_step_e",
  :head ((?/bcr_record obo/BFO_0000051 ?/left_participant_record)
         (?/left_participant_record rdf/type ccp/IAO_EXT_0001941) ;; Reactome BCR participant field type
@@ -7,7 +7,7 @@
         (?/right_participant_record rdf/type ccp/IAO_EXT_0001941) ;; Reactome BCR participant field type
         (?/right_participant ccp/ekws_temp_connector_relation ?/right_participant_record ) ;; connector relation
         ),
- :sparql-string "#add_biochemical_reaction_record_participants_from_human_reactome_to_ice_step_e.clj
+  :body "#add_biochemical_reaction_record_participants_from_human_reactome_to_ice_step_e.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

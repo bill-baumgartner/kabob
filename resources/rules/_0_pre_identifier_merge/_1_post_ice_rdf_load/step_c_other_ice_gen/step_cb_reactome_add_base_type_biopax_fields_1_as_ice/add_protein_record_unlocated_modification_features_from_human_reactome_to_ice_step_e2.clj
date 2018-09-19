@@ -1,4 +1,4 @@
-{:description "This rule finds any previously reified protein record from Reactome and traces out its sequence modifications (not cleavages, which are described separately) via a unification xref to extract the PSI-MOD modification type ID assuming it is not precisely located.",
+`{:description "This rule finds any previously reified protein record from Reactome and traces out its sequence modifications (not cleavages, which are described separately) via a unification xref to extract the PSI-MOD modification type ID assuming it is not precisely located.",
  :name "add_protein_record_unlocated_modification_features_from_human_reactome_to_ice_step_e2",
  :reify ([?/modification_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome modification feature record" ?/mod_feature), :prefix "R_"}]
          [?/modification_type_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome sequence modification vocabulary record" ?/mod_type), :prefix "R_"}]
@@ -21,7 +21,7 @@
         (?/modification_xref_id_field rdf/type ccp/IAO_EXT_0001520)
         (?/modification_xref_id_field rdfs/label ?/clean_psi_mod_id)
         (?/modification_xref_id_field rdf/type ccp/IAO_EXT_0001592)),
- :sparql-string "#add_protein_record_unlocated_modification_features_from_human_reactome_to_ice_step_e2.clj
+  :body "#add_protein_record_unlocated_modification_features_from_human_reactome_to_ice_step_e2.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

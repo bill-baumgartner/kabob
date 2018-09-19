@@ -1,9 +1,9 @@
-{:description "This rule finds any previously reified control record from Reactome and records its display name field(s).",
+`{:description "This rule finds any previously reified control record from Reactome and records its display name field(s).",
  :name "add_control_record_display_names_from_human_reactome_to_ice_step_b2", :reify ([?/name_field {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome control record display name field" ?/name), :prefix "F_"}]),
  :head ((?/contr_record obo/BFO_0000051 ?/name_field)
         (?/name_field rdf/type ccp/IAO_EXT_0001526)
         (?/name_field rdfs/label ?/name)),
- :sparql-string "#add-control-record-display-names-from-human-reactome-to-ice-step-b2.clj
+  :body "#add-control-record-display-names-from-human-reactome-to-ice-step-b2.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

@@ -1,9 +1,9 @@
-{:description "This rule finds any previously reified template reaction regulation record from Reactome and sets its controlled field.",
+`{:description "This rule finds any previously reified template reaction regulation record from Reactome and sets its controlled field.",
  :name "add_template_reaction_regulation_record_controlled_from_human_reactome_to_ice_step_c1",
  :head ((?/trreg_record obo/BFO_0000051 ?/controlled_record)
         (?/controlled_record rdf/type ccp/IAO_EXT_0001567) ;; controlled field value
         ),
- :sparql-string "#add_template_reaction_regulation_record_controlled_from_human_reactome_to_ice_step_c1.clj
+  :body "#add_template_reaction_regulation_record_controlled_from_human_reactome_to_ice_step_c1.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

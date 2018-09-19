@@ -1,4 +1,4 @@
-{:description "This rule finds any previously reified protein record from Reactome and traces out its location via a unification xref to extract the protein's cellular location (a Gene Ontology cellular compartment).",
+`{:description "This rule finds any previously reified protein record from Reactome and traces out its location via a unification xref to extract the protein's cellular location (a Gene Ontology cellular compartment).",
  :name "add_protein_record_cellular_locations_from_human_reactome_to_ice_step_c",
  :reify ([?/cellular_location_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome cellular location vocabulary record" ?/go_cc), :prefix "R_"}]
          [?/go_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome unification xref record" ?/go_cc_xref), :prefix "R_"}]
@@ -17,7 +17,7 @@
         (?/go_xref_id_field rdf/type ccp/IAO_EXT_0001520)
         (?/go_xref_id_field rdfs/label ?/clean_go_cc_id)
         (?/go_xref_id_field rdf/type ccp/IAO_EXT_0001596)),
- :sparql-string "#add_protein_record_cellular_locations_from_human_reactome_to_ice_step_c.clj
+  :body "#add_protein_record_cellular_locations_from_human_reactome_to_ice_step_c.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

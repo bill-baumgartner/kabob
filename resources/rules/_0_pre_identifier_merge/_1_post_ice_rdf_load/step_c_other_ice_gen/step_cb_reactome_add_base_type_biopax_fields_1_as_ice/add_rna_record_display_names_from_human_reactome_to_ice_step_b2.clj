@@ -1,10 +1,10 @@
-{:description "This rule finds any previously reified RNA record from Reactome and records its display name field(s).",
+`{:description "This rule finds any previously reified RNA record from Reactome and records its display name field(s).",
  :name "add_rna_record_display_names_from_human_reactome_to_ice_step_b2",
  :reify ([?/name_field {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome rna record display name field" ?/name), :prefix "F_"}]),
  :head ((?/rna_record obo/BFO_0000051 ?/name_field)
         (?/name_field rdf/type ccp/IAO_EXT_0001526)
         (?/name_field rdfs/label ?/name)),
- :sparql-string "#add_rna_record_display_names_from_human_reactome_to_ice_step_b2.clj
+  :body "#add_rna_record_display_names_from_human_reactome_to_ice_step_b2.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

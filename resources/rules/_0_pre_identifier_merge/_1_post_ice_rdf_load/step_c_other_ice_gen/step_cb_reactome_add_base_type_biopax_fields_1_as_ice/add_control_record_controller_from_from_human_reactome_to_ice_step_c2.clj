@@ -1,9 +1,9 @@
-{:description "This rule finds any previously reified control record from Reactome and sets its controller fields.",
+`{:description "This rule finds any previously reified control record from Reactome and sets its controller fields.",
  :name "add_control_record_controller_from_human_reactome_to_ice_step_c2",
  :head ((?/contr_record obo/BFO_0000051 ?/controller_record)
         (?/controller_record rdf/type ccp/IAO_EXT_0001566) ;; controller field value
         ),
- :sparql-string "#add_control_record_controller_from_human_reactome_to_ice_step_c2.clj
+  :body "#add_control_record_controller_from_human_reactome_to_ice_step_c2.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

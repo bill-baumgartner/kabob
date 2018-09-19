@@ -1,9 +1,9 @@
-{:description "This rule finds any previously reified template reaction record from Reactome and sets its product fields.",
+`{:description "This rule finds any previously reified template reaction record from Reactome and sets its product fields.",
  :name "add_template_reaction_record_products_from_human_reactome_to_ice_step_c2",
  :head ((?/trxn_record obo/BFO_0000051 ?/product_participant_record)
         (?/product_participant_record rdf/type ccp/IAO_EXT_0001550) ;; Reactome template reaction right field type
         ),
- :sparql-string "#add_template_reaction_record_products_from_human_reactome_to_ice_step_c2.clj
+  :body "#add_template_reaction_record_products_from_human_reactome_to_ice_step_c2.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>

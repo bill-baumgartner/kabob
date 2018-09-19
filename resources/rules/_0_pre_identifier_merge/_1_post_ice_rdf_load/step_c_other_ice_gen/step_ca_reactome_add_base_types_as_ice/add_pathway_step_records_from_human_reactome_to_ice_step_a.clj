@@ -1,4 +1,4 @@
-{:description "This rule finds any pathway step record described in Reactome.",
+`{:description "This rule finds any pathway step record described in Reactome.",
  :name "add_pathway_step_records_from_human_reactome_to_ice_step_a",
  :reify ([?/record_set {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome v60 record set"), :prefix "R_"}]
          [?/download {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome v60 download"), :prefix "D_"}]
@@ -9,7 +9,7 @@
         (?/record_set obo/BFO_0000051 ?/pws_record)
         (?/pws obo/IAO_0000142 ?/pws_record)
         (?/pws_record rdf/type ccp/IAO_EXT_0001573)),
- :sparql-string "#ekw
+  :body "#ekw
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>
