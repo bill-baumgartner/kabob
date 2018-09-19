@@ -15,8 +15,6 @@ PREFIX bp: <http://www.biopax.org/release/biopax-level3.owl#>
 PREFIX bp3: <http://www.reactome.org/biopax/63/48887#>
 PREFIX kice: <http://ccp.ucdenver.edu/kabob/ice/>
 PREFIX kbio: <http://ccp.ucdenver.edu/kabob/bio/>
-PREFIX kice: <http://ccp.ucdenver.edu/kabob/ice/>
-PREFIX kbio: <http://ccp.ucdenver.edu/kabob/bio/>
 SELECT ?smmol_record ?name
 WHERE {
 ?smmol rdf:type bp:SmallMolecule .
