@@ -98,50 +98,70 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 #  ${KB_NAME} \
 #  ${KB_DATA_DIR}/file-lists/ice-owl-files.${KB_NAME}.list \
 #  "rdfxml"
-#
-########## OPTIMIZE STORE
-##${BASE_SCRIPT_DIR}/OPTIMIZE.sh
-##sleep 300
-###
-###
+
+######### OPTIMIZE STORE
+#${BASE_SCRIPT_DIR}/OPTIMIZE.sh
+#sleep 300
 ##
-########
-########
-############## generate other ICE RDF
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_ca_reactome_add_base_types_as_ice
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_ca_reactome_add_base_types_as_ice
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cb_reactome_add_base_type_biopax_fields_as_ice
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cb_reactome_add_base_type_biopax_fields_as_ice
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cc_add_base_type_biopax_fields_as_ice
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cc_add_base_type_biopax_fields_as_ice
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cd_add_base_type_biopax_fields_as_ice
-${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/step_cd_add_base_type_biopax_fields_as_ice
+##
+#
+#######
+#######
+############# generate other ICE RDF
+
+## step_ca
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_caa
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_caa
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cab
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cab
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cac
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cac
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cad
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cad
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cae
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cae
+#
+## step_cb
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cb_add_reactome_main_classes_to_ice
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cb_add_reactome_main_classes_to_ice
+#
+## step_cc
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cc_add_reactome_class_fields_to_ice/step_cca
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cc_add_reactome_class_fields_to_ice/step_cca
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cc_add_reactome_class_fields_to_ice/step_ccb
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cc_add_reactome_class_fields_to_ice/step_ccb
+#
+## step_cd
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cd_add_reactome_extra_go_terms_to_ice
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cd_add_reactome_extra_go_terms_to_ice
+#
+#
 ######
 ############# process ICE identifiers
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_da_identifier_typing
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_da_identifier_typing
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_db_identifier_exact_match
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_db_identifier_exact_match
-###
-##### todo: restart required here? seems to stall otherwise; maybe try optimize?
-###
-###
+####
+###### todo: restart required here? seems to stall otherwise; maybe try optimize?
+####
+####
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_dc_more_identifier_exact_match
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_dc_more_identifier_exact_match
 #
-########
-##########
-##########
-########### ============================================================================================ #
-########### ============================   END PRE IDENTIFIER MERGE RULES   ============================ #
-########### ============================================================================================ #
-##########
-##########
-############ Create the ID sets (step e)
+#########
+###########
+###########
+############ ============================================================================================ #
+############ ============================   END PRE IDENTIFIER MERGE RULES   ============================ #
+############ ============================================================================================ #
+###########
+###########
+########### Create the ID sets (step e)
 ##export LEIN_ROOT=true
 #cd /kabob.git && { ${LEININGEN} generate-id-sets ${KB_URL} ${KB_NAME} ${KB_USER} ${KB_PASS} ${KB_DATA_DIR}/id_sets/exact/ ${KB_DATA_DIR}/id_sets/graph_dbs/ ${SERVER_IMPL} ; cd - ; }
 #${BASE_SCRIPT_DIR}/LOAD.sh id_sets/exact
-#
+
 ####
 ########### OPTIMIZE STORE
 ####${BASE_SCRIPT_DIR}/OPTIMIZE.sh
@@ -154,32 +174,32 @@ ${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/st
 ######### ============================================================================================ #
 ########
 ########
-###########  create bioentity for each id set
+##########  create bioentity for each id set
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fb_obsolete_identifier_bioentity_links
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fb_obsolete_identifier_bioentity_links
 #######
-##
-##
-######## Check for identifiers that denote multiple kabob bioentities
+####
+####
+######### Check for identifiers that denote multiple kabob bioentities
 #${BASE_SCRIPT_DIR}/RULES.sh rules/validation/ice_bio_distinction
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/ice_bio_distinction
 ##
-#####
-############# connect bioentities based on ontology hierarchies
+######
+################ connect bioentities based on ontology hierarchies
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gba_copy_rdfs_labels_to_bio
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gba_copy_rdfs_labels_to_bio
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gbb_derive_missing_labels_to_bio
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gbb_derive_missing_labels_to_bio
-##
-########### OPTIMIZE STORE
-####${BASE_SCRIPT_DIR}/OPTIMIZE.sh
-####sleep 300
 ###
-###
+############ OPTIMIZE STORE
+#####${BASE_SCRIPT_DIR}/OPTIMIZE.sh
+#####sleep 300
+####
+####
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gca_links_to_nil
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gca_links_to_nil
 #
@@ -218,7 +238,7 @@ ${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/st
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
 ##
 ############# ice to bio
-########### typing
+########## typing
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_haa
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_haa
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_hab
@@ -257,26 +277,40 @@ ${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/st
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_identifier
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_parent_class
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_parent_class
-#
-#####
-#####
-######## labeling
+###
+#######
+#######
+######### labeling
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hb_bioentity_labeling
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hb_bioentity_labeling
 ######
 #####
-######## ggp abstractions
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma
-#
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/ncbi
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/ncbi
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/refseq
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/refseq
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/uniprot
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/uniprot
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template
+####### ggp abstractions
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma/step_a
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma/step_a
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma/step_b
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma/step_b
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma/step_c
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma/step_c
+
+
+#delete { graph ?g {?s ?p ?o}} where {
+##                    select ?s (ccp:temp_possible_hgt_restriction as ?p) ?o ?g {
+##                      graph ?g {
+##                        ?s ccp:temp_possible_hgt_restriction ?o .
+##                      }
+##                    }
+##                  }
+
+
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/ncbi
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/ncbi
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/refseq
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/refseq
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/uniprot
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/uniprot
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template
 
 #${BASE_SCRIPT_DIR}/RULES.sh rules/validation/bioworld_validation/taxon_validation/step_a
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/bioworld_validation/taxon_validation/step_a
@@ -290,27 +324,27 @@ ${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/st
 #####${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/bioworld_validation/taxon_validation/step_c
 #
 ##
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b
-##
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b
+#
 ##
 ##
 #### todo: remove temporary links here
 ##
-###drop graph <file://step-hcc_temporary_missing-ncrna-gen.nt>
-###drop graph <file://step-hcc_temporary_missing-rrna-gen.nt>
-###drop graph <file://step-hcc_temporary_missing-scrna-gen.nt>
-###drop graph <file://step-hcc_temporary_missing-snorna-gen.nt>
-###drop graph <file://step-hcc_temporary_missing-snrna-gen.nt>
-###drop graph <file://step-hcc_temporary_missing-trna-gen.nt>
+#drop graph <file://step-hcc_temporary_missing-ncrna-gen.nt>;
+#drop graph <file://step-hcc_temporary_missing-rrna-gen.nt>;
+#drop graph <file://step-hcc_temporary_missing-scrna-gen.nt>;
+#drop graph <file://step-hcc_temporary_missing-snorna-gen.nt>;
+#drop graph <file://step-hcc_temporary_missing-snrna-gen.nt>;
+#drop graph <file://step-hcc_temporary_missing-trna-gen.nt>
 ##
 ##
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcd_generate_gene_abstractions
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcd_generate_gene_abstractions
-#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hce_link_to_gp_abstractions
-#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hce_link_to_gp_abstractions
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcd_generate_gene_abstractions
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcd_generate_gene_abstractions
+${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hce_link_to_gp_abstractions
+${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hce_link_to_gp_abstractions
 #####
 ######### linking
 # =================================== #
@@ -491,6 +525,23 @@ ${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/st
 ##${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
 
 
+
+# ===== REACTOME CLASS-BASED =====
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/reactome/step_a_add_continuants_to_bio/step_a
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/reactome/step_a_add_continuants_to_bio/step_a
+#${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/reactome/step_a_add_continuants_to_bio/step_b
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/reactome/step_a_add_continuants_to_bio/step_b
+
+# todo - remove temporary links
+
+# ----- VALIDATION -----
+#${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
+#${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/restriction
+##${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/list
+##${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/list
+# TODO - write a validation rule to make sure all records that localize entities resulted in a localized entity
+
+
 # ===== PHARMGKB CLASS-BASED =====-
 #${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/pharmgkb/step_a
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/pharmgkb/step_a
@@ -537,6 +588,8 @@ ${BASE_SCRIPT_DIR}/LOAD.sh rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/st
 
 ######### validation rules (only rule metadata triples added)
 ###${BASE_SCRIPT_DIR}/RULES.sh rules/_1_post_identifier_merge/step_z_validation/subclass_hierarchy_checks
+
+
 
 # =================================== #
 # =================================== #

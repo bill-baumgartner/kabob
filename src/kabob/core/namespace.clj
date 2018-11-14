@@ -39,7 +39,7 @@
         ;; be removed once the 'http:/' bug is resolved.
         ;; ---------------------------------------------------------------------------
         ("bnode" "http://ccp.ucdenver.edu/bnode/")
-        ("bp_base", "http://www.reactome.org/biopax/65/48887#")
+        ("bp_base", "http://www.reactome.org/biopax/66/48887#")
 
         ("araport_pr","https://www.araport.org/locus/")
         ("cgnc_pr","http://birdgenenames.org/cgnc/")
