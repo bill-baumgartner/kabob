@@ -23,8 +23,6 @@
                                    (.getName (.getClass e)) (.getMessage e))) kb))))
                          ;;(.printStackTrace e)))))
 
-
-
 ;(defn stardog-kb [args]
 ;    (println "opening a stardog connection")
 ;
@@ -46,6 +44,16 @@
         kb (kb (.getBigdataSailRemoteRepository (.getRepositoryForNamespace (RemoteRepositoryManager. server-url) repository-name)))]
     ;;(initialize-kb kb)))
     kb))
+
+;(defn blazegraph-kb [args]
+;  (println "opening a blazegraph connection")
+;
+;  (let [server-url (:server-url args)
+;        repository-name (:repo-name args)
+;        user (:username args)
+;        password (:password args)
+;        kb (kb (.getBigdataSailRemoteRepository (.getRepositoryForNamespace (RemoteRepositoryManager. server-url) repository-name)))]
+;    (initialize-kb kb)))
 
 ;(defn virtuoso-kb [args]
 ;  ;;Init source KB connection
