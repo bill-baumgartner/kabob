@@ -1,7 +1,7 @@
 ;; ----------------------------------------------------------------------
 ;; --------- Object Property Identifier Denotes Object Property ---------
 ;; ----------------------------------------------------------------------
-`{:name "step-ab_ontology-id-denotes-object-property-gen"
+`{:name "step-abb_ontology-id-denotes-object-property-gen"
   :description "This rule generates an object property identifier for every non-top-level object property."
   :head ((?/id obo/IAO_0000219 ?/object_property) ; IAO:denotes
          (?/id rdfs/subClassOf ccp/IAO_EXT_0000306)) ; CCP:object_property_identifier

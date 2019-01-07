@@ -31,10 +31,10 @@ echo "DATASOURCE_ICE_DIR=${DATASOURCE_ICE_DIR}"
 echo "KB_DATA_DIR=${KB_DATA_DIR}"
 echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 
-############# Clean out the directory in which we're going to place our artifacts.
-#######rm -rvf ${KB_DATA_DIR}
-#######mkdir -p ${KB_DATA_DIR}
-##########
+############ Clean out the directory in which we're going to place our artifacts.
+######rm -rvf ${KB_DATA_DIR}
+######mkdir -p ${KB_DATA_DIR}
+#########
 ########### create a new database
 #${BASE_SCRIPT_DIR}/create-new-database.sh ${KB_NAME}
 ########
@@ -47,8 +47,11 @@ echo "BACKEND IMPLEMENTATION=${SERVER_IMPL}"
 #  ${KB_NAME} \
 #  ${KB_DATA_DIR}/file-lists/owl-files.${KB_NAME}.list \
 #  "ntriples"
-#
-########## Check that there are no classes with redundant restrictions after the ontology load
+
+
+${BASE_SCRIPT_DIR}/RULES.sh rules/util/blazegraph/virtualgraph
+
+######### Check that there are no classes with redundant restrictions after the ontology load
 #${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/restriction
 #${BASE_SCRIPT_DIR}/LOAD.sh rules/validation/valid_owl/restriction
 #${BASE_SCRIPT_DIR}/RULES.sh rules/validation/valid_owl/list

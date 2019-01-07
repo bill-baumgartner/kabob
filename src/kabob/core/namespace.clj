@@ -67,6 +67,9 @@
         ;; the bp namespace is a convenience for working with biopax data
         ("bp" "http://www.biopax.org/release/biopax-level3.owl#")
 
+        ;; this namespace is used to define virtual graphs in blazegraph
+        ("bd" "http://bigdata.com/")
+
 
        ;("kiao" "http://kabob.ucdenver.edu/iao/")
        ;("kabob" "http://kabob.ucdenver.edu/")
