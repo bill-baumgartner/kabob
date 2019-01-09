@@ -15,7 +15,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bp: <http://www.biopax.org/release/biopax-level3.owl#>
 PREFIX kice: <http://ccp.ucdenver.edu/kabob/ice/>
 PREFIX kbio: <http://ccp.ucdenver.edu/kabob/bio/>
-SELECT ?reactome_thing_record ?display_name WHERE {
+SELECT DISTINCT ?reactome_thing_record ?display_name WHERE {
  ?reactome_thing bp:displayName ?display_name .
  ?reactome_thing ccp:ekws_temp_biopax_connector_relation ?reactome_thing_record .
 }",

@@ -1,16 +1,16 @@
-`{:description "This rule finds any complex record described in Reactome, as well as its cellular location and its Reactome id field.",
+`{:description "This rule finds any complex record described in Reactome, as well as its Reactome id field.",
  :name "add_reactome_complexes_to_ice",
  :reify ([?/compl_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome physical entity record" ?/compl), :prefix "R_"}]
+         [?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/compl_record), :prefix "R_"}]
          [?/reactome_ice]
          ),
  :head ((?/record_set obo/BFO_0000051 ?/compl_record)
         (?/compl_record rdf/type ccp/IAO_EXT_0001516) ;; complex record
-        (?/compl_record obo/BFO_0000051 ?/xref_record)
+        (?/compl_record obo/BFO_0000051 ?/this_xref_record)
+        (?/this_xref_record rdfs/subClassOf ?/xref_record)
+        (?/this_xref_record rdf/type ccp/IAO_EXT_0001588) ;; xref field
         (?/xref_id_field rdf/type ?/reactome_ice)
         (?/reactome_ice rdfs/subClassOf ccp/IAO_EXT_0001643) ;; Reactome identifier
-        (?/xref_record rdf/type ccp/IAO_EXT_0001588) ;; xref field
-        (?/compl_record obo/BFO_0000051 ?/cl_vocab_record)
-        (?/cl_vocab_record rdf/type ccp/IAO_EXT_0001521) ;; cellular location field
         (?/compl ccp/ekws_temp_biopax_connector_relation ?/compl_record)
         ),
  :body "#add_reactome_complexes_to_ice.clj
@@ -23,7 +23,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bp: <http://www.biopax.org/release/biopax-level3.owl#>
 PREFIX kice: <http://ccp.ucdenver.edu/kabob/ice/>
 PREFIX kbio: <http://ccp.ucdenver.edu/kabob/bio/>
-SELECT ?record_set ?compl ?xref_record ?xref_id_field ?reactome_ice ?cl_vocab_record WHERE {
+SELECT DISTINCT ?record_set ?compl ?xref_record ?xref_id_field ?reactome_ice WHERE {
  ?record_set rdfs:label \"Reactome BioPAX record set, Homo sapiens\"@en .
  ?record_set rdf:type ccp:IAO_EXT_0000012 .
  ?record_set obo:IAO_0000142 ?download .
@@ -38,8 +38,6 @@ SELECT ?record_set ?compl ?xref_record ?xref_id_field ?reactome_ice ?cl_vocab_re
  ?xref_record obo:BFO_0000051 ?xref_db_field .
  ?xref_db_field rdf:type ccp:IAO_EXT_0001519 .
  ?xref_db_field rdfs:label \"Reactome\"@en .
- ?compl bp:cellularLocation ?loc .
- ?loc ccp:ekws_temp_biopax_connector_relation ?cl_vocab_record .
 }",
   :options {:magic-prefixes [["franzOption_logQuery" "franz:yes"] ["franzOption_clauseReorderer" "franz:identity"]]}}
 
