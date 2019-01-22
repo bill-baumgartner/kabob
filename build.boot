@@ -6,9 +6,7 @@
          '[kr.core.kb :refer [kb]])
 (import java.io.File
         java.io.BufferedReader
-        java.io.FileReader
-        com.bigdata.rdf.sail.webapp.client.RemoteRepositoryManager
-        com.bigdata.rdf.sail.ExportKB)
+        java.io.FileReader)
 
 (deftask test-connection
          "test connection to a triple store"
