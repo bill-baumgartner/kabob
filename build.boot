@@ -22,7 +22,7 @@
          (with-pre-wrap fileset
                         ;; ensure that only one of the server back ends has been selected, otherwise error
                         (if (not= 1 (+ (if allegrograph 1 0)
-                                       (if blazegraph 1 0)
+                                       ;(if blazegraph 1 0)
                                        (if stardog 1 0)))
                           (throw (IllegalArgumentException.
                                    "More than one server implementation has been requested. Please select only one.")) true)
@@ -35,7 +35,7 @@
                                         :server-url  server-url
                                         :server-impl (cond
                                                        allegrograph "allegrograph"
-                                                       blazegraph "blazegraph"
+                                                       ;blazegraph "blazegraph"
                                                        stardog "stardog")}
                                 kb (open-kb params)
 
@@ -93,7 +93,7 @@
          (with-pre-wrap fileset
                         ;; ensure that only one of the server back ends has been selected, otherwise error
                         (if (not= 1 (+ (if allegrograph 1 0)
-                                       (if blazegraph 1 0)
+                                       ;(if blazegraph 1 0)
                                        (if stardog 1 0)))
                           (throw (IllegalArgumentException.
                                    "Either no or more than one server implementation has been requested. Please select only one.")) true)
@@ -103,11 +103,11 @@
                                         :kb-ice-directory      "/kabob_data/rdf"
                                         :kb-server-impl        (cond
                                                                  allegrograph :allegrograph
-                                                                 blazegraph :blazegraph
+                                                                 ;blazegraph :blazegraph
                                                                  stardog :stardog)}
                                (cond
                                  allegrograph (allegrograph-params)
-                                 blazegraph (blazegraph-params)
+                                 ;blazegraph (blazegraph-params)
                                  stardog (stardog-params))
                                )))
 
@@ -126,7 +126,7 @@
                         (println "Initializing the KB...")
                         (let [server-impl (:kb-server-impl fileset)]
                           (cond
-                            (= server-impl :blazegraph) :default
+                            ;(= server-impl :blazegraph) :default
                             (= server-impl :allegrograph) :default
                             (= server-impl :stardog) (init-stardog-kb)
                             :else (throw (IllegalArgumentException.
@@ -259,24 +259,13 @@
 
 
 
-(deftask drop-rule []
-         "drops the graph for the active rule"
-         (with-pre-wrap fileset
-                        (let [graph-name (str "<file://" (:data-directory fileset) rule-name ".nt>")]
-
-                          )
-                        fileset))
-
-
-;; Blazegraph-specific tasks
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-(deftask virtual-graph-gen []
-         "create a virtual graph encompassing all named graphs so that queries can cross named graphs"
-         (comp (rule :path-to-rule "rules/util/blazegraph/virtualgraph") (print-rule) (run-rule) (print-rule) (load-rule)))
+;(deftask drop-rule []
+;         "drops the graph for the active rule"
+;         (with-pre-wrap fileset
+;                        (let [graph-name (str "<file://" (:data-directory fileset) rule-name ".nt>")]
+;
+;                          )
+;                        fileset))
 
 
 ;; KaBOB implementation tasks
