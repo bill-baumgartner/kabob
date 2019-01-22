@@ -2,7 +2,7 @@
 (require '[clojure.java.io :refer [file]]
          '[clojure.string :refer [trim-newline]]
          '[kabob.build.run-rules :refer [commandline-process-forward-rules]]
-         '[kabob.build.input-kb :refer [open-kb blazegraph-kb]]
+         '[kabob.build.input-kb :refer [open-kb]]
          '[kr.core.kb :refer [kb]])
 (import java.io.File
         java.io.BufferedReader
