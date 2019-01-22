@@ -1,7 +1,9 @@
 `{:name        "validation_restriction-missing-owl-valuefrom-EXPECT-0"
   :description "tests that each owl restriction with an owl:onProperty property has at least one other property that is not on:Property"
   :head        ()
-  :body "select ?r
+  :body "PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
+  PREFIX franzOption_clauseReorderer: <franz:identity>
+  select ?r
                WHERE {
                       ?r rdf:type owl:Restriction .
                          minus {?r owl:someValuesFrom ?v}

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export LOAD_REQUEST_DIRECTORY=/ag-load-requests
+export LOAD_REQUEST_DIRECTORY=/kabob-load-requests
 
 # retrieve the AllegroGraph port being used from $LOAD_REQUEST_DIRECTORY/agraph.port
 export PLATFORM_KB_PORT=$(cat "${LOAD_REQUEST_DIRECTORY}/agraph.port")
