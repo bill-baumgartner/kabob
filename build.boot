@@ -480,13 +480,11 @@
                (rule :path-to-rule "rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_ac_ontology_identifier_typing/step_acb_ontology_identifier_typing_by_obo_file") (run-rule) (load-rule)
                (rule :path-to-rule "rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_a_ontology_to_ice/step_ad_ontology_ice_record_gen") (run-rule) (load-rule)))
 
-;(deftask build-step-b []
-;         "build kabob step b; link ontology identifiers with skos:exactMatch"
-;         (comp (rule :path-to-rule "rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/equivalent_class") (run-rule) (load-rule)
-;               (rule :path-to-rule "rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/shared_label") (run-rule) (load-rule)
-;               ;; todo: figure out if the pr_gene_ncbi_gene_exact_match rule is still active -- it's not in the build-from-scratch.sh script
-;               ;(rule :path-to-rule "rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/exact_match") (run-rule) (load-rule)
-;               ))
+(deftask build-step-b []
+         "build kabob step b; link ontology identifiers with skos:exactMatch"
+         (comp (rule :path-to-rule "rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/equivalent_class") (run-rule) (load-rule)
+               (rule :path-to-rule "rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/shared_label") (run-rule) (load-rule)
+               (rule :path-to-rule "rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/exact_match") (run-rule) (load-rule)))
 ;
 ;
 ;(deftask build-step-c []
