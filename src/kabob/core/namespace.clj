@@ -43,6 +43,7 @@
 
         ("araport_pr","https://www.araport.org/locus/")
         ("cgnc_pr","http://birdgenenames.org/cgnc/")
+        ("dictybase_pr","http://dictybase.org/gene/")
         ("rgd_pr","http://rgd.mcw.edu/rgdweb/report/gene/")
         ("tair_pr","http://www.arabidopsis.org/servlets/")
         ("hgnc_pr","http://www.genenames.org/cgi-bin/")
