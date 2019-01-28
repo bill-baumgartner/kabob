@@ -1,10 +1,12 @@
-`{:description "This rule finds any protein reference record described in Reactome with a UniProt ID.",
+`{:description "This rule finds any protein reference record described in Reactome with a UniProt (not UniProt Isoform) ID.",
  :name "add_reactome_protein_references_with_uniprot_ids_to_ice",
  :reify ([?/prot_ref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome protein reference record" ?/prot_ref), :prefix "R_"}]
+         [?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/prot_ref_record), :prefix "R_"}]
          ),
   :head ((?/prot_ref_record rdf/type ccp/IAO_EXT_0001551) ;; protein reference
-         (?/prot_ref_record obo/BFO_0000051 ?/xref_record)
-         (?/xref_record rdf/type ccp/IAO_EXT_0001588) ;; xref field
+         (?/prot_ref_record obo/BFO_0000051 ?/this_xref_record)
+         (?/this_xref_record rdf/type ccp/IAO_EXT_0001588) ;; xref field
+         (?/this_xref_record rdfs/subClassOf ?/xref_record) 
          (?/xref_id_field rdf/type ccp/IAO_EXT_0001522) ;; reactome uniprot id field
          (?/xref_id_field rdf/type ?/uniprot_ice)
          (?/prot_ref ccp/ekws_temp_biopax_connector_relation ?/prot_ref_record)),
@@ -18,7 +20,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bp: <http://www.biopax.org/release/biopax-level3.owl#>
 PREFIX kice: <http://ccp.ucdenver.edu/kabob/ice/>
 PREFIX kbio: <http://ccp.ucdenver.edu/kabob/bio/>
-SELECT ?prot_ref ?xref_record ?xref_id_field ?uniprot_ice WHERE {
+SELECT DISTINCT ?prot_ref ?xref_record ?xref_id_field ?uniprot_ice WHERE {
 ?prot_ref rdf:type bp:ProteinReference .
 ?prot_ref bp:xref ?xref .
 ?xref ccp:ekws_temp_biopax_connector_relation ?xref_record .

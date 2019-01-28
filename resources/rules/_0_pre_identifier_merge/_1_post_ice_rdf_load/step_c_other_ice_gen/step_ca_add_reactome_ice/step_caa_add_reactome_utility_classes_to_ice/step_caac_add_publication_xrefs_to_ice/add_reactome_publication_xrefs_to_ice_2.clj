@@ -26,7 +26,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bp: <http://www.biopax.org/release/biopax-level3.owl#>
 PREFIX kice: <http://ccp.ucdenver.edu/kabob/ice/>
 PREFIX kbio: <http://ccp.ucdenver.edu/kabob/bio/>
-SELECT ?xref ?react_author ?react_title ?react_url WHERE {
+SELECT DISTINCT ?xref ?react_author ?react_title ?react_url WHERE {
 ?xref rdf:type bp:PublicationXref .
 ?xref bp:author ?react_author .
 ?xref bp:title ?react_title .

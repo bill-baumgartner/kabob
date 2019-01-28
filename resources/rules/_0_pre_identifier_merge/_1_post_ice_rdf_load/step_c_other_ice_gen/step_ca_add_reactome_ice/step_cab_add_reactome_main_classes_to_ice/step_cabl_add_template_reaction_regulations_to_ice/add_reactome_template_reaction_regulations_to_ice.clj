@@ -1,14 +1,17 @@
 `{:description "This rule finds any template reaction regulation record described in Reactome, as well as its Reactome id field.",
  :name "add_reactome_template_reaction_regulations_to_ice",
  :reify ([?/trreg_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome template reaction regulation record" ?/trreg), :prefix "R_"}]
+         [?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/prot_record), :prefix "R_"}]
          [?/reactome_ice]
          ),
  :head ((?/record_set obo/BFO_0000051 ?/trreg_record)
         (?/trreg_record rdf/type ccp/IAO_EXT_0001581) ;; template reaction regulation record
-        (?/trreg_record obo/BFO_0000051 ?/xref_record)
+        (?/trreg_record obo/BFO_0000051 ?/this_xref_record)
+        (?/this_xref_record rdfs/subClassOf ?/xref_record)
+        (?/this_xref_record rdf/type ccp/IAO_EXT_0001588) ;; xref field
+        
         (?/xref_id_field rdf/type ?/reactome_ice)
         (?/reactome_ice rdfs/subClassOf ccp/IAO_EXT_0001643) ;; Reactome identifier
-        (?/xref_record rdf/type ccp/IAO_EXT_0001588) ;; xref field
         (?/trreg ccp/ekws_temp_biopax_connector_relation ?/trreg_record)
         ),
  :body "#add_reactome_template_reaction_regulations_to_ice.clj
@@ -21,7 +24,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bp: <http://www.biopax.org/release/biopax-level3.owl#>
 PREFIX kice: <http://ccp.ucdenver.edu/kabob/ice/>
 PREFIX kbio: <http://ccp.ucdenver.edu/kabob/bio/>
-SELECT ?record_set ?trreg ?xref_record ?xref_id_field ?reactome_ice WHERE {
+SELECT DISTINCT ?record_set ?trreg ?xref_record ?xref_id_field ?reactome_ice WHERE {
  ?record_set rdfs:label \"Reactome BioPAX record set, Homo sapiens\"@en .
  ?record_set rdf:type ccp:IAO_EXT_0000012 .
  ?record_set obo:IAO_0000142 ?download .

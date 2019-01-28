@@ -1,6 +1,9 @@
-`{:description "This rule finds any degradation record described in Reactome with a GO BP id field.",
+`{:description "This rule finds any degradation record described in Reactome with a GO BP id field. It yields no results currently, but that could change later. ",
  :name "add_reactome_degradation_go_bp_ids_to_ice",
- :head ((?/reactome_degr_record obo/BFO_0000051 ?/xref_record)
+ :reify ([?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/reactome_degr_record), :prefix "R_"}]),
+          
+ :head ((?/reactome_degr_record obo/BFO_0000051 ?/this_xref_record)
+         (?/this_xref_record rdfs/subClassOf ?/xref_record)
         (?/xref_id_field rdf/type ?/go_bp_ice) ;; 
         ),
  :body "#add_reactome_degradation_go_bp_ids_to_ice.clj
@@ -13,7 +16,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bp: <http://www.biopax.org/release/biopax-level3.owl#>
 PREFIX kice: <http://ccp.ucdenver.edu/kabob/ice/>
 PREFIX kbio: <http://ccp.ucdenver.edu/kabob/bio/>
-SELECT ?reactome_degr_record ?xref_record ?go_bp_ice ?xref_id_field WHERE {
+SELECT DISTINCT ?reactome_degr_record ?xref_record ?go_bp_ice ?xref_id_field WHERE {
  ?reactome_degr rdf:type bp:Degradation .
  ?reactome_degr bp:xref ?xref .
  ?reactome_degr ccp:ekws_temp_biopax_connector_relation ?reactome_degr_record .
