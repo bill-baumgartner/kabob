@@ -1,11 +1,13 @@
-`{:description "This rule finds any cellular location vocabulary record described in Reactome with an xref.",
+`{:description "This rule finds any cellular location vocabulary record (wrt GO-CC) described in Reactome with an xref.",
  :name "step_cad-add_reactome_cellular_location_vocabularies_to_ice",
   :reify ([?/cl_vocab_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome cellular location vocabulary record" ?/cell_loc_vocab), :prefix "R_"}]
           [?/cl_vocab_term_field {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome term field" ?/react_term), :prefix "F_"}]
+          [?/this_cl_vocab_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/cl_vocab_xref_record ?/cl_vocab_record), :prefix "R_"}]
           ),
   :head ((?/cl_vocab_record rdf/type ccp/IAO_EXT_0001584) ;; cellular location vocabulary record
-         (?/cl_vocab_record obo/BFO_0000051 ?/cl_vocab_xref_record)
-         (?/cl_vocab_xref_record rdf/type ccp/IAO_EXT_0001588) ;; xref field
+         (?/cl_vocab_record obo/BFO_0000051 ?/this_cl_vocab_xref_record)
+         (?/this_cl_vocab_xref_record rdf/type ccp/IAO_EXT_0001588) ;; xref field
+         (?/this_cl_vocab_xref_record rdfs/subClassOf ?/cl_vocab_xref_record) 
          (?/cl_vocab_record obo/BFO_0000051 ?/cl_vocab_term_field)
          (?/cl_vocab_term_field rdf/type ccp/IAO_EXT_0001948) ;; term field
          (?/cl_vocab_term_field rdfs/label ?/react_term)
@@ -21,7 +23,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bp: <http://www.biopax.org/release/biopax-level3.owl#>
 PREFIX kice: <http://ccp.ucdenver.edu/kabob/ice/>
 PREFIX kbio: <http://ccp.ucdenver.edu/kabob/bio/>
-SELECT ?cell_loc_vocab ?cl_vocab_xref_record ?react_term ?cl_vocab_id_field ?go_uri WHERE {
+SELECT DISTINCT ?cell_loc_vocab ?cl_vocab_xref_record ?react_term ?cl_vocab_id_field ?go_uri WHERE {
 ?cell_loc_vocab rdf:type bp:CellularLocationVocabulary .
 ?cell_loc_vocab bp:term ?react_term .
 ?cell_loc_vocab bp:xref ?react_xref .

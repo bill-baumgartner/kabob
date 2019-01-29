@@ -1,4 +1,4 @@
-`{:description "This rule finds any sequence site record described in Reactome.",
+`{:description "This rule finds any sequence site record (a location in a nucleic acid or peptide chain) described in Reactome.",
  :name "step_caa-add_reactome_sequence_sites_to_ice",
   :reify ([?/site_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome sequence site record" ?/site), :prefix "R_"}]
           [?/site_position_field {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome sequence position field" ?/sequence_position), :prefix "F_"}]
@@ -21,7 +21,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bp: <http://www.biopax.org/release/biopax-level3.owl#>
 PREFIX kice: <http://ccp.ucdenver.edu/kabob/ice/>
 PREFIX kbio: <http://ccp.ucdenver.edu/kabob/bio/>
-SELECT ?site ?sequence_position ?position_status WHERE {
+SELECT DISTINCT ?site ?sequence_position ?position_status WHERE {
 ?site rdf:type bp:SequenceSite .
 ?site bp:sequencePosition ?sequence_position .
 ?site bp:positionStatus ?position_status .

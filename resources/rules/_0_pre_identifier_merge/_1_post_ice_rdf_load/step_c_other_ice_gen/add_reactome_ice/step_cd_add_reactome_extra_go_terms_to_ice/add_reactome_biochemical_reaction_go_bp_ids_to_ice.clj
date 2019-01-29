@@ -1,7 +1,10 @@
 `{:description "This rule finds any biochemical reaction record described in Reactome with a GO BP id field.",
- :name "step_cd-add_reactome_biochemical_reaction_go_bp_ids_to_ice",
- :head ((?/reactome_bcr_record obo/BFO_0000051 ?/xref_record)
-        (?/xref_id_field rdf/type ?/go_bp_ice) ;; 
+  :name "step_cd-add_reactome_biochemical_reaction_go_bp_ids_to_ice",
+  :reify ([?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/reactome_bcr_record), :prefix "R_"}]),
+  :head ((?/reactome_bcr_record obo/BFO_0000051 ?/this_xref_record)
+         (?/this_xref_record rdfs/subClassOf ?/xref_record)
+         
+        (?/xref_id_field rdf/type ?/go_bp_ice) ;;
         ),
  :body "#add_reactome_biochemical_reaction_go_bp_ids_to_ice.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
@@ -13,7 +16,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bp: <http://www.biopax.org/release/biopax-level3.owl#>
 PREFIX kice: <http://ccp.ucdenver.edu/kabob/ice/>
 PREFIX kbio: <http://ccp.ucdenver.edu/kabob/bio/>
-SELECT ?reactome_bcr_record ?xref_record ?go_bp_ice ?xref_id_field WHERE {
+SELECT DISTINCT ?reactome_bcr_record ?xref_record ?go_bp_ice ?xref_id_field WHERE {
  ?reactome_bcr rdf:type bp:BiochemicalReaction .
  ?reactome_bcr bp:xref ?xref .
  ?reactome_bcr ccp:ekws_temp_biopax_connector_relation ?reactome_bcr_record .

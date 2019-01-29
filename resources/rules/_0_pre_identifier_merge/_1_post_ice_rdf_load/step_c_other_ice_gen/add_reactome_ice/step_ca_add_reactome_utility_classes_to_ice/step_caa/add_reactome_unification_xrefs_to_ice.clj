@@ -1,4 +1,4 @@
-`{:description "This rule finds any unification xref record described in Reactome.",
+`{:description "This rule finds any unification xref record described in Reactome; it's necessary for a number of other Reactome utility classes.",
  :name "step_caa-add_reactome_unification_xrefs_to_ice",
   :reify ([?/xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome unification xref record" ?/xref), :prefix "R_"}]
           [?/xref_id_field {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome id field" ?/react_id), :prefix "F_"}]
@@ -21,7 +21,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bp: <http://www.biopax.org/release/biopax-level3.owl#>
 PREFIX kice: <http://ccp.ucdenver.edu/kabob/ice/>
 PREFIX kbio: <http://ccp.ucdenver.edu/kabob/bio/>
-SELECT ?xref ?react_db ?react_id WHERE {
+SELECT DISTINCT ?xref ?react_db ?react_id WHERE {
 ?xref rdf:type bp:UnificationXref .
 ?xref bp:db ?react_db .
 ?xref bp:id ?react_id .
