@@ -1,14 +1,16 @@
 `{:description "This rule finds any template reaction record described in Reactome, as well as its Reactome id field.",
  :name "step_cb-add_reactome_template_reactions_to_ice",
  :reify ([?/template_reaction_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome template reaction record" ?/template_reaction), :prefix "R_"}]
+          [?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/template_reaction_record), :prefix "R_"}]
          [?/reactome_ice]
          ),
  :head ((?/record_set obo/BFO_0000051 ?/template_reaction_record)
         (?/template_reaction_record rdf/type ccp/IAO_EXT_0001554) ;; biochemical reaction record
-        (?/template_reaction_record obo/BFO_0000051 ?/xref_record)
+        (?/template_reaction_record obo/BFO_0000051 ?/this_xref_record)
+         (?/this_xref_record rdfs/subClassOf ?/xref_record)
+         (?/this_xref_record rdf/type ccp/IAO_EXT_0001588) ;; xref field
         (?/xref_id_field rdf/type ?/reactome_ice)
         (?/reactome_ice rdfs/subClassOf ccp/IAO_EXT_0001643) ;; Reactome identifier
-        (?/xref_record rdf/type ccp/IAO_EXT_0001588) ;; xref field
         (?/template_reaction ccp/ekws_temp_biopax_connector_relation ?/template_reaction_record)
         ),
  :body "#add_reactome_biochemical_reactions_to_ice.clj
