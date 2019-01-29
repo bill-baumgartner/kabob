@@ -26,7 +26,7 @@ SELECT DISTINCT ?seq_mod_vocab ?sm_vocab_xref_record ?react_term WHERE {
 ?seq_mod_vocab rdf:type bp:SequenceModificationVocabulary .
 ?seq_mod_vocab bp:term ?react_term .
 ?seq_mod_vocab bp:xref ?react_xref .
-?react_xref bp:db \"MOD\" .
+?react_xref bp:db \"MOD\"^^xsd:string .
 ?react_xref ccp:ekws_temp_biopax_connector_relation ?sm_vocab_xref_record .
 }",
   :options {:magic-prefixes [["franzOption_logQuery" "franz:yes"] ["franzOption_clauseReorderer" "franz:identity"]]}}

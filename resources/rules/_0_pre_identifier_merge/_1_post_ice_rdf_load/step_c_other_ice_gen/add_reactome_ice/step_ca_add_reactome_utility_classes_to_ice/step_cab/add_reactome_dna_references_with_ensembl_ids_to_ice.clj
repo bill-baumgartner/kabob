@@ -8,7 +8,7 @@
          (?/this_xref_record rdfs/subClassOf ?/xref_record) 
          (?/this_xref_record rdf/type ccp/IAO_EXT_0001588) ;; xref field
          (?/xref_id_field rdf/type ccp/IAO_EXT_0001968) ;; reactome DNA id field value
-         (?/xref_id_field rdf/type ?/external_ice)
+         (?/xref_id_field rdf/type ?/ensembl_ice)
          (?/dna_ref ccp/ekws_temp_biopax_connector_relation ?/dna_ref_record)),
   :body "#add_reactome_dna_references_with_ensembl_ids_to_ice.clj
 PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
