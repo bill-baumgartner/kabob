@@ -1,7 +1,7 @@
 ;; -----------------------------------------------------------------
 ;; --------- RNACentral ID; MirBase ID Exact Match --------
 ;; -----------------------------------------------------------------
-`{:name "step-db_rnacentral-id-mirbase-id-exact-match"
+`{:name "step-db_rnacentral-id-refseq-id-exact-match"
   :description "This rule asserts an exact match between RNACentral identifiers and MirBase identifiers via RNACentral identifier mapping records"
   :head ((?/rnacentral_identifier skos/exactMatch ?/refseq_identifier))
   :body "prefix franzOption_chunkProcessingAllowed: <franz:yes>
@@ -19,6 +19,6 @@ WHERE {  ?record rdf:type ccp:IAO_EXT_0001978 . # CCP:RNACentral_identifier_mapp
 ?record obo:BFO_0000051 ?external_identifier_field_value .
 ?external_identifier_field_value rdf:type ccp:IAO_EXT_0001973 . # CCP:external_id_field_value
 ?external_identifier_field_value rdf:type ?refseq_identifier .
-?refseq_identifier rdfs:subClassOf* ccp:IAO_EXT_0000263 . # ccp:refseq_identifier
+?refseq_identifier rdfs:subClassOf ccp:IAO_EXT_0000263 . # ccp:refseq_identifier
 }"
 }

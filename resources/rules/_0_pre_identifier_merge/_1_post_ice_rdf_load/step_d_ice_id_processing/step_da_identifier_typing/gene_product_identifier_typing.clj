@@ -1,9 +1,9 @@
 ;; ----------------------------------------------------
-;; --------- bio identifier typing ---------
+;; --------- gene product identifier typing ---------
 ;; ----------------------------------------------------
-`{:name "step-da_bio-identifier-typing"
-  :description "This rule types all 'identifiers of a biological entity' as explicit subclasses of that concept (IAO_EXT_0000342). Doing so helps avoid some *'s in downstream queries."
-  :head ((?/identifier rdfs/subClassOf ccp/IAO_EXT_0000342)) ; CCP:identifier_of_a_biological_entity
+`{:name "step-da_gene-product-identifier-typing"
+  :description "This rule types all 'identifiers of a biological entity' as explicit subclasses of that concept (IAO_EXT_0000183). Doing so helps avoid some *'s in downstream queries."
+  :head ((?/identifier rdfs/subClassOf ccp/IAO_EXT_0000183)) ; CCP:gene_product_identifier
   :reify ()
   :body "prefix franzOption_chunkProcessingAllowed: <franz:yes>
   prefix franzOption_clauseReorderer: <franz:identity>
@@ -12,9 +12,9 @@
                   prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
                   prefix ccp: <http://ccp.ucdenver.edu/obo/ext/>
                   select distinct ?identifier {
-                     ?identifier rdfs:subClassOf* ccp:IAO_EXT_0000342 .
+                     ?identifier rdfs:subClassOf* ccp:IAO_EXT_0000183 .
                      filter (contains (str(?identifier), 'http://ccp.ucdenver.edu/kabob/ice/'))
-                     # exclude those identifiers that already have a direct connection to ccp:IAO_EXT_0000342
-                     filter not exists {?identifier rdfs:subClassOf ccp:IAO_EXT_0000342}
+                     # exclude those identifiers that already have a direct connection to ccp:IAO_EXT_0000183
+                     filter not exists {?identifier rdfs:subClassOf ccp:IAO_EXT_0000183}
                   }"
   }
