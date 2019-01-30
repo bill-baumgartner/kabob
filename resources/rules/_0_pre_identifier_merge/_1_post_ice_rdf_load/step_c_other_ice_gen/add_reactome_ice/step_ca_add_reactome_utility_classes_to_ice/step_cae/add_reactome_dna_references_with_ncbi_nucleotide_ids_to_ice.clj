@@ -20,6 +20,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bp: <http://www.biopax.org/release/biopax-level3.owl#>
 PREFIX kice: <http://ccp.ucdenver.edu/kabob/ice/>
 PREFIX kbio: <http://ccp.ucdenver.edu/kabob/bio/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 SELECT DISTINCT ?dna_ref ?xref_record ?xref_id_field ?ncbi_ice WHERE {
 ?dna_ref rdf:type bp:DnaReference .
 ?dna_ref bp:xref ?xref .
