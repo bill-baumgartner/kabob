@@ -15,6 +15,6 @@
                      ?identifier rdfs:subClassOf* ccp:IAO_EXT_0000342 .
                      filter (contains (str(?identifier), 'http://ccp.ucdenver.edu/kabob/ice/'))
                      # exclude those identifiers that already have a direct connection to ccp:IAO_EXT_0000342
-                     minus {?identifier rdfs:subClassOf ccp:IAO_EXT_0000342 .}
+                     filter not exists {?identifier rdfs:subClassOf ccp:IAO_EXT_0000342}
                   }"
   }
