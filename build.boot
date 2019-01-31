@@ -4,6 +4,7 @@
          '[clojure.string :refer [trim-newline]]
          '[kabob.build.run-rules :refer [commandline-process-forward-rules]]
          '[kabob.build.input-kb :refer [open-kb]]
+         '[kabob.build.id-sets.generate :refer [generate-all-id-sets]]
          '[kr.core.sparql :refer [visit-sparql query-sparql]]
          '[kr.core.kb :refer [connection]]
          '[clojure.java.classpath :refer [classpath-jarfiles]])
@@ -125,14 +126,16 @@
           l server-url VAL str "Server URL. Optional, set if not setting --docker."
           u username VAL str "Server username. Optional, set if not setting --docker."
           p password VAL str "Server password. Optional, set if not setting --docker."
-          y data-directory VAL str "Directory where data from KaBOB build will be stored. Optional, typically used for testing locally."]
+          y data-directory VAL str "Directory where data from KaBOB build will be stored. Optional, typically used for testing locally."
+          o ontology-directory VAL str "Directory where the ontologies that will be loaded into KaBOB are located."
+          i ice-directory VAL str "Directory where the ICE RDF files that will be loaded into KaBOB are located."]
          (with-pre-wrap fileset
                         ;; ensure that only one of the server back ends has been selected, otherwise error
                         (if (not= 1 (+ (if allegrograph 1 0)
                                        (if blazegraph 1 0)
                                        (if stardog 1 0)))
                           (throw (IllegalArgumentException.
-                                   "More than one server implementation has been requested. Please select only one.")))
+                                   "Zero or more than one server implementation has been requested. Please select only one.")))
 
                         ;; make sure that either the docker flag was set, or a URL, user, and password were provided
                         (if (and (not docker)
@@ -142,23 +145,26 @@
                           (throw (IllegalArgumentException.
                                    "No server connection parameters provided, please select either the 'docker' flag or provide an explicit server URL, username, and password.")))
 
-                        ;; add the kb-name and the server-implementation to the fileset and initialize server-specific parameters
-                        (merge fileset {:kb-name               kb-name
-                                        :kb-ontology-directory "/kabob_data/ontology"
-                                        :kb-ice-directory      "/kabob_data/rdf"
-                                        :kb-server-impl        (cond
-                                                                 allegrograph :allegrograph
-                                                                 blazegraph :blazegraph
-                                                                 stardog :stardog)}
-                               (if docker (cond
-                                            allegrograph (allegrograph-docker-params)
-                                            blazegraph (blazegraph-docker-params)
-                                            stardog (stardog-docker-params))
-                                          {:kb-url            server-url
-                                           :kb-user           username
-                                           :kb-password       password
-                                           :kb-data-directory data-directory})
-                               )))
+                        ; add the kb-name and the server-implementation to the fileset and initialize server-specific parameters
+                        (let [fs (merge fileset {:kb-name        kb-name
+                                                 :kb-server-impl (cond
+                                                                   allegrograph :allegrograph
+                                                                   blazegraph :blazegraph
+                                                                   stardog :stardog)}
+                                        (if docker (merge {:kb-ontology-directory "/kabob_data/ontology"
+                                                           :kb-ice-directory      "/kabob_data/rdf"}
+                                                          (cond
+                                                            allegrograph (allegrograph-docker-params)
+                                                            blazegraph (blazegraph-docker-params)
+                                                            stardog (stardog-docker-params)))
+                                                   {:kb-url                server-url
+                                                    :kb-user               username
+                                                    :kb-password           password
+                                                    :kb-data-directory     data-directory
+                                                    :kb-ontology-directory ontology-directory
+                                                    :kb-ice-directory      ice-directory}))
+                              updated-fs (merge fs {:id-set-directory (str (.getAbsolutePath (file (:kb-data-directory fs) (:kb-name fs) "id-sets")) File/separator)})]
+                          updated-fs)))
 
 
 (defn run-update [server-params query]
@@ -485,40 +491,74 @@
          (comp (rule :path-to-rule "rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/equivalent_class") (run-rule) (load-rule)
                (rule :path-to-rule "rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/shared_label") (run-rule) (load-rule)
                (rule :path-to-rule "rules/_0_pre_identifier_merge/_0_pre_ice_rdf_load/step_b_ontology_id_exact_match/exact_match") (run-rule) (load-rule)))
-;
-;
-;(deftask build-step-c []
-;         "build kabob step c; reactome ICE gen"
-;         (comp (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_caa") (run-rule) (load-rule)
-;               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cab") (run-rule) (load-rule)
-;               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cac") (run-rule) (load-rule)
-;               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cad") (run-rule) (load-rule)
-;               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cae") (run-rule) (load-rule)
-;
-;               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cb_add_reactome_main_classes_to_ice") (run-rule) (load-rule)
-;
-;               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cc_add_reactome_class_fields_to_ice/step_cca") (run-rule) (load-rule)
-;               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cc_add_reactome_class_fields_to_ice/step_ccb") (run-rule) (load-rule)
-;
-;               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cd_add_reactome_extra_go_terms_to_ice") (run-rule) (load-rule)))
-;
-;
-;(deftask build-step-d []
-;         "build kabob step d; ICE identifier processing"
-;         (comp
-;           (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_da_identifier_typing") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_db_identifier_exact_match") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_dc_more_identifier_exact_match") (run-rule) (load-rule)))
-;
-;
-;(deftask build-step-e []
-;         "build kabob step e; ID set generation"
-;         ;; todo implement this
-;         ;         export LEIN_ROOT=true
-;         ;         #cd /kabob.git && { ${LEININGEN} generate-id-sets ${KB_URL} ${KB_NAME} ${KB_USER} ${KB_PASS} ${KB_DATA_DIR}/id_sets/exact/ ${KB_DATA_DIR}/id_sets/graph_dbs/ ${SERVER_IMPL} ; cd - ; }
-;         ;                              #${BASE_SCRIPT_DIR}/LOAD.sh id_sets/exact
-;
-;         )
+
+
+(deftask build-step-c []
+         "build kabob step c; reactome ICE gen"
+         (comp (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_caa") (run-rule) (load-rule)
+               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cab") (run-rule) (load-rule)
+               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cac") (run-rule) (load-rule)
+               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cad") (run-rule) (load-rule)
+               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_ca_add_reactome_utility_classes_to_ice/step_cae") (run-rule) (load-rule)
+
+               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cb_add_reactome_main_classes_to_ice") (run-rule) (load-rule)
+
+               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cc_add_reactome_class_fields_to_ice/step_cca") (run-rule) (load-rule)
+               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cc_add_reactome_class_fields_to_ice/step_ccb") (run-rule) (load-rule)
+
+               (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_c_other_ice_gen/add_reactome_ice/step_cd_add_reactome_extra_go_terms_to_ice") (run-rule) (load-rule)))
+
+
+(deftask build-step-d []
+         "build kabob step d; ICE identifier processing"
+         (comp
+           (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_da_identifier_typing") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_db_identifier_exact_match") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_d_ice_id_processing/step_dc_more_identifier_exact_match") (run-rule) (load-rule)))
+
+
+(deftask run-id-set-gen []
+         "build kabob step e; ID set generation"
+         (with-pre-wrap fileset
+                        (let [server-params {:server-url  (:kb-url fileset)
+                                             :repo-name   (:kb-name fileset)
+                                             :username    (:kb-user fileset)
+                                             :password    (:kb-password fileset)
+                                             :server-impl (:kb-server-impl fileset)}]
+                          (.mkdirs (file (:id-set-directory fileset)))
+                          (generate-all-id-sets (open-kb server-params) (:id-set-directory fileset)))
+                        fileset))
+
+(deftask load-id-sets []
+         "load the triple files created during ID set generation"
+         (with-pre-wrap fileset
+                        (let [files-to-load (map (fn [f] (.getAbsolutePath f))
+                                                 (filter #(.isFile %) (file-seq (file (:id-set-directory fileset)))))]
+                          (load-files (merge fileset {:files-to-load files-to-load}) "ntriples"))
+                        fileset))
+
+(deftask drop-id-sets []
+         "drop the triple files created during ID set generation; this is a convenience task as it's not used during the build process."
+         (with-pre-wrap fileset
+                        (let [server-params {:repo-name   (:kb-name fileset)
+                                             :username    (:kb-user fileset)
+                                             :password    (:kb-password fileset)
+                                             :server-url  (:kb-url fileset)
+                                             :server-impl (:kb-server-impl fileset)}]
+                          (doall (map (fn [file]
+                                        (let [graph-name (str "<file://" (.getAbsolutePath file) ">")]
+                                          (run-update server-params (str "drop graph " graph-name))))
+                                      (filter #(.isFile %) (file-seq (file (:id-set-directory fileset)))))))
+                        fileset))
+
+(deftask build-step-e []
+         "build kabob step e; ID set generation"
+         (comp
+           (rule :path-to-rule "rules/_0_pre_identifier_merge/_1_post_ice_rdf_load/step_e_id_set_gen_prep") (run-rule) (load-rule)
+           (run-id-set-gen)
+           (drop-rule)
+           (load-id-sets)))
+
 ;
 ;
 ;
@@ -736,6 +776,7 @@
 ;(deftask build-step-hd-reactome []
 ;         "build kabob step hd; bioentity linking"
 ;         (comp
+;; todo - move rules from steps cae and caf here as many of them use denotes links
 ;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/reactome/step_a_add_continuants_to_bio/step_a") (run-rule) (load-rule)
 ;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/reactome/step_a_add_continuants_to_bio/step_b") (run-rule) (load-rule)
 ;           ; todo - remove temporary links here

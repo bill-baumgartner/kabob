@@ -2,7 +2,7 @@
 ;; --------- refseq identifier typing ---------
 ;; ----------------------------------------------------
 `{:name "step-da_refseq-identifier-typing"
-  :description "This rule types all 'refseq identifiers' as explicit subclasses of that concept (IAO_EXT_0000263). Doing so helps avoid some *'s in downstream queries."
+  :description "This rule types all 'refseq identifiers' as explicit subclasses of that concept (IAO_EXT_0000263). Doing so helps avoid some *'s in downstream queries. Currently, this rule returns zero hits but we will leave it in case it is needed in the future, thus allowing us to safely keep some *'s out of later queries."
   :head ((?/identifier rdfs/subClassOf ccp/IAO_EXT_0000263)) ; CCP:refseq_identifier
   :reify ()
   :body "prefix franzOption_chunkProcessingAllowed: <franz:yes>
