@@ -10,6 +10,11 @@ DATE=$(date +%m/%d/%Y)
 cd /kabob_data/raw/irefweb && { wget -c -t 0 --timeout 60 --waitretry 10 http://irefindex.org/download/irefindex/data/archive/release_15.0/psi_mitab/MITAB2.6/9606.mitab.22012018.txt.zip ; cd - ; }
 /kabob.git/scripts/download/create-metadata-file.sh /kabob_data/raw/irefweb/9606.mitab.01-22-2018.txt  http://irefindex.org/download/irefindex/data/archive/release_15.0/psi_mitab/MITAB2.6/9606.mitab.22012018.txt.zip
 
+# get the interpro.xml file
+cd /kabob_data/raw/interpro && { wget -c -t 0 --timeout 60 --waitretry 10 ftp://ftp.ebi.ac.uk/pub/databases/interpro/interpro.xml.gz ; cd - ; }
+/kabob.git/scripts/download/create-metadata-file.sh /kabob_data/raw/interpro/interpro.xml.gz  ftp://ftp.ebi.ac.uk/pub/databases/interpro/interpro.xml.gz
+
+
 
 # there are also resources that are not processed by the file parsers directly, e.g. the Reactome biopax OWL file.
 # These resources are downloaded here and placed into the /kabob_data/rdf/ directory so that they are loaded

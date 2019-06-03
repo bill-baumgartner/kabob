@@ -1,4 +1,4 @@
-(defproject edu.ucdenver.ccp/kabob "2.0.0-SNAPSHOT"
+(defproject edu.ucdenver.ccp/kabob "2.0.0-BG"
   :description "KaBOB, the knowledgebase of biology"
   :url "https://github.com/UCDenver-ccp/kabob"
   :license {:name "Eclipse Public License"

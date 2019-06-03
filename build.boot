@@ -1,4 +1,4 @@
-(set-env! :dependencies '[[edu.ucdenver.ccp/kabob "2.0.0-SNAPSHOT"]
+(set-env! :dependencies '[[edu.ucdenver.ccp/kabob "2.0.0-BG"]
                           [org.clojure/java.classpath "0.3.0"]])
 (require '[clojure.java.io :refer [file]]
          '[clojure.string :refer [trim-newline]]
