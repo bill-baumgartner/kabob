@@ -7,7 +7,7 @@
   				       [org.clojure/core.cache "0.6.4"]
   			      	 ;;[cheshire/cheshire "5.2.0" :exclusions [com.fasterxml.jackson.core/jackson-core]]
 								 [com.blazegraph/bigdata-core "2.1.4"]
-  				       [edu.ucdenver.ccp/kr "1.5.0-sesame2.7.12-SNAPSHOT"]
+  				       [edu.ucdenver.ccp/kr "1.5.0-sesame2.7.12"]
 								 ;;[org.openrdf.sesame/sesame-util "2.7.12"]
 								 ;;[org.openrdf.sesame/sesame-query "2.7.12"]
 								 ;;[org.apache.httpcomponents/httpclient "4.5.3" :exclusions [org.apache.httpcomponents/httpcore]]
