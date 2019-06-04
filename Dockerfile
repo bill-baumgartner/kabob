@@ -47,8 +47,8 @@ RUN git clone https://github.com/bill-baumgartner/owltools.git ./owltools.git &&
 	mvn clean install -DskipTests -f ./owltools.git/OWLTools-Parent/pom.xml
 
 # install the ccp common project
-#RUN git clone https://github.com/UCDenver-ccp/common.git ./common.git && \
-#    mvn clean install -f ./common.git/pom.xml
+RUN git clone https://github.com/UCDenver-ccp/common.git ./common.git && \
+    mvn clean install -f ./common.git/pom.xml
 
 COPY docker-build-flags/do.datasource /flags
 
