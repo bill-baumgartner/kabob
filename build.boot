@@ -210,6 +210,30 @@
                           fileset)))
 
 
+
+(defn backup-kb-bg [kb-url backup-label]
+  "prompt a Blazegraph KB to generate a backup"
+  (println (str "Backing up Blazegraph repository"))
+  (dosh "scripts/docker/blazegraph-specific/backup.sh"
+        "-u" kb-url
+        "-l" backup-label))
+
+(deftask backup-kb
+         "prompt the kb to create a backup"
+         [l backup-label VAL str "label that will be appended to the backup file name to uniquely identify it."]
+
+         (with-pre-wrap fileset
+                        (println (str "Backing up KB. URL = " (:kb-url fileset) " LABEL = " backup-label))
+                        (let [server-impl (:kb-server-impl fileset)]
+                          (cond
+                            (= server-impl :blazegraph) (backup-kb-bg (:kb-url fileset) backup-label)
+                            (= server-impl :allegrograph) (println "WARNING - backup for the Allegrograph backend is not yet implemented.")
+                            (= server-impl :stardog) (println "WARNING - backup for the Stardog backend is not yet implemented.")
+                            :else (throw (IllegalArgumentException.
+                                           (str "Unhandled server implementation: " server-impl))))
+                          fileset)))
+
+
 (deftask rule
          "Specify a rule to process"
          [p path-to-rule VAL str "path to rule file"]

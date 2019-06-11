@@ -33,6 +33,7 @@ chown developer:developer /blazegraph-data
 
 java -server -Xmx60g -jar -Dbigdata.propertyFile=/home/developer/blazegraph/conf/RWStore.properties /home/developer/blazegraph/blazegraph.jar
 
+
 ## create a symbolic link to the deployed blazegraph lib/ directory to /blazegraph-lib
 #CP_DIR=$(grep bigdata.war /var/log/supervisor/blazegraph_process.err.log | cut -f 2 -d "{" | cut -f 2 -d "," | cut -f 3- -d "/")
 #ln -s ${CP_DIR} /blazegraph-lib

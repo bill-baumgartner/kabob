@@ -10,7 +10,7 @@ COPY scripts/RWStore.properties /home/developer/blazegraph/conf
 COPY scripts/log4j.properties /home/developer/blazegraph/conf
 COPY scripts/supervisord-config.sh /
 COPY scripts/supervisord.conf /etc/
-COPY scripts/init-blazegraph.sh scripts/check-for-load.sh /usr/bin/
+COPY scripts/init-blazegraph.sh scripts/check-for-load.sh scripts/restore-from-backup.sh /usr/bin/
 COPY scripts/run-loader.sh /
 COPY scripts/pom-blazegraph-loader.xml /
 
