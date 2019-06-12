@@ -583,279 +583,312 @@
            (drop-rule)
            (load-id-sets)))
 
-;
-;
-;
-;(deftask build-step-f []
-;         "build kabob step f; bioentity generation"
-;         (comp (rule :path-to-rule "rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links") (run-rule) (load-rule)
-;               (rule :path-to-rule "rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fb_obsolete_identifier_bioentity_links") (run-rule) (load-rule)))
-;
-;(deftask build-step-g []
-;         "build kabob step g; ontology-to-bio rules"
-;         (comp (rule :path-to-rule "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio") (run-rule) (load-rule)
-;               (rule :path-to-rule "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gba_copy_rdfs_labels_to_bio") (run-rule) (load-rule)
-;               (rule :path-to-rule "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gbb_derive_missing_labels_to_bio") (run-rule) (load-rule)
-;               (rule :path-to-rule "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gca_links_to_nil") (run-rule) (load-rule)
-;               (rule :path-to-rule "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcb_temp_link_ont_to_bio_concepts") (run-rule) (load-rule)
-;               (rule :path-to-rule "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcc_transfer_ontology_links_to_bio") (run-rule) (load-rule)
-;               (update-kb :query "delete { graph ?g {?c ?p ?c}}
-;                                  where {
-;                                         select ?c (owl:equivalentClass as ?p) ?g {
-;                                            graph ?g {
-;                                                       ?c owl:equivalentClass ?c .
-;                                                     }
-;                                         }
-;                                        }")
-;               (rule :path-to-rule "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcb_temp_link_ont_to_bio_concepts") (drop-rule)))
-;
-;(deftask build-step-ha []
-;         "build kabob step ha; bioentity typing"
-;         (comp
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_haa") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_hab") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_haa") (drop-rule)
-;
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_identifier") (run-rule) (load-rule)
-;
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_parent_class") (run-rule) (load-rule)))
-;
-;(deftask build-step-hb []
-;         "build kabob step hb; bioentity labeling"
-;         (comp
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hb_bioentity_labeling") (run-rule) (load-rule)))
-;
-;(deftask build-step-hc []
-;         "build kabob step hc; gene-or-gene-product abstraction gen"
-;         (comp
-;           ; todo: reorganize step hca so that temp rules are created in their own step(s) - and then subsequently dropped
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma/step_a") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma/step_b") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma/step_c") (run-rule) (load-rule)
-;
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/ncbi") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/refseq") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/uniprot") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template") (run-rule) (load-rule)
-;
-;           (taxon-validation)                               ;; todo - implement this
-;
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a") (drop-rule)
-;
-;
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcd_generate_gene_abstractions") (run-rule) (load-rule)
-;
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hce_link_to_gp_abstractions") (run-rule) (load-rule)))
-;
-;
-;(deftask build-step-hd-bioplex []
-;         "build kabob step hd; bioentity linking"
-;         (comp
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/bioplex/step_a") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/bioplex/step_b") (run-rule) (load-rule)
-;           (update-kb :query "delete { graph ?g {?s rdfs:subClassOf ?o}} where {
-;                                       select ?s (ccp:temp_bioplex_interaction as ?o) ?g {
-;                                              graph ?g {
-;                                                          ?s rdfs:subClassOf ccp:temp_bioplex_interaction .
-;                                                        }
-;                                                }
-;                                         }")))
-;
-;(deftask build-step-hd-drugbank []
-;         "build kabob step hd; bioentity linking"
-;         (comp
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/drugbank/step_a") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/drugbank/step_b") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/drugbank/step_c") (run-rule) (load-rule)
-;
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/drugbank/step_a") (drop-rule)
-;           (update-kb :query "delete { graph ?g {?s rdfs:subClassOf ?o}} where {
-;                                        select ?s (ccp:temp_drugbank_interaction as ?o) ?g {
-;                                          graph ?g {
-;                                            ?s rdfs:subClassOf ccp:temp_drugbank_interaction .
-;                                          }
-;                                        }
-;                                      }")
-;
-;           (update-kb :query "delete { graph ?g {?s ?p ?o}} where {
-;                                        select ?s (ccp:temp_drug_participant as ?p) ?o ?g {
-;                                          graph ?g {
-;                                            ?s ccp:temp_drug_participant ?o .
-;                                          }
-;                                        }
-;                                      }")
-;
-;           (update-kb :query "delete { graph ?g {?s ?p ?o}} where {
-;                                        select ?s (ccp:temp_target_participant as ?p) ?o ?g {
-;                                          graph ?g {
-;                                            ?s ccp:temp_target_participant ?o .
-;                                            }
-;                                        }
-;                                        }")))
-;
-;(deftask build-step-hd-goa []
-;         "build kabob step hd; bioentity linking"
-;         (comp
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_a") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_b") (run-rule) (load-rule)
-;
-;
-;           (update-kb :query "#delete { graph ?g {?s rdfs:subClassOf ?o}} where {
-;                                          select ?s (ccp:temp_biological_process as ?o) ?g {
-;                                            graph ?g {
-;                                              ?s rdfs:subClassOf ccp:temp_biological_process .
-;                                            }
-;                                          }
-;                                        }")
-;
-;           (update-kb :query "delete { graph ?g {?s rdfs:subClassOf ?o}} where {
-;                                        select ?s (ccp:temp_localization_process as ?o) ?g {
-;                                          graph ?g {
-;                                            ?s rdfs:subClassOf ccp:temp_localization_process .
-;                                          }
-;                                        }
-;                                      }")
-;
-;           (update-kb :query "delete { graph ?g {?s rdfs:subClassOf ?o}} where {
-;                                        select ?s (ccp:temp_molecular_function as ?o) ?g {
-;                                          graph ?g {
-;                                            ?s rdfs:subClassOf ccp:temp_molecular_function .
-;                                          }
-;                                        }
-;                                      }")
-;
-;           (update-kb :query "delete { graph ?g {?s ?p ?o}} where {
-;                                        select ?s (ccp:temp_has_participant as ?p) ?o ?g {
-;                                          graph ?g {
-;                                            ?s ccp:temp_has_participant ?o .
-;                                          }
-;                                        }
-;                                      }")
-;
-;           ))
-;
-;(deftask build-step-hd-hp []
-;         "build kabob step hd; bioentity linking"
-;         (comp
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/hp/step_a") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/hp/step_b") (run-rule) (load-rule)
-;
-;           (update-kb :query "delete { graph ?g {?s rdfs:subClassOf ?o}} where {
-;                                        select ?s (ccp:temp_human_phenotype as ?o) ?g {
-;                                          graph ?g {
-;                                            ?s rdfs:subClassOf ccp:temp_human_phenotype .
-;                                          }
-;                                        }
-;                                      }")
-;
-;           (update-kb :query "delete { graph ?g {?s ?p ?o}} where {
-;                                        select ?s (ccp:temp_causes as ?p) ?o ?g {
-;                                          graph ?g {
-;                                            ?s ccp:temp_causes ?o .
-;                                          }
-;                                        }
-;                                      }")))
-;
-;
-;
-;(deftask build-step-hd-irefweb []
-;         "build kabob step hd; bioentity linking"
-;         (comp
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/irefweb/step_a") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/irefweb/step_b") (run-rule) (load-rule)
-;
-;           (update-kb :query "delete { graph ?g {?s rdfs:subClassOf ?o}} where {
-;                                        select ?s (ccp:temp_irefweb_binary_interaction as ?o) ?g {
-;                                          graph ?g {
-;                                            ?s rdfs:subClassOf ccp:temp_irefweb_binary_interaction .
-;                                          }
-;                                        }
-;                                      }")
-;
-;           (update-kb :query "delete { graph ?g {?s rdfs:subClassOf ?o}} where {
-;                                        select ?s (ccp:temp_irefweb_nary_interaction as ?o) ?g {
-;                                          graph ?g {
-;                                            ?s rdfs:subClassOf ccp:temp_irefweb_nary_interaction .
-;                                          }
-;                                        }
-;                                      }")))
-;
-;(deftask build-step-hd-pharmgkb []
-;         "build kabob step hd; bioentity linking"
-;         (comp
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/pharmgkb/step_a") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/pharmgkb/step_b") (run-rule) (load-rule)
-;
-;           (update-kb :query "delete { graph ?g {?s rdfs:subClassOf ?o}} where {
-;                                        select ?s (ccp:temp_pharmgkb_interaction as ?o) ?g {
-;                                          graph ?g {
-;                                            ?s rdfs:subClassOf ccp:temp_pharmgkb_interaction .
-;                                          }
-;                                        }
-;                                      }")))
-;
-;
-;(deftask build-step-hd-reactome []
-;         "build kabob step hd; bioentity linking"
-;         (comp
-;; todo - move rules from steps cae and caf here as many of them use denotes links
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/reactome/step_a_add_continuants_to_bio/step_a") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/reactome/step_a_add_continuants_to_bio/step_b") (run-rule) (load-rule)
-;           ; todo - remove temporary links here
-;           ))
-;
-;(deftask build-step-hd []
-;         "build kabob step hd; bioentity linking"
-;         (comp (build-step-hd-bioplex)
-;               (build-step-hd-drugbank)
-;               (build-step-hd-goa)
-;               (build-step-hd-hp)
-;               (build-step-hd-irefweb)
-;               (build-step-hd-pharmgkb)
-;               (build-step-hd-reactome)))
-;
-;
-;(deftask build-step-h []
-;         "build kabob step h; ICE-to-bio rules"
-;         (comp (build-step-ha) (build-step-hb) (build-step-hc) (build-step-hd)))
-;
-;
-;(deftask build-step-i []
-;         "build kabob step i; bio expansion rules (bio-to-bio)"
-;         (comp
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_i_bio_expansion/class_based_kr/step_a") (run-rule) (load-rule)
-;           (rule :path-to-rule "rules/_1_post_identifier_merge/step_i_bio_expansion/class_based_kr/step_b") (run-rule) (load-rule)
-;
-;           (update-kb :query "delete { graph ?g {?s rdfs:subClassOf ?o}} where {
-;                                        select ?s (ccp:temp_location as ?o) ?g {
-;                                          graph ?g {
-;                                            ?s rdfs:subClassOf ccp:temp_location .
-;                                          }
-;                                        }
-;                                      }")))
+
+(deftask build-step-f []
+         "build kabob step f; bioentity generation"
+         (comp (rule :path-to-rule "rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fa_identifier_bioentity_links") (run-rule) (load-rule)
+               (rule :path-to-rule "rules/_1_post_identifier_merge/step_f_bioentity_generation/step_fb_obsolete_identifier_bioentity_links") (run-rule) (load-rule)))
+
+
+(deftask build-step-g []
+         "build kabob step g; ontology-to-bio rules"
+         (comp (rule :path-to-rule "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_ga_copy_owl_constructs_to_bio") (run-rule) (load-rule)
+               (rule :path-to-rule "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gba_copy_rdfs_labels_to_bio") (run-rule) (load-rule)
+               (rule :path-to-rule "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gb_copy_labels_to_bio/step_gbb_derive_missing_labels_to_bio") (run-rule) (load-rule)
+               (rule :path-to-rule "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gca_links_to_nil") (run-rule) (load-rule)
+               (rule :path-to-rule "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcb_temp_link_ont_to_bio_concepts") (run-rule) (load-rule)
+               (rule :path-to-rule "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcc_transfer_ontology_links_to_bio") (run-rule) (load-rule)
+               (update-kb :query "delete { graph ?g {?c ?p ?c}}
+                                  where {
+                                         select ?c (owl:equivalentClass as ?p) ?g {
+                                            graph ?g {
+                                                       ?c owl:equivalentClass ?c .
+                                                     }
+                                         }
+                                        }")
+               (rule :path-to-rule "rules/_1_post_identifier_merge/step_g_ontology_to_bio/step_gc_copy_node_links_to_bio/step_gcb_temp_link_ont_to_bio_concepts") (drop-rule)))
+
+
+(deftask build-step-ha []
+         "build kabob step ha; bioentity typing"
+         (comp
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_haa") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_hab") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_gene_type/step_haa") (drop-rule)
+
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_identifier") (run-rule) (load-rule)
+
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_parent_class/step_a") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_parent_class/step_b") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_ha_bioentity_typing/by_parent_class/step_a") (drop-rule)
+           ))
+
+
+(deftask build-step-hb []
+         "build kabob step hb; bioentity labeling"
+         (comp
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hb_bioentity_labeling") (run-rule) (load-rule)))
+
+
+(deftask build-step-hc []
+         "build kabob step hc; gene-or-gene-product abstraction gen"
+         (comp
+           ; todo: reorganize step hca so that temp rules are created in their own step(s) - and then subsequently dropped
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma/step_a") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma/step_b") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hca_central_dogma/step_c") (run-rule) (load-rule)
+
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/ncbi") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/refseq") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/uniprot") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template") (run-rule) (load-rule)
+
+           ;(taxon-validation)                               ;; todo - implement this
+
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_c") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_d") (run-rule) (load-rule)
+           ;;(rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a") (drop-rule)
+
+
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcd_generate_gene_abstractions") (run-rule) (load-rule)
+
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hce_link_to_gp_abstractions") (run-rule) (load-rule)))
+
+
+(deftask build-step-hd-bioplex []
+         "build kabob step hd; bioentity linking"
+         (comp
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/bioplex/step_a") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/bioplex/step_b") (run-rule) (load-rule)
+           (update-kb :query "PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                              delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+                                       select ?s (ccp:temp_bioplex_interaction as ?o) ?g {
+                                              graph ?g {
+                                                          ?s rdfs:subClassOf ccp:temp_bioplex_interaction .
+                                                        }
+                                                }
+                                         }")))
+
+
+(deftask build-step-hd-drugbank []
+         "build kabob step hd; bioentity linking"
+         (comp
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/drugbank/step_a") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/drugbank/step_b") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/drugbank/step_c") (run-rule) (load-rule)
+
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/drugbank/step_a") (drop-rule)
+           (update-kb :query "PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                                    delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+                                        select ?s (ccp:temp_drugbank_interaction as ?o) ?g {
+                                          graph ?g {
+                                            ?s rdfs:subClassOf ccp:temp_drugbank_interaction .
+                                          }
+                                        }
+                                      }")
+
+           (update-kb :query "PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                              delete { graph ?g {?s ?p ?o}} where {
+                                        select ?s (ccp:temp_drug_participant as ?p) ?o ?g {
+                                          graph ?g {
+                                            ?s ccp:temp_drug_participant ?o .
+                                          }
+                                        }
+                                      }")
+
+           (update-kb :query "PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                               delete { graph ?g {?s ?p ?o}} where {
+                                        select ?s (ccp:temp_target_participant as ?p) ?o ?g {
+                                          graph ?g {
+                                            ?s ccp:temp_target_participant ?o .
+                                            }
+                                        }
+                                        }")))
+
+
+(deftask build-step-hd-goa []
+         "build kabob step hd; bioentity linking"
+         (comp
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_a") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_b") (run-rule) (load-rule)
+
+
+           (update-kb :query "PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                              delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+                                          select ?s (ccp:temp_biological_process as ?o) ?g {
+                                            graph ?g {
+                                              ?s rdfs:subClassOf ccp:temp_biological_process .
+                                            }
+                                          }
+                                        }")
+
+           (update-kb :query "PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                              delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+                                        select ?s (ccp:temp_localization_process as ?o) ?g {
+                                          graph ?g {
+                                            ?s rdfs:subClassOf ccp:temp_localization_process .
+                                          }
+                                        }
+                                      }")
+
+           (update-kb :query "PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                              delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+                                        select ?s (ccp:temp_molecular_function as ?o) ?g {
+                                          graph ?g {
+                                            ?s rdfs:subClassOf ccp:temp_molecular_function .
+                                          }
+                                        }
+                                      }")
+
+           (update-kb :query "PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                              delete { graph ?g {?s ?p ?o}} where {
+                                        select ?s (ccp:temp_has_participant as ?p) ?o ?g {
+                                          graph ?g {
+                                            ?s ccp:temp_has_participant ?o .
+                                          }
+                                        }
+                                      }")))
+
+
+(deftask build-step-hd-hp []
+         "build kabob step hd; bioentity linking"
+         (comp
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/hp/step_a") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/hp/step_b") (run-rule) (load-rule)
+
+           (update-kb :query "PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                              delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+                                        select ?s (ccp:temp_human_phenotype as ?o) ?g {
+                                          graph ?g {
+                                            ?s rdfs:subClassOf ccp:temp_human_phenotype .
+                                          }
+                                        }
+                                      }")
+
+           (update-kb :query "PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                              delete { graph ?g {?s ?p ?o}} where {
+                                        select ?s (ccp:temp_causes as ?p) ?o ?g {
+                                          graph ?g {
+                                            ?s ccp:temp_causes ?o .
+                                          }
+                                        }
+                                      }")))
+
+
+(deftask build-step-hd-irefweb []
+         "build kabob step hd; bioentity linking"
+         (comp
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/irefweb/step_a") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/irefweb/step_b") (run-rule) (load-rule)
+
+           (update-kb :query "PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                              delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+                                        select ?s (ccp:temp_irefweb_binary_interaction as ?o) ?g {
+                                          graph ?g {
+                                            ?s rdfs:subClassOf ccp:temp_irefweb_binary_interaction .
+                                          }
+                                        }
+                                      }")
+
+           (update-kb :query "PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                              delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+                                        select ?s (ccp:temp_irefweb_nary_interaction as ?o) ?g {
+                                          graph ?g {
+                                            ?s rdfs:subClassOf ccp:temp_irefweb_nary_interaction .
+                                          }
+                                        }
+                                      }")))
+
+
+(deftask build-step-hd-pharmgkb []
+         "build kabob step hd; bioentity linking"
+         (comp
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/pharmgkb/step_a") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/pharmgkb/step_b") (run-rule) (load-rule)
+
+           (update-kb :query "PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                              delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+                                        select ?s (ccp:temp_pharmgkb_interaction as ?o) ?g {
+                                          graph ?g {
+                                            ?s rdfs:subClassOf ccp:temp_pharmgkb_interaction .
+                                          }
+                                        }
+                                      }")))
+
+
+(deftask build-step-hd-reactome []
+         "build kabob step hd; bioentity linking"
+         (comp
+           ;; todo - move rules from steps cae and caf here as many of them use denotes links
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/reactome/step_a_add_continuants_to_bio/step_a") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/reactome/step_a_add_continuants_to_bio/step_b") (run-rule) (load-rule)
+           ; todo - remove temporary links here
+           ))
+
+
+(deftask build-step-hd []
+         "build kabob step hd; bioentity linking"
+         (comp (build-step-hd-bioplex)
+               (build-step-hd-drugbank)
+               (build-step-hd-goa)
+               (build-step-hd-hp)
+               (build-step-hd-irefweb)
+               (build-step-hd-pharmgkb)
+               ;(build-step-hd-reactome) ;; reactome rules are still under development
+               ))
+
+
+(deftask build-step-h []
+         "build kabob step h; ICE-to-bio rules"
+         (comp (build-step-ha) (build-step-hb) (build-step-hc) (build-step-hd)))
+
+
+(deftask build-step-i []
+         "build kabob step i; bio expansion rules (bio-to-bio)"
+         (comp
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_i_bio_expansion/class_based_kr/step_a") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_i_bio_expansion/class_based_kr/step_b") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_i_bio_expansion/class_based_kr/step_c") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_i_bio_expansion/class_based_kr/step_a") (drop-rule)
+
+           (update-kb :query "PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                              delete { graph ?g {?s rdfs:subClassOf ?o}} where {
+                                        select ?s (ccp:temp_location as ?o) ?g {
+                                          graph ?g {
+                                            ?s rdfs:subClassOf ccp:temp_location .
+                                          }
+                                        }
+                                      }")))
 ;
 ;;(rule :path-to-rule "") (run-rule) (load-rule)
 ;
-;(deftask build-kabob-blazegraph []
-;         "build kabob from scratch"
-;         (comp (server :docker :blazegraph :n "kabobhuman")
-;               (init-kb)
-;               (load-ontology-rdf)
-;               (validate-rdf-syntax)
-;               (build-step-a)
-;               (build-step-b)
-;               (load-ice-rdf)
-;               (build-step-c)
-;               (build-step-d)
-;               (build-step-e)
-;               (build-step-f)
-;               (build-step-g)
-;               (validate-rdf-syntax)                        ;; todo - give validate rdf syntax and optional graph to limit the search space?
-;               (build-step-h)
-;               (build-step-i)))
-;
+(deftask build-kabob-blazegraph []
+         "build kabob from scratch"
+         (comp (server :docker :blazegraph :n "kabobhuman")
+               (init-kb)
+               (load-ontology-rdf)
+               (validate-rdf-syntax)
+               (backup-kb :backup-label "onts")
+               (build-step-a)
+               (backup-kb :backup-label "post-a")
+               (build-step-b)
+               (backup-kb :backup-label "post-b")
+               (load-ice-rdf)
+               (backup-kb :backup-label "post-ice")
+               (build-step-c)
+               (build-step-d)
+               (build-step-e)
+               (backup-kb :backup-label "post-e")
+               (build-step-f)
+               (build-step-g)
+               (backup-kb :backup-label "post-g")
+               (validate-rdf-syntax)                        ;; todo - give validate rdf syntax and optional graph to limit the search space?
+               (build-step-h)
+               (backup-kb :backup-label "post-h")
+               (build-step-i)))
+
 
 
 

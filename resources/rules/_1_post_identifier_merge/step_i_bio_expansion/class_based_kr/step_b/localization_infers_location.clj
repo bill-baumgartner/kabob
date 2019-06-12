@@ -25,48 +25,23 @@
                SELECT ?parent_bioentity ?parent_location ?located_in
 
                WHERE {
+                      ?localization_process rdf:type kice:temp_localization_process .
                       ?localization_process_sc rdfs:subClassOf ?localization_process .
                       ?localization_process_sc rdfs:subClassOf ?trans_main_loc_restriction .
                       ?trans_main_loc_restriction rdf:type owl:Restriction .
                       ?trans_main_loc_restriction owl:onProperty ?transports_or_maintains_localization_of .
+                      ?transports_or_maintains_localization_of rdf:type kice:temp_transports_or_maintains_localization_of .
                       ?trans_main_loc_restriction owl:someValuesFrom ?bioentity .
                       ?localization_process_sc rdfs:subClassOf ?target_end_restriction .
                       ?target_end_restriction rdf:type owl:Restriction .
                       ?target_end_restriction owl:onProperty ?has_target_end_location .
+                      ?has_target_end_location rdf:type kice:temp_has_target_end_location .
                       ?target_end_restriction owl:someValuesFrom ?location .
 
                       ?bioentity rdfs:subClassOf ?parent_bioentity .
                       ?location rdfs:subClassOf ?parent_location .
 
-
-
-                      {
-                       select ?localization_process {
-                                                     kice:GO_0051179 obo:IAO_0000219 ?localization_process .
-                                                     filter (?localization_process != obo:GO_0051179) .
-                                                     }
-                       }
-
-                      {
-                       select ?transports_or_maintains_localization_of {
-                                                                        kice:RO_0002313 obo:IAO_0000219 ?transports_or_maintains_localization_of .
-                                                                        filter (?transports_or_maintains_localization_of != obo:RO_0002313) .
-                                                                        }
-                       }
-
-                      {
-                       select ?has_target_end_location {
-                                                        kice:RO_0002339 obo:IAO_0000219 ?has_target_end_location .
-                                                        filter (?has_target_end_location != obo:RO_0002339) .
-                                                        }
-                       }
-
-                      {
-                       select ?located_in {
-                                           kice:RO_0001025 obo:IAO_0000219 ?located_in .
-                                           filter (?located_in != obo:RO_0001025) .
-                                           }
-                       }
+                      ?located_in rdf:type kice:temp_located_in .
                       }"
 
   :options     {:magic-prefixes [["franzOption_clauseReorderer" "franz:identity"]]}

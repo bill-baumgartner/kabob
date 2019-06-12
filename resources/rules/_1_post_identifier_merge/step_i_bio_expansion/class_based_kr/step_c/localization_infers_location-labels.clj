@@ -11,18 +11,12 @@
                          PREFIX obo: <http://purl.obolibrary.org/obo/>
                select ?location_sc ?bioentity_sc ?bioentity_label ?location_label {
 
-                   {
-                    select ?located_in {
-                                        kice:RO_0001025 obo:IAO_0000219 ?located_in .
-                                        filter (?located_in != obo:RO_0001025) .
-                                        }
-                    }
-
                    ?location_sc rdfs:subClassOf ccp:temp_location .
                    ?location_sc rdfs:subClassOf ?location .
                    filter (?location != ccp:temp_location)
                    ?r owl:someValuesFrom ?location_sc .
                    ?r owl:onProperty ?located_in .
+                   ?located_in rdf:type kice:temp_located_in .
                    ?bioentity_sc rdfs:subClassOf ?r .
                    ?bioentity_sc rdfs:subClassOf ?bioentity .
                    filter (?r != ?bioentity)
