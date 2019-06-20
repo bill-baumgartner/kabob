@@ -53,7 +53,7 @@ RUN git clone https://github.com/UCDenver-ccp/common.git ./common.git && \
 COPY docker-build-flags/do.datasource /flags
 
 # install the datasource project
-RUN git clone --branch v0.7.2 http://github.com/UCDenver-ccp/datasource.git ./datasource.git && \
+RUN git clone --branch v0.7.3 http://github.com/UCDenver-ccp/datasource.git ./datasource.git && \
     mvn clean install -f ./datasource.git/pom.xml
 
 COPY docker-build-flags/do.kr /flags
