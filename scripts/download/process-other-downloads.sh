@@ -7,7 +7,7 @@ mkdir -p /kabob_data/raw/irefweb
 DATE=$(date +%m/%d/%Y)
 
 # wget the irefweb file using an automated retry-on-failure flag
-cd /kabob_data/raw/irefweb && { wget -c -t 0 --timeout 60 --waitretry 10 http://irefindex.org/download/irefindex/data/archive/release_15.0/psi_mitab/MITAB2.6/9606.mitab.22012018.txt.zip ; cd - ; }
+cd /kabob_data/raw/irefweb && { wget -c -t 0 --timeout 60 --waitretry 10 http://irefindex.org/download/irefindex/data/archive/release_15.0/psi_mitab/MITAB2.6/9606.mitab.22012018.txt.zip ; unzip 9606.mitab.22012018.txt.zip ; cd - ; }
 /kabob.git/scripts/download/create-metadata-file.sh /kabob_data/raw/irefweb/9606.mitab.01-22-2018.txt  http://irefindex.org/download/irefindex/data/archive/release_15.0/psi_mitab/MITAB2.6/9606.mitab.22012018.txt.zip
 
 # get the interpro.xml file
