@@ -82,7 +82,9 @@ USER root
 
 COPY scripts/docker/entrypoint.sh scripts/docker/common-scripts/download-single-ontology.sh scripts/docker/common-scripts/setup.sh scripts/docker/common-scripts/ice-rdf-gen.sh /
 RUN chown kabob:kabob *.sh && \
-    chmod 755 ./*.sh
+    chmod 755 ./*.sh && \
+    chown -R kabob:kabob /kabob.git/scripts/download && \
+    chmod -R 755 /kabob.git/scripts/download
 
 ENTRYPOINT ["/entrypoint.sh"]
 
