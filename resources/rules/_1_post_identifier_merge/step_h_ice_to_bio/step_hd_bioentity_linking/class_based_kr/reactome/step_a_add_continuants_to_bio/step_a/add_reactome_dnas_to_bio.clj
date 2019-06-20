@@ -3,8 +3,7 @@
  :reify ([?/dna_sc {:ln (:sha-1 "bio-side reactome dna" ?/dna_record), :ns "http://ccp.ucdenver.edu/kabob/bio/" :prefix "B_"}]),
  :head ((?/reactome_id obo/IAO_0000219 ?/dna_sc)
         (?/dna_sc rdfs/subClassOf ?/dna)),
- :body "#add_reactome_ensembl_dnas_to_bio_1
-PREFIX franzOption_memoryLimit: <franz:85g>
+ :body "PREFIX franzOption_memoryLimit: <franz:85g>
 PREFIX franzOption_memoryExhaustionWarningPercentage: <franz:95>
 PREFIX franzOption_logQuery: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>

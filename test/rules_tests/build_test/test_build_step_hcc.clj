@@ -16,7 +16,7 @@
             [rules-tests.build-test.ccp-ext-ontology :refer [ccp-ext-ontology-triples]]
             [rules-tests.build-test.test-build-util :refer [initial-plus-ice-triples run-build-rule run-build-rules
                                                             test-kb build-rules-step-a build-rules-step-b
-                                                            build-rules-step-ca build-rules-step-cb build-rules-step-cc
+                                                            build-rules-step-ca build-rules-step-cb build-rules-step-cc build-rules-step-cd
                                                             build-rules-step-da build-rules-step-db build-rules-step-dc
                                                             build-rules-step-fa
                                                             build-rules-step-fb
@@ -24,7 +24,7 @@
                                                             build-rules-step-gcb build-rules-step-gcc
                                                             build-rules-step-ha build-rules-step-hb
                                                             build-rules-step-hca build-rules-step-hcb build-rules-step-hcca
-                                                            build-rules-step-hccb
+                                                            build-rules-step-hccb build-rules-step-hccc build-rules-step-hccd
                                                             validation-rules-list validation-rules-restriction
                                                             expected-subpropertyof-links expected-inverseof-links
                                                             expected-subclassof-links expected-disjointwith-links
@@ -53,6 +53,7 @@
                (run-build-rules source-kb build-rules-step-ca)
                (run-build-rules source-kb build-rules-step-cb)
                (run-build-rules source-kb build-rules-step-cc)
+               (run-build-rules source-kb build-rules-step-cd)
                (run-build-rules source-kb build-rules-step-da)
                (run-build-rules source-kb build-rules-step-db)
                (run-build-rules source-kb build-rules-step-dc)
@@ -81,7 +82,7 @@
 
 
 ;;; Test that proteins not involved in a has_gene_template relation get a corresponding gene
-(deftest step-hcb-missing-gene-gen
+(deftest step-hcc-missing-gene-gen
   (let [source-kb base-kb
         target-kb (test-kb '())]
 
@@ -182,7 +183,10 @@
   ;  (prn (str "--------------------------------"))
 
 
-    (run-build-rule source-kb source-kb build-rules-step-hccb 0)
+    (run-build-rules source-kb build-rules-step-hcca)
+    (run-build-rules source-kb build-rules-step-hccb)
+    (run-build-rules source-kb build-rules-step-hccc)
+    (run-build-rules source-kb build-rules-step-hccd)
 
     ;(run-build-rule source-kb target-kb build-rules-step-hccb 0)
 
@@ -290,90 +294,90 @@
     ))
 
 
-(deftest step-hcb-missing-ncrna-gen
-  (let [source-kb base-kb
-        target-kb (test-kb '())]
-    (run-build-rule source-kb source-kb build-rules-step-hcca 0)
-    (run-build-rule source-kb target-kb build-rules-step-hccb 1)
-
-    ;; there should now be just one more has_gene_template relation in the KB (so 4 total; see query above)
-    (is (= 0 (count (query target-kb '((?/r rdf/type owl/Restriction)
-                                        (?/r owl/onProperty ?/prop)
-                                        )))))
-    ))
-
-
-(deftest step-hcb-missing-protein-gen
-  (let [source-kb base-kb
-        target-kb (test-kb '())]
-    (run-build-rule source-kb target-kb build-rules-step-hccb 2)
-
-    ;; there should now be just one more has_gene_template relation in the KB (so 4 total; see query above)
-    (is (= 0 (count (query target-kb '((?/r rdf/type owl/Restriction)
-                                        (?/r owl/onProperty ?/prop)
-                                        )))))
-    ))
-
-(deftest step-hcb-missing-rrna-gen
-  (let [source-kb base-kb
-        target-kb (test-kb '())]
-    (run-build-rule source-kb source-kb build-rules-step-hcca 1)
-    (run-build-rule source-kb target-kb build-rules-step-hccb 3)
-
-    ;; there should now be just one more has_gene_template relation in the KB (so 4 total; see query above)
-    (is (= 0 (count (query target-kb '((?/r rdf/type owl/Restriction)
-                                        (?/r owl/onProperty ?/prop)
-                                        )))))
-    ))
-
-(deftest step-hcb-missing-scrna-gen
-  (let [source-kb base-kb
-        target-kb (test-kb '())]
-    (run-build-rule source-kb source-kb build-rules-step-hcca 2)
-    (run-build-rule source-kb target-kb build-rules-step-hccb 4)
-
-    ;; there should now be just one more has_gene_template relation in the KB (so 4 total; see query above)
-    (is (= 0 (count (query target-kb '((?/r rdf/type owl/Restriction)
-                                        (?/r owl/onProperty ?/prop)
-                                        )))))
-    ))
-
-
-(deftest step-hcb-missing-snorna-gen
-  (let [source-kb base-kb
-        target-kb (test-kb '())]
-    (run-build-rule source-kb source-kb build-rules-step-hcca 3)
-    (run-build-rule source-kb target-kb build-rules-step-hccb 5)
-
-    ;; there should now be just one more has_gene_template relation in the KB (so 4 total; see query above)
-    (is (= 0 (count (query target-kb '((?/r rdf/type owl/Restriction)
-                                        (?/r owl/onProperty ?/prop)
-                                        )))))
-    ))
-
-(deftest step-hcb-missing-snrna-gen
-  (let [source-kb base-kb
-        target-kb (test-kb '())]
-    (run-build-rule source-kb source-kb build-rules-step-hcca 4)
-    (run-build-rule source-kb target-kb build-rules-step-hccb 6)
-
-    ;; there should now be just one more has_gene_template relation in the KB (so 4 total; see query above)
-    (is (= 0 (count (query target-kb '((?/r rdf/type owl/Restriction)
-                                        (?/r owl/onProperty ?/prop)
-                                        )))))
-    ))
-
-(deftest step-hcb-missing-trna-gen
-  (let [source-kb base-kb
-        target-kb (test-kb '())]
-    (run-build-rule source-kb source-kb build-rules-step-hcca 5)
-    (run-build-rule source-kb target-kb build-rules-step-hccb 7)
-
-    ;; there should now be just one more has_gene_template relation in the KB (so 4 total; see query above)
-    (is (= 0 (count (query target-kb '((?/r rdf/type owl/Restriction)
-                                        (?/r owl/onProperty ?/prop)
-                                        )))))
-    ))
+;(deftest step-hcc-missing-ncrna-gen
+;  (let [source-kb base-kb
+;        target-kb (test-kb '())]
+;    (run-build-rule source-kb source-kb build-rules-step-hcca 0)
+;    (run-build-rule source-kb target-kb build-rules-step-hccb 1)
+;
+;    ;; there should now be just one more has_gene_template relation in the KB (so 4 total; see query above)
+;    (is (= 0 (count (query target-kb '((?/r rdf/type owl/Restriction)
+;                                        (?/r owl/onProperty ?/prop)
+;                                        )))))
+;    ))
+;
+;
+;(deftest step-hcc-missing-protein-gen
+;  (let [source-kb base-kb
+;        target-kb (test-kb '())]
+;    (run-build-rule source-kb target-kb build-rules-step-hccb 2)
+;
+;    ;; there should now be just one more has_gene_template relation in the KB (so 4 total; see query above)
+;    (is (= 0 (count (query target-kb '((?/r rdf/type owl/Restriction)
+;                                        (?/r owl/onProperty ?/prop)
+;                                        )))))
+;    ))
+;
+;(deftest step-hcc-missing-rrna-gen
+;  (let [source-kb base-kb
+;        target-kb (test-kb '())]
+;    (run-build-rule source-kb source-kb build-rules-step-hcca 1)
+;    (run-build-rule source-kb target-kb build-rules-step-hccb 3)
+;
+;    ;; there should now be just one more has_gene_template relation in the KB (so 4 total; see query above)
+;    (is (= 0 (count (query target-kb '((?/r rdf/type owl/Restriction)
+;                                        (?/r owl/onProperty ?/prop)
+;                                        )))))
+;    ))
+;
+;(deftest step-hcc-missing-scrna-gen
+;  (let [source-kb base-kb
+;        target-kb (test-kb '())]
+;    (run-build-rule source-kb source-kb build-rules-step-hcca 2)
+;    (run-build-rule source-kb target-kb build-rules-step-hccb 4)
+;
+;    ;; there should now be just one more has_gene_template relation in the KB (so 4 total; see query above)
+;    (is (= 0 (count (query target-kb '((?/r rdf/type owl/Restriction)
+;                                        (?/r owl/onProperty ?/prop)
+;                                        )))))
+;    ))
+;
+;
+;(deftest step-hcc-missing-snorna-gen
+;  (let [source-kb base-kb
+;        target-kb (test-kb '())]
+;    (run-build-rule source-kb source-kb build-rules-step-hcca 3)
+;    (run-build-rule source-kb target-kb build-rules-step-hccb 5)
+;
+;    ;; there should now be just one more has_gene_template relation in the KB (so 4 total; see query above)
+;    (is (= 0 (count (query target-kb '((?/r rdf/type owl/Restriction)
+;                                        (?/r owl/onProperty ?/prop)
+;                                        )))))
+;    ))
+;
+;(deftest step-hcc-missing-snrna-gen
+;  (let [source-kb base-kb
+;        target-kb (test-kb '())]
+;    (run-build-rule source-kb source-kb build-rules-step-hcca 4)
+;    (run-build-rule source-kb target-kb build-rules-step-hccb 6)
+;
+;    ;; there should now be just one more has_gene_template relation in the KB (so 4 total; see query above)
+;    (is (= 0 (count (query target-kb '((?/r rdf/type owl/Restriction)
+;                                        (?/r owl/onProperty ?/prop)
+;                                        )))))
+;    ))
+;
+;(deftest step-hcc-missing-trna-gen
+;  (let [source-kb base-kb
+;        target-kb (test-kb '())]
+;    (run-build-rule source-kb source-kb build-rules-step-hcca 5)
+;    (run-build-rule source-kb target-kb build-rules-step-hccb 7)
+;
+;    ;; there should now be just one more has_gene_template relation in the KB (so 4 total; see query above)
+;    (is (= 0 (count (query target-kb '((?/r rdf/type owl/Restriction)
+;                                        (?/r owl/onProperty ?/prop)
+;                                        )))))
+;    ))
 
 
 ;
@@ -601,7 +605,7 @@
 
 
 ;;; validate list structures
-;(deftest step-hcb-test-with-validation-rules-lists
+;(deftest step-hcc-test-with-validation-rules-lists
 ;  (let [source-kb base-kb
 ;        target-kb (test-kb '())]
 ;    (run-build-rules source-kb build-rules-step-hcca)
@@ -636,7 +640,7 @@
 ;
 ;
 ;;; validate restriction structures
-;(deftest step-hcb-test-with-validation-rules-restrictions
+;(deftest step-hcc-test-with-validation-rules-restrictions
 ;  (let [source-kb base-kb
 ;        target-kb (test-kb '())]
 ;    (run-build-rules source-kb build-rules-step-hcca)

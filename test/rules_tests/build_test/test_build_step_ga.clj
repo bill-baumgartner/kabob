@@ -16,7 +16,7 @@
             [rules-tests.build-test.ccp-ext-ontology :refer [ccp-ext-ontology-triples]]
             [rules-tests.build-test.test-build-util :refer [initial-plus-ice-triples run-build-rule run-build-rules
                                                             test-kb build-rules-step-a build-rules-step-b
-                                                            build-rules-step-ca build-rules-step-cb build-rules-step-cc
+                                                            build-rules-step-ca build-rules-step-cb build-rules-step-cc build-rules-step-cd
                                                             build-rules-step-da build-rules-step-db build-rules-step-dc
                                                             build-rules-step-fa
                                                             build-rules-step-fb
@@ -45,25 +45,26 @@
                  (dorun (map (partial add! source-kb) ccp-ext-ontology-triples)))
                (binding [*graph* "http://default-graph"]
                  (run-build-rules source-kb build-rules-step-a)
-               (run-build-rules source-kb build-rules-step-b)
-               (run-build-rules source-kb build-rules-step-ca)
-               (run-build-rules source-kb build-rules-step-cb)
-               (run-build-rules source-kb build-rules-step-cc)
-               (run-build-rules source-kb build-rules-step-da)
-               (run-build-rules source-kb build-rules-step-db)
-               (run-build-rules source-kb build-rules-step-dc)
+                 (run-build-rules source-kb build-rules-step-b)
+                 (run-build-rules source-kb build-rules-step-ca)
+                 (run-build-rules source-kb build-rules-step-cb)
+                 (run-build-rules source-kb build-rules-step-cc)
+                 (run-build-rules source-kb build-rules-step-cd)
+                 (run-build-rules source-kb build-rules-step-da)
+                 (run-build-rules source-kb build-rules-step-db)
+                 (run-build-rules source-kb build-rules-step-dc)
 
-               (with-tmp-dir
-                 ;; generate identifier set ntriple files and load into the source-kb
-                 (generate-all-id-sets source-kb (str tmp-dir "/"))
-                 (prn (str "PRINTING FILE LIST: " (count (get-only-files tmp-dir))))
-                 (dorun (map (fn [f] (prn (str "FILE TO LOAD:" f))
-                               (load-rdf source-kb (java.util.zip.GZIPInputStream.
-                                                     (clojure.java.io/input-stream
-                                                       f)) :ntriple))
-                             (get-only-files tmp-dir))))
-               (run-build-rules source-kb build-rules-step-fa)
-               (run-build-rules source-kb build-rules-step-fb))
+                 (with-tmp-dir
+                   ;; generate identifier set ntriple files and load into the source-kb
+                   (generate-all-id-sets source-kb (str tmp-dir "/"))
+                   (prn (str "PRINTING FILE LIST: " (count (get-only-files tmp-dir))))
+                   (dorun (map (fn [f] (prn (str "FILE TO LOAD:" f))
+                                 (load-rdf source-kb (java.util.zip.GZIPInputStream.
+                                                       (clojure.java.io/input-stream
+                                                         f)) :ntriple))
+                               (get-only-files tmp-dir))))
+                 (run-build-rules source-kb build-rules-step-fa)
+                 (run-build-rules source-kb build-rules-step-fb))
                source-kb))
 
 
@@ -207,21 +208,21 @@
 
     (prn (str "111--------------------------------"))
     (doall (map #(prn (str "QUERY === " %)) (sparql-query source-kb
-                                                         "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-                                                          prefix ccp: <http://ccp.ucdenver.edu/obo/ext/>
-                                                          prefix obo: <http://purl.obolibrary.org/obo/>
-                                                          prefix owl: <http://www.w3.org/2002/07/owl#>
-                                                          prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                                                          select ?blank_node ?g ?type{
-                                                          graph ?g {
-                                                               ?listmember rdf:type rdf:List .
-                                                               ?listmember rdf:first ?blank_node .
-                                                               filter (contains(str(?blank_node), '/bnode/'))
-                                                               minus {?blank_node rdf:type ?t}
-                                                               minus {?blank_node rdfs:subClassOf ?c}
-                                                               }
-                                                          filter (!contains (str (?g), \"ccp-extension\"))
-                                                     }")))
+                                                          "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                                                           prefix ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                                                           prefix obo: <http://purl.obolibrary.org/obo/>
+                                                           prefix owl: <http://www.w3.org/2002/07/owl#>
+                                                           prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                                                           select ?blank_node ?g ?type{
+                                                           graph ?g {
+                                                                ?listmember rdf:type rdf:List .
+                                                                ?listmember rdf:first ?blank_node .
+                                                                filter (contains(str(?blank_node), '/bnode/'))
+                                                                minus {?blank_node rdf:type ?t}
+                                                                minus {?blank_node rdfs:subClassOf ?c}
+                                                                }
+                                                           filter (!contains (str (?g), \"ccp-extension\"))
+                                                      }")))
 
     (prn (str "111--------------------------------"))
 
@@ -231,12 +232,12 @@
 
     (prn (str "222--------------------------------"))
     (doall (map #(prn (str "ANON === " %)) (sparql-query target-kb
-                                                          "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-                                                           prefix ccp: <http://ccp.ucdenver.edu/obo/ext/>
-                                                           prefix obo: <http://purl.obolibrary.org/obo/>
-                                                           prefix owl: <http://www.w3.org/2002/07/owl#>
-                                                           prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                                                           select ?s ?p ?o {?s ?p ?o}")))
+                                                         "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                                                          prefix ccp: <http://ccp.ucdenver.edu/obo/ext/>
+                                                          prefix obo: <http://purl.obolibrary.org/obo/>
+                                                          prefix owl: <http://www.w3.org/2002/07/owl#>
+                                                          prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                                                          select ?s ?p ?o {?s ?p ?o}")))
 
     (prn (str "222--------------------------------"))
 

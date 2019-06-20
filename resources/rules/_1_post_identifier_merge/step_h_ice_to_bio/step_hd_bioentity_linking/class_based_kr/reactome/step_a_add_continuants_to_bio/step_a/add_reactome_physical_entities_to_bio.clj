@@ -2,8 +2,7 @@
  :name "step-hda-reactome_add-reactome-physical-entities-to-bio",
  :reify ([?/physical_entity {:ln (:sha-1 "bio-side reactome physical entity" ?/physical_entity_record), :ns "kbio" :prefix "B_"}]),
  :head ((?/reactome_id obo/IAO_0000219 ?/physical_entity)),
- :body "#add_reactome_physical_entities_to_bio_1
-PREFIX franzOption_memoryLimit: <franz:85g>
+ :body "PREFIX franzOption_memoryLimit: <franz:85g>
 PREFIX franzOption_memoryExhaustionWarningPercentage: <franz:95>
 PREFIX franzOption_logQuery: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>

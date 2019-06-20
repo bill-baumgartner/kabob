@@ -1,7 +1,7 @@
 `{:description "This rule finds any template reaction regulation record described in Reactome, as well as its Reactome id field.",
  :name "step_cb-add_reactome_template_reaction_regulations_to_ice",
  :reify ([?/trreg_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome template reaction regulation record" ?/trreg), :prefix "R_"}]
-         [?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/prot_record), :prefix "R_"}]
+         [?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/trreg_record), :prefix "R_"}]
          [?/reactome_ice]
          ),
  :head ((?/record_set obo/BFO_0000051 ?/trreg_record)

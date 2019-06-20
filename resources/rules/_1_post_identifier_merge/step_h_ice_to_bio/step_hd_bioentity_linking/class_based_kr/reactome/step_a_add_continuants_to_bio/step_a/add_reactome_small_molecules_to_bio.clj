@@ -3,8 +3,7 @@
  :reify ([?/small_molecule_sc {:ln (:sha-1 "bio-side reactome small molecule" ?/small_molecule_record), :ns "kbio" :prefix "B_"}]),
  :head ((?/reactome_id obo/IAO_0000219 ?/small_molecule_sc)
         (?/small_molecule_sc rdfs/subClassOf ?/small_molecule)),
- :body "#add_reactome_chebi_small_molecules_to_bio_1
-PREFIX franzOption_memoryLimit: <franz:85g>
+ :body "PREFIX franzOption_memoryLimit: <franz:85g>
 PREFIX franzOption_memoryExhaustionWarningPercentage: <franz:95>
 PREFIX franzOption_logQuery: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>

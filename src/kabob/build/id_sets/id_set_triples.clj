@@ -169,6 +169,8 @@
                                       minus {?id skos:exactMatch ?y}
                                       # exclude any identifiers that are obsolete
                                       minus {?id rdfs:subClassOf ccp:IAO_EXT_0001711}
+                                      # exclude ontology identifiers; they are handled by a separate query
+                                      minus {?id rdfs:subClassOf ccp:IAO_EXT_0000307}
                                       # exclude any classes of identifiers. this filter is an argument for
                                       #using rdf:type instead of rdfs:subClassOf in the identifier hierarchy
                                       filter (!contains (str(?id), 'ext/IAO_'))

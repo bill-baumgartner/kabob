@@ -1,7 +1,7 @@
 `{:description "This rule finds any biochemical reaction record described in Reactome, as well as its Reactome id field.",
  :name "step_cb-add_reactome_biochemical_reactions_to_ice",
  :reify ([?/bcr_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome biochemical reaction record" ?/bcr), :prefix "R_"}]
-         [?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/prot_record), :prefix "R_"}]
+         [?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/bcr_record), :prefix "R_"}]
          [?/reactome_ice]
          ),
  :head ((?/record_set obo/BFO_0000051 ?/bcr_record)

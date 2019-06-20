@@ -2,7 +2,7 @@
  :name "step_cab-add_reactome_sequence_intervals_to_ice",
   :reify ([?/interval_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome sequence interval record" ?/interval), :prefix "R_"}]
           [?/this_start_site_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/interval_record ?/start_site_record), :prefix "R_"}]
-          [?/this_end_site_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/interval_record ?/ens_site_record), :prefix "R_"}]
+          [?/this_end_site_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/interval_record ?/end_site_record), :prefix "R_"}]
           ),
  :head ((?/interval_record rdf/type ccp/IAO_EXT_0001576) ;; sequence interval
         (?/interval_record obo/BFO_0000051 ?/this_start_site_record)

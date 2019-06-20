@@ -1,7 +1,7 @@
 `{:description "This rule finds any pathway record described in Reactome, as well as its Reactome id field.",
  :name "step_cb-add_reactome_pathways_to_ice",
  :reify ([?/pw_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome pathway record" ?/pw), :prefix "R_"}]
-         [?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/prot_record), :prefix "R_"}]
+         [?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/pw_record), :prefix "R_"}]
          [?/reactome_ice]
          ),
  :head ((?/record_set obo/BFO_0000051 ?/pw_record)

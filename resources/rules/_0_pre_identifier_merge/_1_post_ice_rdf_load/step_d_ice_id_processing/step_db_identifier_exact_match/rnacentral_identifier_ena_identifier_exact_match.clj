@@ -1,7 +1,7 @@
 ;; -----------------------------------------------------------------
 ;; --------- RNACentral ID; MirBase ID Exact Match --------
 ;; -----------------------------------------------------------------
-`{:name "step-db_rnacentral-id-mirbase-id-exact-match"
+`{:name "step-db_rnacentral-id-ena-id-exact-match"
   :description "This rule asserts an exact match between RNACentral identifiers and MirBase identifiers via RNACentral identifier mapping records"
   :head ((?/rnacentral_identifier skos/exactMatch ?/ena_identifier))
   :body "prefix franzOption_chunkProcessingAllowed: <franz:yes>

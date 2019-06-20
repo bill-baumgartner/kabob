@@ -1,13 +1,14 @@
 ;; ----------------------------------------------------------------------
 ;; --------- Object Property Identifier Denotes Object Property ---------
 ;; ----------------------------------------------------------------------
-`{:name "step-abb_ontology-id-denotes-object-property-gen"
+`{:name        "step-abb_ontology-id-denotes-object-property-gen"
   :description "This rule generates an object property identifier for every non-top-level object property."
-  :head ((?/id obo/IAO_0000219 ?/object_property) ; IAO:denotes
-         (?/id rdfs/subClassOf ccp/IAO_EXT_0000306)) ; CCP:object_property_identifier
-  :reify ([?/id {:ln (:localname ?/object_property)
-                 :ns "kice" :prefix "" :suffix ""}])
-  :body "prefix franzOption_chunkProcessingAllowed: <franz:yes>
+  :head        ((?/id obo/IAO_0000219 ?/object_property)    ; IAO:denotes
+                 (?/id rdfs/subClassOf ccp/IAO_EXT_0000306) ; CCP:object_property_identifier
+                 (?/id rdfs/subClassOf ccp/IAO_EXT_0000307)) ; CCP:ontology_identifier
+  :reify       ([?/id {:ln (:localname ?/object_property)
+                       :ns "kice" :prefix "" :suffix ""}])
+  :body        "prefix franzOption_chunkProcessingAllowed: <franz:yes>
   prefix franzOption_clauseReorderer: <franz:identity>
   prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
                   select distinct ?object_property {

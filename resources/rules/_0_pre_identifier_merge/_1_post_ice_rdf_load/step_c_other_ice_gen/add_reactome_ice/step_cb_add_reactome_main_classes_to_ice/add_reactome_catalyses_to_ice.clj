@@ -1,14 +1,13 @@
 `{:description "This rule finds any catalysis record described in Reactome, as well as its GO MF field; there is no Reactome ID for catalyses, but every one has a GO-MF term.",
  :name "step_cb-add_reactome_catalyses_to_ice",
  :reify ([?/catal_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome catalysis record" ?/catal), :prefix "R_"}]
-         [?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/prot_record), :prefix "R_"}]         
+         [?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/catal_record), :prefix "R_"}]
          ),
  :head ((?/record_set obo/BFO_0000051 ?/catal_record)
         (?/catal_record rdf/type ccp/IAO_EXT_0001574) ;; catalysis record
         (?/catal ccp/ekws_temp_biopax_connector_relation ?/catal_record)
         ),
- :body "#add_reactome_catalyses_to_ice.clj
-PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
+ :body "PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>
 PREFIX obo: <http://purl.obolibrary.org/obo/>
 PREFIX ccp: <http://ccp.ucdenver.edu/obo/ext/>

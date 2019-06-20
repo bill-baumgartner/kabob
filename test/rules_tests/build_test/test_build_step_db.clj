@@ -17,7 +17,7 @@
             [rules-tests.build-test.test-build-util :refer [concepts object-properties other-identifiers-mentioned-in-records ice-identifiers
                                                             initial-plus-ice-triples run-build-rule run-build-rules
                                                             test-kb build-rules-step-a build-rules-step-b
-                                                            build-rules-step-ca build-rules-step-cb build-rules-step-cc
+                                                            build-rules-step-ca build-rules-step-cb build-rules-step-cc build-rules-step-cd
                                                             build-rules-step-da build-rules-step-db build-rules-step-dc]]))
 
 
@@ -30,6 +30,7 @@
                (run-build-rules source-kb build-rules-step-ca)
                (run-build-rules source-kb build-rules-step-cb)
                (run-build-rules source-kb build-rules-step-cc)
+               (run-build-rules source-kb build-rules-step-cd)
                source-kb))
 
 ;;;
@@ -54,7 +55,7 @@
   (let [source-kb base-kb
         target-kb (test-kb '())]
     (run-build-rules source-kb build-rules-step-da)
-    (run-build-rule source-kb target-kb build-rules-step-db 1)
+    (run-build-rule source-kb target-kb build-rules-step-db 8)
 
     (is (ask target-kb '((kice/HGNC_TGFBR2 skos/exactMatch kice/NCBI_GENE_7048))))
     (is (ask target-kb '((kice/HGNC_A1BG skos/exactMatch kice/NCBI_GENE_1))))
@@ -71,7 +72,7 @@
   (let [source-kb base-kb
         target-kb (test-kb '())]
     (run-build-rules source-kb build-rules-step-da)
-    (run-build-rule source-kb target-kb build-rules-step-db 2)
+    (run-build-rule source-kb target-kb build-rules-step-db 9)
 
     (is (ask target-kb '((kice/HGNC_TGFBR2 skos/exactMatch kice/HGNC_11773))))
     (is (ask target-kb '((kice/HGNC_A1BG skos/exactMatch kice/HGNC_5))))
@@ -187,7 +188,7 @@
   (let [source-kb base-kb
         target-kb (test-kb '())]
     (run-build-rules source-kb build-rules-step-da)
-    (run-build-rule source-kb target-kb build-rules-step-db 3)
+    (run-build-rule source-kb target-kb build-rules-step-db 10)
 
     ;; there are 4 metadata triples for each rule run, so 4 metadata triples and 0 rule output triples expected here
     (is (= 4 (count (query target-kb '((?/s ?/p ?/o))))))
@@ -205,7 +206,7 @@
   (let [source-kb base-kb
         target-kb (test-kb '())]
     (run-build-rules source-kb build-rules-step-da)
-    (run-build-rule source-kb target-kb build-rules-step-db 4)
+    (run-build-rule source-kb target-kb build-rules-step-db 11)
 
     ;; there are 4 metadata triples for each rule run, so 4 metadata triples and 0 rule output triples expected here
     (is (= 4 (count (query target-kb '((?/s ?/p ?/o))))))
@@ -222,7 +223,7 @@
   (let [source-kb base-kb
         target-kb (test-kb '())]
     (run-build-rules source-kb build-rules-step-da)
-    (run-build-rule source-kb target-kb build-rules-step-db 5)
+    (run-build-rule source-kb target-kb build-rules-step-db 12)
 
     (is (ask target-kb '((kice/PR_P37173 skos/exactMatch kice/UNIPROT_P37173))))
     (is (ask target-kb '((kice/PR_P37173-1 skos/exactMatch kice/UNIPROT_P37173-1))))
@@ -257,7 +258,7 @@
   (let [source-kb base-kb
         target-kb (test-kb '())]
     (run-build-rules source-kb build-rules-step-da)
-    (run-build-rule source-kb target-kb build-rules-step-db 6)
+    (run-build-rule source-kb target-kb build-rules-step-db 16)
 
     (is (ask target-kb '((kice/UNIPROT_P37173-2 skos/exactMatch kice/REFSEQ_NP_001020018))))
     (is (ask target-kb '((kice/UNIPROT_P37173-1 skos/exactMatch kice/REFSEQ_NP_003233))))
@@ -270,7 +271,7 @@
   (let [source-kb base-kb
         target-kb (test-kb '())]
     (run-build-rules source-kb build-rules-step-da)
-    (run-build-rule source-kb target-kb build-rules-step-db 7)
+    (run-build-rule source-kb target-kb build-rules-step-db 17)
 
     (is (ask target-kb '((kice/UNIPROT_P37173 skos/exactMatch kice/UNIPROTENTRYNAME_TGFR2_HUMAN))))
     (is (ask target-kb '((kice/UNIPROT_P62258 skos/exactMatch kice/UNIPROTENTRYNAME_1433E_HUMAN))))

@@ -17,7 +17,7 @@
             [rules-tests.build-test.test-build-util :refer [concepts object-properties other-identifiers-mentioned-in-records ice-identifiers
                                                             initial-plus-ice-triples run-build-rule run-build-rules
                                                             test-kb build-rules-step-a build-rules-step-b
-                                                            build-rules-step-ca build-rules-step-cb build-rules-step-cc
+                                                            build-rules-step-ca build-rules-step-cb build-rules-step-cc build-rules-step-cd
                                                             build-rules-step-da build-rules-step-db build-rules-step-dc]]))
 
 
@@ -30,6 +30,7 @@
                (run-build-rules source-kb build-rules-step-ca)
                (run-build-rules source-kb build-rules-step-cb)
                (run-build-rules source-kb build-rules-step-cc)
+               (run-build-rules source-kb build-rules-step-cd)
                source-kb))
 
 
@@ -49,9 +50,9 @@
     ;; there are 4 metadata triples for each rule run, so 4 metadata triples and 2 rule output triples expected here
     (is (= 5 (count (query target-kb '((?/s ?/p ?/o))))))
 
-    (let [log-kb (output-kb "/tmp/triples.nt")]
-      (run-build-rule source-kb log-kb build-rules-step-dc 0)
-      (close log-kb))
+    ;(let [log-kb (output-kb "/tmp/triples.nt")]
+    ;  (run-build-rule source-kb log-kb build-rules-step-dc 0)
+    ;  (close log-kb))
 
 
     ;(prn (str "--------------------------------"))

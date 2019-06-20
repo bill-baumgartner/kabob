@@ -12,8 +12,7 @@ The rule generates the Reactome protein's ICE identifier, and places the top-lev
         (?/variant_restriction owl/onProperty ?/variant_of)
         (?/variant_restriction owl/someValuesFrom ?/protein_sc)
         (?/variant_restriction rdf/type owl/Restriction)),
- :body "#add_reactome_uniprot_proteins_to_bio_3
-PREFIX franzOption_memoryLimit: <franz:85g>
+ :body "PREFIX franzOption_memoryLimit: <franz:85g>
 PREFIX franzOption_memoryExhaustionWarningPercentage: <franz:95>
 PREFIX franzOption_logQuery: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>

@@ -9,8 +9,7 @@
         (?/union_class owl/equivalentClass ?/extra_node)
         (?/member_list rdf/first ?/member_bio)
         (?/member_list rdf/type rdf/List)),
- :body "#add_reactome_entity_families_to_bio_part_1.clj
-PREFIX franzOption_memoryLimit: <franz:85g>
+ :body "PREFIX franzOption_memoryLimit: <franz:85g>
 PREFIX franzOption_memoryExhaustionWarningPercentage: <franz:95>
 PREFIX franzOption_logQuery: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>

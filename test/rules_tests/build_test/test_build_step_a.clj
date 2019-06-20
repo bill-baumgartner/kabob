@@ -70,18 +70,22 @@
     (binding [*graph* "http://ccp-extension.owl"]
       (dorun (map (partial add! source-kb) ccp-ext-ontology-triples)))
 
-    (run-build-rule source-kb target-kb build-rules-step-a 0)
+    ;; put the temporary triples into source-kb
+    (run-build-rule source-kb source-kb build-rules-step-a 0)
+    (run-build-rule source-kb target-kb build-rules-step-a 1)
 
     ;; there should be two triples for each ontology concept
     (doall (map (fn [concept] (let [ccp-id (symbol "kice" concept)
                                     obo-id (symbol "obo" concept)]
                                 (is (ask target-kb `((~ccp-id rdfs/subClassOf ccp/IAO_EXT_0000088) ;; ccp:ontology_concept_identifier
+                                                      (~ccp-id rdfs/subClassOf ccp/IAO_EXT_0000307) ;; ccp:ontology_identifier
                                                       (~ccp-id obo/IAO_0000219 ~obo-id))))))
                 concepts))
 
     (doall (map (fn [prop] (let [ccp-id (symbol "kice" prop)
                                  obo-id (symbol "obo" prop)]
                              (is (ask target-kb `((~ccp-id rdfs/subClassOf ccp/IAO_EXT_0000306) ;; ccp:object_property_identifier
+                                                   (~ccp-id rdfs/subClassOf ccp/IAO_EXT_0000307) ;; ccp:ontology_identifier
                                                    (~ccp-id obo/IAO_0000219 ~obo-id))))))
                 object-properties))
 
@@ -90,41 +94,41 @@
 
     ;; there are 4 metadata triples for each rule run so 2*4=8 metadata triples and 75+82=157 rule output triples for the
     ;; concepts and 50 rule output triples for the object properties expected here
-    (is (= (+ 8 (* 2 (count concepts)) (* 2 (count object-properties)))
+    (is (= (+ 8 (* 3 (count concepts)) (* 3 (count object-properties)))
            (count (query target-kb '((?/s ?/p ?/o))))
            ))
 
 
 
-    (let [log-kb (output-kb "/tmp/triples.nt")
-          src-kb (test-kb initial-triples)]
-      (run-build-rule source-kb log-kb build-rules-step-a 0)
-      (close log-kb))
+    ;(let [log-kb (output-kb "/tmp/triples.nt")
+    ;      src-kb (test-kb initial-triples)]
+    ;  (run-build-rule source-kb log-kb build-rules-step-a 0)
+    ;  (close log-kb))
 
 
-;    (prn (str "--------------------------------"))
-;    (doall (map #(prn (str %)) (sparql-query source-kb
-;         "prefix franzOption_chunkProcessingAllowed: <franz:yes>
-;         prefix franzOption_clauseReorderer: <franz:identity>
-;         prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
-;         select distinct ?object_property {
-;               #graph ?g {
-;                       ?object_property rdf:type owl:ObjectProperty .
-;               #        minus{?object_property owl:deprecated true}
-;                       # exclude the oboInOwl:ObsoleteProperty property
-;               #                         filter (?object_property != oboInOwl:ObsoleteProperty)
-;                                        # exclude ICE world properties (IAO, CCP extension ontology, OA ontology)
-;               #        }
-;                   filter (!contains (str(?object_property), 'http://www.w3.org/2000/01/rdf-schema#'))
-;                    filter (!contains (str(?object_property), 'http://www.w3.org/ns/prov'))
-;                    filter (!contains (str(?object_property), 'ext/IAO_'))
-;                    filter (!contains (str(?object_property), 'obo/IAO_'))
-;                    filter (!contains (str(?object_property), 'http://www.w3.org/ns/oa#'))
-;                    filter (!contains (str(?object_property), 'http://www.w3.org/2002/07/owl#'))
-;}"
-;                                             )))
-;
-;        (prn (str "--------------------------------"))
+    ;    (prn (str "--------------------------------"))
+    ;    (doall (map #(prn (str %)) (sparql-query source-kb
+    ;         "prefix franzOption_chunkProcessingAllowed: <franz:yes>
+    ;         prefix franzOption_clauseReorderer: <franz:identity>
+    ;         prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
+    ;         select distinct ?object_property {
+    ;               #graph ?g {
+    ;                       ?object_property rdf:type owl:ObjectProperty .
+    ;               #        minus{?object_property owl:deprecated true}
+    ;                       # exclude the oboInOwl:ObsoleteProperty property
+    ;               #                         filter (?object_property != oboInOwl:ObsoleteProperty)
+    ;                                        # exclude ICE world properties (IAO, CCP extension ontology, OA ontology)
+    ;               #        }
+    ;                   filter (!contains (str(?object_property), 'http://www.w3.org/2000/01/rdf-schema#'))
+    ;                    filter (!contains (str(?object_property), 'http://www.w3.org/ns/prov'))
+    ;                    filter (!contains (str(?object_property), 'ext/IAO_'))
+    ;                    filter (!contains (str(?object_property), 'obo/IAO_'))
+    ;                    filter (!contains (str(?object_property), 'http://www.w3.org/ns/oa#'))
+    ;                    filter (!contains (str(?object_property), 'http://www.w3.org/2002/07/owl#'))
+    ;}"
+    ;                                             )))
+    ;
+    ;        (prn (str "--------------------------------"))
 
 
 
@@ -158,8 +162,10 @@
     (binding [*graph* "http://ccp-extension.owl"]
       (dorun (map (partial add! source-kb) ccp-ext-ontology-triples)))
 
-    (run-build-rules source-kb build-rules-step-a 0)
-    (run-build-rule source-kb target-kb build-rules-step-a 1)
+    (run-build-rule source-kb source-kb build-rules-step-a 0)
+    (run-build-rule source-kb source-kb build-rules-step-a 1)
+    (run-build-rule source-kb target-kb build-rules-step-a 2)
+    (run-build-rule source-kb target-kb build-rules-step-a 3)
 
     ;; there should be one triples for each ontology concept
     ;; go-bp
@@ -242,20 +248,20 @@
 
     ;; there are 4 metadata triples for each rule run so 4*30 metadata triples, and 2 output triples per concept
     (is (= (+ (* 4 30) (* 2 (count (distinct (concat go-bp-concepts go-cc-concepts cl-concepts chebi-concepts pr-concepts hgnc-concepts
-                                          so-concepts bfo-concepts obi-concepts
-                                          pato-concepts ;gaz-concepts
-                                          ncbitaxon-concepts uberon-concepts mi-concepts)))))
+                                                     so-concepts bfo-concepts obi-concepts
+                                                     pato-concepts ;gaz-concepts
+                                                     ncbitaxon-concepts uberon-concepts mi-concepts)))))
            (count (query target-kb '((?/s ?/p ?/o))))))
 
 
 
 
 
-    (let [log-kb (output-kb "/tmp/triples.nt")
-          src-kb (test-kb initial-triples)]
-
-      (run-build-rule source-kb log-kb build-rules-step-a 1)
-      (close log-kb))
+    ;(let [log-kb (output-kb "/tmp/triples.nt")
+    ;      src-kb (test-kb initial-triples)]
+    ;
+    ;  (run-build-rule source-kb log-kb build-rules-step-a 1)
+    ;  (close log-kb))
 
 
     (prn (str "--------------------------------"))
@@ -290,8 +296,11 @@
     (binding [*graph* "http://ccp-extension.owl"]
       (dorun (map (partial add! source-kb) ccp-ext-ontology-triples)))
 
-    (run-build-rules source-kb build-rules-step-a 1)
-    (run-build-rule source-kb target-kb build-rules-step-a 2)
+    (run-build-rule source-kb source-kb build-rules-step-a 0)
+    (run-build-rule source-kb source-kb build-rules-step-a 1)
+    (run-build-rule source-kb source-kb build-rules-step-a 2)
+    (run-build-rule source-kb source-kb build-rules-step-a 3)
+    (run-build-rule source-kb target-kb build-rules-step-a 4)
 
     ;; there should be one record for each ontology concept
     (doall (map (fn [concept] (let [ccp-id (symbol "kice" concept)

@@ -6,8 +6,7 @@ The rule generates the Reactome protein's ICE identifier, and places the top-lev
  :reify ([?/protein_sc {:ln (:sha-1 "bio-side reactome protein" ?/protein_record), :ns "kbio" :prefix "B_"}]),
  :head ((?/reactome_id obo/IAO_0000219 ?/protein_sc)
         (?/protein_sc rdfs/subClassOf ?/protein)),
- :body "#add_reactome_uniprot_proteins_to_bio_2
-PREFIX franzOption_memoryLimit: <franz:85g>
+ :body "PREFIX franzOption_memoryLimit: <franz:85g>
 PREFIX franzOption_memoryExhaustionWarningPercentage: <franz:95>
 PREFIX franzOption_logQuery: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>

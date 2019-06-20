@@ -1,7 +1,7 @@
 `{:description "This rule finds any control record described in Reactome, as well as its Reactome id field.",
  :name "step_cb-add_reactome_controls_to_ice",
  :reify ([?/contr_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 "Reactome control record" ?/contr), :prefix "R_"}]
-         [?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/prot_record), :prefix "R_"}]
+         [?/this_xref_record {:ns "http://ccp.ucdenver.edu/kabob/ice/", :ln (:sha-1 ?/xref_record ?/contr_record), :prefix "R_"}]
          [?/reactome_ice]
          ),
  :head ((?/record_set obo/BFO_0000051 ?/contr_record)

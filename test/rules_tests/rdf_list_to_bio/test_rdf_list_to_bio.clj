@@ -15,7 +15,7 @@
             [clojure.pprint :refer [pprint]]
             [rules-tests.build-test.test-build-util :refer [run-build-rule run-build-rules test-kb build-rules-step-a
                                                             build-rules-step-b build-rules-step-ca build-rules-step-cb
-                                                            build-rules-step-cc build-rules-step-da build-rules-step-db
+                                                            build-rules-step-cc build-rules-step-cd build-rules-step-da build-rules-step-db
                                                             build-rules-step-dc build-rules-step-fa build-rules-step-fb
                                                             build-rules-step-ga build-rules-step-gb build-rules-step-gca
                                                             build-rules-step-gcb build-rules-step-gcc
@@ -53,10 +53,11 @@
         target-kb (test-kb '())]
     (binding [*graph* "http://ccp-extension.owl"]
       (dorun (map (partial add! source-kb) ccp-ext-ontology-triples)))
-    (run-build-rule source-kb target-kb build-rules-step-a 0)
+    (run-build-rule source-kb source-kb build-rules-step-a 0)
+    (run-build-rule source-kb target-kb build-rules-step-a 1)
 
-    ;; 2 rules are run, so 8 metadata triples plus 2*2 output triples from the ontology_id_denotes_object_property rule
-    (is (= 12 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;; 2 rules are run, so 8 metadata triples plus 2*3 output triples from the ontology_id_denotes_object_property rule
+    (is (= 14 (count (query target-kb '((?/s ?/p ?/o))))))
 
     (is (ask target-kb '((kice/RO_0002379 obo/IAO_0000219 obo/RO_0002379)
                           (kice/RO_0002379 rdfs/subClassOf ccp/IAO_EXT_0000306))))
@@ -64,10 +65,10 @@
     (is (ask target-kb '((kice/RO_0001025 obo/IAO_0000219 obo/RO_0001025)
                           (kice/RO_0001025 rdfs/subClassOf ccp/IAO_EXT_0000306))))
 
-    (let [log-kb (output-kb "/tmp/triples.nt")
-          src-kb (test-kb input-triples)]
-      (run-build-rule source-kb log-kb build-rules-step-a 0)
-      (close log-kb))
+    ;(let [log-kb (output-kb "/tmp/triples.nt")
+    ;      src-kb (test-kb input-triples)]
+    ;  (run-build-rule source-kb log-kb build-rules-step-a 0)
+    ;  (close log-kb))
 
     ))
 
@@ -77,7 +78,9 @@
     (binding [*graph* "http://ccp-extension.owl"]
       (dorun (map (partial add! source-kb) ccp-ext-ontology-triples)))
     (run-build-rule source-kb source-kb build-rules-step-a 0)
-    (run-build-rule source-kb target-kb build-rules-step-a 1)
+    (run-build-rule source-kb source-kb build-rules-step-a 1)
+    (run-build-rule source-kb target-kb build-rules-step-a 2)
+    (run-build-rule source-kb target-kb build-rules-step-a 3)
 
     ;; 30 rules are run, so 96 metadata triples
     ;; there should be no new triples generated
@@ -99,7 +102,9 @@
       (dorun (map (partial add! source-kb) ccp-ext-ontology-triples)))
     (run-build-rule source-kb source-kb build-rules-step-a 0)
     (run-build-rule source-kb source-kb build-rules-step-a 1)
-    (run-build-rule source-kb target-kb build-rules-step-a 2)
+    (run-build-rule source-kb source-kb build-rules-step-a 2)
+    (run-build-rule source-kb source-kb build-rules-step-a 3)
+    (run-build-rule source-kb target-kb build-rules-step-a 4)
 
     ;; 2 rules are run, so 8 metadata triples
     ;; there should be output frmo the object_property_record_gen rule: 2* 11 triples
@@ -174,22 +179,19 @@
     (run-build-rules source-kb build-rules-step-a)
     (run-build-rules source-kb build-rules-step-b)
     (run-build-rule source-kb target-kb build-rules-step-ca 0)
+    (run-build-rule source-kb target-kb build-rules-step-ca 1)
+    (run-build-rule source-kb target-kb build-rules-step-ca 2)
+    (run-build-rule source-kb target-kb build-rules-step-ca 3)
+    (run-build-rule source-kb target-kb build-rules-step-ca 4)
     (run-build-rule source-kb target-kb build-rules-step-cb 0)
-    (run-build-rule source-kb target-kb build-rules-step-cb 0)
-    (run-build-rule source-kb target-kb build-rules-step-cb 1)
-    (run-build-rule source-kb target-kb build-rules-step-cb 2)
-    (run-build-rule source-kb target-kb build-rules-step-cb 3)
-    (run-build-rule source-kb target-kb build-rules-step-cb 4)
-    (run-build-rule source-kb target-kb build-rules-step-cb 5)
-    (run-build-rule source-kb target-kb build-rules-step-cb 6)
-    (run-build-rule source-kb target-kb build-rules-step-cb 7)
     (run-build-rule source-kb target-kb build-rules-step-cc 0)
     (run-build-rule source-kb target-kb build-rules-step-cc 1)
+    (run-build-rule source-kb target-kb build-rules-step-cd 0)
 
 
-    ;; 12 rules are run, so 48 metadata triples
-    ;; there should be no output triples from any of the rules
-    (is (= 48 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;; 71 rules are run, so 71*4=284 metadata triples
+    ;; there should be no output triples from any of the rules except for 4 triples from a record set that is generated and 2 triples related to NCBI_GI_555853
+    (is (= 290 (count (query target-kb '((?/s ?/p ?/o))))))
 
     ;(let [log-kb (output-kb "/tmp/triples.nt")
     ;      src-kb (test-kb input-triples)]
@@ -223,12 +225,15 @@
     (run-build-rules source-kb build-rules-step-ca)
     (run-build-rules source-kb build-rules-step-cb)
     (run-build-rules source-kb build-rules-step-cc)
+    (run-build-rules source-kb build-rules-step-cd)
     (run-build-rule source-kb target-kb build-rules-step-da 0)
     (run-build-rule source-kb target-kb build-rules-step-da 1)
     (run-build-rule source-kb target-kb build-rules-step-da 2)
     (run-build-rule source-kb target-kb build-rules-step-da 3)
     (run-build-rule source-kb target-kb build-rules-step-da 4)
     (run-build-rule source-kb target-kb build-rules-step-da 5)
+    (run-build-rule source-kb target-kb build-rules-step-da 6)
+    (run-build-rule source-kb target-kb build-rules-step-da 7)
     (run-build-rule source-kb target-kb build-rules-step-db 0)
     (run-build-rule source-kb target-kb build-rules-step-db 1)
     (run-build-rule source-kb target-kb build-rules-step-db 2)
@@ -237,12 +242,22 @@
     (run-build-rule source-kb target-kb build-rules-step-db 5)
     (run-build-rule source-kb target-kb build-rules-step-db 6)
     (run-build-rule source-kb target-kb build-rules-step-db 7)
+    (run-build-rule source-kb target-kb build-rules-step-db 8)
+    (run-build-rule source-kb target-kb build-rules-step-db 9)
+    (run-build-rule source-kb target-kb build-rules-step-db 10)
+    (run-build-rule source-kb target-kb build-rules-step-db 11)
+    (run-build-rule source-kb target-kb build-rules-step-db 12)
+    (run-build-rule source-kb target-kb build-rules-step-db 13)
+    (run-build-rule source-kb target-kb build-rules-step-db 14)
+    (run-build-rule source-kb target-kb build-rules-step-db 15)
+    (run-build-rule source-kb target-kb build-rules-step-db 16)
+    (run-build-rule source-kb target-kb build-rules-step-db 17)
     (run-build-rule source-kb target-kb build-rules-step-dc 0)
 
 
-    ;; 15 rules are run, so 60 metadata triples
-    ;; there should be no output triples from any of the rules
-    (is (= 60 (count (query target-kb '((?/s ?/p ?/o))))))
+    ;; 27 rules are run, so 108 metadata triples
+    ;; there should be 0 output triples except for 1 caused by an identifier added by a reactome rule in step c
+    (is (= 109 (count (query target-kb '((?/s ?/p ?/o))))))
 
     ;(let [log-kb (output-kb "/tmp/triples.nt")
     ;      src-kb (test-kb input-triples)]
@@ -287,6 +302,7 @@
     (run-build-rules source-kb build-rules-step-ca)
     (run-build-rules source-kb build-rules-step-cb)
     (run-build-rules source-kb build-rules-step-cc)
+    (run-build-rules source-kb build-rules-step-cd)
     (run-build-rules source-kb build-rules-step-da)
     (run-build-rules source-kb build-rules-step-db)
     (run-build-rules source-kb build-rules-step-dc)
@@ -337,6 +353,7 @@
     (run-build-rules source-kb build-rules-step-ca)
     (run-build-rules source-kb build-rules-step-cb)
     (run-build-rules source-kb build-rules-step-cc)
+    (run-build-rules source-kb build-rules-step-cd)
     (run-build-rules source-kb build-rules-step-da)
     (run-build-rules source-kb build-rules-step-db)
     (run-build-rules source-kb build-rules-step-dc)
@@ -395,6 +412,7 @@
     (run-build-rules source-kb build-rules-step-ca)
     (run-build-rules source-kb build-rules-step-cb)
     (run-build-rules source-kb build-rules-step-cc)
+    (run-build-rules source-kb build-rules-step-cd)
     (run-build-rules source-kb build-rules-step-da)
     (run-build-rules source-kb build-rules-step-db)
     (run-build-rules source-kb build-rules-step-dc)
@@ -484,6 +502,7 @@
     (run-build-rules source-kb build-rules-step-ca)
     (run-build-rules source-kb build-rules-step-cb)
     (run-build-rules source-kb build-rules-step-cc)
+    (run-build-rules source-kb build-rules-step-cd)
     (run-build-rules source-kb build-rules-step-da)
     (run-build-rules source-kb build-rules-step-db)
     (run-build-rules source-kb build-rules-step-dc)

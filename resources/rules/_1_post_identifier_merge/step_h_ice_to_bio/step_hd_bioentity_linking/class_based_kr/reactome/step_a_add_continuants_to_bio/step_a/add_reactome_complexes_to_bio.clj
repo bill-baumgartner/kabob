@@ -2,8 +2,7 @@
  :name "step-hda-reactome_add-reactome-complexes-to-bio",
  :reify ([?/complex_entity {:ln (:sha-1 "bio-side reactome complex" ?/complex_record), :ns "kbio" :prefix "B_"}]),
  :head ((?/reactome_id obo/IAO_0000219 ?/complex_entity)),
- :body "#add_reactome_complexes_to_bio_1
-PREFIX franzOption_memoryLimit: <franz:85g>
+ :body "PREFIX franzOption_memoryLimit: <franz:85g>
 PREFIX franzOption_memoryExhaustionWarningPercentage: <franz:95>
 PREFIX franzOption_logQuery: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>

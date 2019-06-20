@@ -5,7 +5,8 @@
 `{:name          "step-abb_ontology-id-denotes-concept-gen-obo"
   :description   "This rule generates an ontology concept identifier for every non-root ontology concept with the OBO namespace. The Protein Ontology references some classes that use non-OBO namespaces. Source-specific rules have been written for those namespaces and these rules can be found in the same directory as this more general OBO rule."
   :head          ((?/id obo/IAO_0000219 ?/ontology_concept) ; IAO:denotes
-                   (?/id rdfs/subClassOf ccp/IAO_EXT_0000088)) ; CCP:ontology_concept_identifier
+                   (?/id rdfs/subClassOf ccp/IAO_EXT_0000088) ; CCP:ontology_concept_identifier
+                   (?/id rdfs/subClassOf ccp/IAO_EXT_0000307)) ; CCP:ontology_identifier
   :reify         ([?/id {:ln (:localname ?/ontology_concept)
                          :ns "kice" :prefix "" :suffix ""}])
   :body "prefix franzOption_chunkProcessingAllowed: <franz:yes>

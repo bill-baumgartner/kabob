@@ -8,8 +8,7 @@
         (?/variant_restriction owl/onProperty ?/variant_of)
         (?/variant_restriction owl/someValuesFrom ?/rna_sc)
         (?/variant_restriction rdf/type owl/Restriction)),
- :body "#add_reactome_embl_rnas_to_bio_2
-PREFIX franzOption_memoryLimit: <franz:85g>
+ :body "PREFIX franzOption_memoryLimit: <franz:85g>
 PREFIX franzOption_memoryExhaustionWarningPercentage: <franz:95>
 PREFIX franzOption_logQuery: <franz:yes>
 PREFIX franzOption_clauseReorderer: <franz:identity>

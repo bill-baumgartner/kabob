@@ -1,8 +1,8 @@
 `{:description "This rule finds any participant stoichiometry field of a biochemical reaction described in Reactome.",
  :name "step_cca-add_reactome_participant_stoichiometries_to_ice",
  :reify ([?/this_participant_stoi_record {:ln (:sha-1 ?/participant_stoi_record ?/bcr_record), :ns "http://ccp.ucdenver.edu/kabob/ice/" :prefix "R_"}]),
-  ::head ((?/bcr_record obo/BFO_0000051 ?/this_participant_stoi_record)
-        (?/this_participant_stoi_record rfds/subClassOf ?/participant_stoi_record)
+ :head ((?/bcr_record obo/BFO_0000051 ?/this_participant_stoi_record)
+        (?/this_participant_stoi_record rdfs/subClassOf ?/participant_stoi_record)
         (?/this_participant_stoi_record rdf/type ccp/IAO_EXT_0001944) ;; participant stoichiometry field
         ),
  :body "#add_reactome_participant_stoichiometries_to_ice.clj
