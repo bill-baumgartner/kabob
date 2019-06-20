@@ -99,5 +99,5 @@ fi
 docker run --rm --volumes-from kabob_data-$KB_KEY ucdenverccp/kabob:${KABOB_CONTAINER_VERSION} ./setup.sh
 
 # Create data source RDF (downloads and processes publicly available databases).
-chmod 755 scripts/human-ice-rdf-gen.sh
+chmod 755 backend/scripts/human-ice-rdf-gen.sh
 backend/scripts/human-ice-rdf-gen.sh ${KB_KEY} ${KABOB_CONTAINER_VERSION} ${CONTAINER_COUNT}
