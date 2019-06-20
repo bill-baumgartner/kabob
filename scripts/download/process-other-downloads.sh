@@ -3,6 +3,7 @@
 # most downloads are handled by the file parser library, however the irefweb downloads sometimes terminate
 # prematurely so we use wget here to download the human irefweb file
 mkdir -p /kabob_data/raw/irefweb
+mkdir -p /kabob_data/raw/interpro
 
 DATE=$(date +%m/%d/%Y)
 
