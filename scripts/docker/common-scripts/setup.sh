@@ -13,5 +13,6 @@ if [ -d "$ONT_DIR" ]; then
 fi
 mkdir -p "$ONT_DIR"
 chmod 755 /kabob.git/scripts/download/process-ontologies.sh
-/kabob.git/scripts/download/process-ontologies.sh "$ONT_DIR" mvn
+
+cd /kabob.git && /kabob.git/scripts/download/process-ontologies.sh "$ONT_DIR" mvn
 
