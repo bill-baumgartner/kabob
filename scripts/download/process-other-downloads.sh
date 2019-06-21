@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # most downloads are handled by the file parser library, however the irefweb downloads sometimes terminate
-# prematurely so we use wget here to download the human irefweb file
+# prematurely so we use wget here to download the human irefweb file. The interpro downloads also have issues from
+# time to time, so they are downloaded here too just to be safe.
 mkdir -p /kabob_data/raw/irefweb
 mkdir -p /kabob_data/raw/interpro
 
@@ -15,6 +16,9 @@ cd /kabob_data/raw/irefweb && { wget -c -t 0 --timeout 60 --waitretry 10 http://
 cd /kabob_data/raw/interpro && { wget -c -t 0 --timeout 60 --waitretry 10 ftp://ftp.ebi.ac.uk/pub/databases/interpro/interpro.xml.gz ; cd - ; }
 /kabob.git/scripts/download/create-metadata-file.sh /kabob_data/raw/interpro/interpro.xml.gz  ftp://ftp.ebi.ac.uk/pub/databases/interpro/interpro.xml.gz
 
+# get the interpro protein2ipr.dat.gz file
+cd /kabob_data/raw/interpro && { wget -c -t 0 --timeout 60 --waitretry 10 ftp://ftp.ebi.ac.uk/pub/databases/interpro/protein2ipr.dat.gz ; cd - ; }
+/kabob.git/scripts/download/create-metadata-file.sh /kabob_data/raw/interpro/protein2ipr.dat.gz  ftp://ftp.ebi.ac.uk/pub/databases/interpro/protein2ipr.dat.gz
 
 
 # there are also resources that are not processed by the file parsers directly, e.g. the Reactome biopax OWL file.
