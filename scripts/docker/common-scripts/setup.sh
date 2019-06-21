@@ -2,6 +2,7 @@
 #
 
 mkdir -p /kabob_data/logs
+mkdir -p /kabob_data/backups
 
 chmod 755 /kabob.git/scripts/download/process-other-downloads.sh
 /kabob.git/scripts/download/process-other-downloads.sh
