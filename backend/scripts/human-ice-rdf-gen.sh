@@ -43,8 +43,12 @@ COUNTER=1
 for ds in "${DATASOURCES[@]}"
 do
     echo "Starting kabob container to process: $ds"
-    DID=$DID" "`docker run -d --name "rdf_gen_$COUNTER" --volumes-from kabob_data-$KB_KEY ucdenverccp/kabob:${KABOB_CONTAINER_VERSION} ./ice-rdf-gen.sh "$TAX" "$ds" "$MAVEN" "$COUNTER"`
+    DID=$DID" "`docker run -d --name "rdf_gen_$COUNTER" --volumes-from kabob_data-${KB_KEY} ucdenverccp/kabob:${KABOB_CONTAINER_VERSION} ./ice-rdf-gen.sh "$TAX" "$ds" "$MAVEN" "$COUNTER"`
     COUNTER=$((COUNTER + 1))
 done
 docker wait $DID
 docker rm $DID
+
+echo "Checking logs for failed RDF generation processes. If any errors are listed below, steps must be taken to re-process those data sources that failed."
+docker run --rm --name "rdf_gen_check" --volumes-from kabob_data-${KB_KEY} ucdenverccp/kabob:${KABOB_CONTAINER_VERSION} sh -c "grep 'RDF GEN ERROR' /kabob_data/logs/*.log*"
+echo "Check complete."
