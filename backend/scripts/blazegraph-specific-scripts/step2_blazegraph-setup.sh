@@ -43,7 +43,7 @@ docker create -v /kabob-load-requests --name blazegraph-load-requests-${KB_KEY} 
 
 # Build the Docker image (this will import the AllegroGraph Docker image):
 echo "Building the ccp/blazegraph image..."
-docker build -t ccp/blazegraph:v2.1.4 backend/blazegraph-container/
+docker build -t ucdenverccp/blazegraph:v2.1.4 backend/blazegraph-container/
 
 # Create a dedicated network so that other containers can talk to the agraph container
 docker network create blazegraph-net-${KB_KEY}
@@ -54,7 +54,7 @@ echo "Starting the blazegraph container..."
 docker run -d -p 8889:9999 \
        --net blazegraph-net-${KB_KEY} \
        --volumes-from blazegraph-data-${KB_KEY} --volumes-from kabob_data-${KB_KEY} --volumes-from blazegraph-load-requests-${KB_KEY} \
-       --name blazegraph-${KB_KEY} ccp/blazegraph:v2.1.4
+       --name blazegraph-${KB_KEY} ucdenverccp/blazegraph:v2.1.4
 
 # Log the port to the load-requests directory
 echo "final adjustments to the blazegraph container..."
