@@ -866,7 +866,7 @@
 ;
 (deftask build-kabob-blazegraph []
          "build kabob from scratch"
-         (comp (server :docker :blazegraph :n "kabobhuman")
+         (comp (server :docker true :blazegraph true :kb-name "kabobhuman")
                (init-kb)
                (load-ontology-rdf)
                (validate-rdf-syntax)
