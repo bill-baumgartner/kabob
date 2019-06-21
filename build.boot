@@ -872,7 +872,6 @@
                (validate-rdf-syntax)
                (backup-kb :backup-label "onts")
                (build-step-a)
-               (backup-kb :backup-label "post-a")
                (build-step-b)
                (backup-kb :backup-label "post-b")
                (load-ice-rdf)
@@ -884,10 +883,10 @@
                (build-step-f)
                (build-step-g)
                (backup-kb :backup-label "post-g")
-               (validate-rdf-syntax)                        ;; todo - give validate rdf syntax and optional graph to limit the search space?
+               ;(validate-rdf-syntax)                        ;; todo - give validate rdf syntax an optional graph to limit the search space?
                (build-step-h)
-               (backup-kb :backup-label "post-h")
-               (build-step-i)))
+               (build-step-i)
+               (backup-kb :backup-label "post-i")))
 
 
 
