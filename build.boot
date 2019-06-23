@@ -641,7 +641,9 @@
            (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/ncbi") (run-rule) (load-rule)
            (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/refseq") (run-rule) (load-rule)
            (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/uniprot") (run-rule) (load-rule)
-           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template/step_a") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template/step_b") (run-rule) (load-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template/step_a") (drop-rule)
 
            ;(taxon-validation)                               ;; todo - implement this
 
@@ -649,12 +651,17 @@
            (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b") (run-rule) (load-rule)
            (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_c") (run-rule) (load-rule)
            (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_d") (run-rule) (load-rule)
-           ;;(rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a") (drop-rule)
 
 
            (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcd_generate_gene_abstractions") (run-rule) (load-rule)
 
-           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hce_link_to_gp_abstractions") (run-rule) (load-rule)))
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hce_link_to_gp_abstractions") (run-rule) (load-rule)
+
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a") (drop-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_b") (drop-rule)
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_c") (drop-rule)
+
+           ))
 
 
 (deftask build-step-hd-bioplex []
@@ -830,14 +837,18 @@
 
 (deftask build-step-hd []
          "build kabob step hd; bioentity linking"
-         (comp (build-step-hd-bioplex)
-               (build-step-hd-drugbank)
-               (build-step-hd-goa)
-               (build-step-hd-hp)
-               (build-step-hd-irefweb)
-               (build-step-hd-pharmgkb)
-               ;(build-step-hd-reactome) ;; reactome rules are still under development
-               ))
+         (comp
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/_temp_triples") (run-rule) (load-rule)
+           (build-step-hd-bioplex)
+           (build-step-hd-drugbank)
+           (build-step-hd-goa)
+           (build-step-hd-hp)
+           (build-step-hd-irefweb)
+           (build-step-hd-pharmgkb)
+           ;(build-step-hd-reactome) ;; reactome rules are still under development
+
+           (rule :path-to-rule "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/_temp_triples") (drop-rule)
+           ))
 
 
 (deftask build-step-h []

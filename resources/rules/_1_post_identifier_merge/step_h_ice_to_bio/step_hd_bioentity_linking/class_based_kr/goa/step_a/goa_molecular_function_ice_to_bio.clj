@@ -44,14 +44,7 @@
                 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
                 SELECT ?participating_bioentity ?molecular_function ?has_participant ?record
                 WHERE {
-
-                 {
-                           select ?has_participant {
-                                                    kice:RO_0000057 obo:IAO_0000219 ?has_participant .
-                                                    filter (?has_participant != obo:RO_0000057) .
-                                                    }
-                           }
-
+                ?has_participant rdf:type kice:temp_has_participant .
 
                 ?go_mf_identifier rdfs:subClassOf ccp:IAO_EXT_0000199 . # CCP:GO_molecular_function_identifier
                          ?go_identifier_field_value rdf:type ?go_mf_identifier .

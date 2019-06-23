@@ -26,7 +26,7 @@
                                                             build-rules-step-hcb build-rules-step-hcca build-rules-step-hccb
                                                             build-rules-step-hccc build-rules-step-hccd build-rules-step-hcd
                                                             build-rules-step-hce
-                                                            build-rules-step-hd-goa
+                                                            build-rules-step-hd-temp build-rules-step-hd-goa
                                                             validation-rules-list validation-rules-restriction
                                                             expected-subpropertyof-links expected-inverseof-links
                                                             expected-subclassof-links expected-disjointwith-links
@@ -86,6 +86,9 @@
                (run-build-rules source-kb build-rules-step-hccd)
                (run-build-rules source-kb build-rules-step-hcd)
                (run-build-rules source-kb build-rules-step-hce)
+               (run-build-rules source-kb build-rules-step-hd-temp)
+
+
                source-kb))
 
 

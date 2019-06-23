@@ -13,7 +13,7 @@
         (?/target_restriction owl/onProperty ?/has_target_end_location)
         (?/localization_sc rdfs/subClassOf ?/target_restriction)
         (?/localization_sc rdfs/subClassOf ?/trans_restriction)
-        (?/localization_sc rdfs/subClassOf ?/localization)),
+        (?/localization_sc rdfs/subClassOf ?/localization_process)),
  :body "PREFIX franzOption_memoryLimit: <franz:85g>
 PREFIX franzOption_memoryExhaustionWarningPercentage: <franz:95>
 PREFIX franzOption_logQuery: <franz:yes>
@@ -23,7 +23,7 @@ PREFIX obo: <http://purl.obolibrary.org/obo/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX kbio: <http://ccp.ucdenver.edu/kabob/bio/>
-SELECT DISTINCT ?bio_entity ?cellular_component ?transports_or_maintains_localization_of ?has_target_end_location ?localization
+SELECT DISTINCT ?bio_entity ?cellular_component ?transports_or_maintains_localization_of ?has_target_end_location ?localization_process
 WHERE {
       ?entity_record_with_cellular_localization_field rdfs:subClassOf* ccp:IAO_EXT_0001954 .  # reactome record for localized entity
       ?entity_record rdf:type ?entity_record_with_cellular_localization_field .
@@ -44,24 +44,8 @@ WHERE {
       ?reactome_id rdfs:subClassOf ccp:IAO_EXT_0001643 .
       ?reactome_id obo:IAO_0000219 ?bio_entity .
 
-      {
-       select ?transports_or_maintains_localization_of {
-          kice:RO_0002313 obo:IAO_0000219 ?transports_or_maintains_localization_of .
-          filter (?transports_or_maintains_localization_of != obo:RO_0002313) .
-          }
-       }
-
-      {
-       select ?has_target_end_location {
-          kice:RO_0002339 obo:IAO_0000219 ?has_target_end_location .
-          filter (?has_target_end_location != obo:RO_0002339) .
-          }
-       }
-      {
-       select ?localization {
-         kice:GO_0051179 obo:IAO_0000219 ?localization .
-         filter (?localization != obo:GO_0051179) .
-         }
-       }
+      ?localization_process rdf:type kice:temp_localization_process .
+  ?transports_or_maintains_localization_of rdf:type kice:temp_transports_or_maintains_localization_of .
+  ?has_target_end_location rdf:type kice:temp_has_target_end_location .
   }",
  :options {:magic-prefixes [["franzOption_logQuery" "franz:yes"] ["franzOption_clauseReorderer" "franz:identity"]]}}

@@ -31,12 +31,7 @@
                   SELECT ?causal_bioentity ?human_phenotype ?record ?cause_or_contributes_to_condition
                   WHERE {
 
-                  {
-                            select ?cause_or_contributes_to_condition {
-                                                                       kice:RO_0003302 obo:IAO_0000219 ?cause_or_contributes_to_condition .
-                                                                       filter (?cause_or_contributes_to_condition != obo:RO_0003302) .
-                                                                       }
-                            }
+                    ?cause_or_contributes_to_condition rdf:type kice:temp_cause_or_contributes_to_condition .
 
                   ?human_phenotype_identifier rdfs:subClassOf ccp:IAO_EXT_0000208 . # CCP:Human_Phenotype_Ontology_concept_identifier
                            ?human_phenotype_identifier obo:IAO_0000219 ?human_phenotype .

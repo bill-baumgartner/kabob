@@ -14,6 +14,7 @@
   SELECT distinct ?drugbank_drug_record ?drug
   WHERE {
 
+
     ?drugbank_drug_record rdf:type ccp:IAO_EXT_0000426 . # ccp:DrugBank_record
     ?drugbank_drug_record obo:BFO_0000051 ?drugbank_identifier_field_value .
     ?drugbank_identifier_field_value rdf:type ccp:IAO_EXT_0000360 . # ccp:Drugbank_drug_record__drugbank_identifier_field_value

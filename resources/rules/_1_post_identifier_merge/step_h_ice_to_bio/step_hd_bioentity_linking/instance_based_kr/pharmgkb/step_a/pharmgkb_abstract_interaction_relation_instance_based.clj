@@ -35,7 +35,12 @@
       PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       SELECT ?bioentity1 ?bioentity2 ?has_participant ?abstract_interaction ?abstract_interaction_label ?record
-      WHERE {  ?record rdf:type ccp:IAO_EXT_0000823 . # ccp:PharmGKB_relation_record
+      WHERE {
+
+      ?has_participant rdf:type kice:temp_has_participant .
+      ?abstract_interaction rdf:type kice:temp_abstract_interaction .
+
+      ?record rdf:type ccp:IAO_EXT_0000823 . # ccp:PharmGKB_relation_record
                ?record obo:BFO_0000051 ?entity1_identifier_field_value . # BFO:has_part
                ?entity1_identifier_field_value rdf:type ccp:IAO_EXT_0001036 . # ccp:PharmGKB_relation_record__entity_1_identifier_field_value
                ?entity1_identifier_field_value rdf:type ?entity1_id .
@@ -46,20 +51,6 @@
                ?entity2_identifier_field_value rdf:type ?entity2_id .
                ?entity2_id obo:IAO_0000219 ?bioentity2 . # IAO:denotes
 
-            {
-              select ?has_participant {
-                              kice:RO_0000057 obo:IAO_0000219 ?has_participant .
-                              filter (?has_participant != obo:RO_0000057) .
-                              }
-            }
-
-            # TODO: Perhaps there is a better class to use other than MI_0000?
-            {
-             select ?abstract_interaction ?abstract_interaction_label {
-                              kice:INO_0000002 obo:IAO_0000219 ?abstract_interaction .
-                              ?abstract_interaction rdfs:label ?abstract_interaction_label .
-                              filter (?abstract_interaction != obo:INO_0000002) .
-             }
           }
 
          }"

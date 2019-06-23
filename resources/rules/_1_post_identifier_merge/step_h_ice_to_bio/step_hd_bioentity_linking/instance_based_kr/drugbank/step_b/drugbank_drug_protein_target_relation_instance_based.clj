@@ -41,42 +41,12 @@
   SELECT ?target_protein ?drug ?binding ?has_participant ?realizes ?inheres_in ?drug_role ?drugbank_drug_record ?direct_interaction
   WHERE {
 
-  {
-            select ?direct_interaction {
-                                        kice:MI_0407 obo:IAO_0000219 ?direct_interaction .
-                                        filter (?direct_interaction != obo:MI_0407) .
-                                        }
-            }
-                 {
-                  select ?binding {
-                                   kice:GO_0005488 obo:IAO_0000219 ?binding .
-                                   filter (?binding != obo:GO_0005488) .
-                                   }
-                  }
-  {
-   select ?has_participant {
-                            kice:RO_0000057 obo:IAO_0000219 ?has_participant .
-                            filter (?has_participant != obo:RO_0000057) .
-                            }
-   }
-                 {
-                  select ?realizes {
-                                    kice:BFO_0000055 obo:IAO_0000219 ?realizes .
-                                    filter (?realizes != obo:BFO_0000055) .
-                                    }
-                  }
-  {
-   select ?inheres_in {
-                       kice:RO_0000052 obo:IAO_0000219 ?inheres_in .
-                       filter (?inheres_in != obo:RO_0000052) .
-                       }
-   }
-                 {
-                  select ?drug_role {
-                                     kice:CHEBI_23888 obo:IAO_0000219 ?drug_role .
-                                     filter (?drug_role != obo:CHEBI_23888) .
-                                     }
-                  }
+    ?drug_role rdf:type kice:temp_drug_role .
+  ?inheres_in rdf:type kice:temp_inheres_in .
+  ?realizes rdf:type kice:temp_realizes .
+  ?has_participant rdf:type kice:temp_has_participant .
+  ?binding rdf:type kice:temp_binding .
+  ?direct_interaction rdf:type kice:temp_direct_interaction .
 
     ?drugbank_drug_record ccp:temp_drug ?drug .
 

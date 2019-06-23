@@ -44,18 +44,7 @@
   SELECT ?bioentity ?interaction_irig_identifier ?interaction_label ?interactor_a_identifier ?interaction_type ?interaction_type_label ?super_record ?has_participant
   WHERE {
 
-  {
-      select ?bio_interaction {
-                               kice:INO_0000002 obo:IAO_0000219 ?bio_interaction .
-                               filter (?bio_interaction != obo:INO_0000002) .
-                               }
-      }
-  {
-      select ?has_participant {
-                               kice:RO_0000057 obo:IAO_0000219 ?has_participant .
-                               filter (?has_participant != obo:RO_0000057) .
-                               }
-      }
+         ?has_participant rdf:type kice:temp_has_participant .
 
          # get binary interaction records
                       ?interaction_record rdf:type ccp:IAO_EXT_0000064 . # CCP:IRefWeb_interaction_record
@@ -98,7 +87,7 @@
                    }
 
 
-
+   ?bio_interaction rdf:type kice:temp_bio_interaction .
 
   # if no interaction type was specified then bind to INO_0000002 (interaction)
   bind(coalesce(?inter_type, ?bio_interaction) as ?updated_inter_type)

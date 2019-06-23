@@ -345,8 +345,10 @@
 (def build-rules-step-hcb '("rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/ncbi/entrez_gene_assign_taxon"
                              "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/refseq/refseq_catalog_assign_taxon"
                              "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/uniprot/uniprot_protein_assign_taxon"
-                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template/gene_assign_taxon_via_has_gene_template"
-                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template/protein_assign_taxon_via_has_gene_template"))
+                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template/step_a/temporary_has_gene_template_assertion"
+                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template/step_a/temporary_only_in_taxon_assertion"
+                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template/step_b/gene_assign_taxon_via_has_gene_template"
+                             "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcb_assign_taxon/via_has_gene_template/step_b/protein_assign_taxon_via_has_gene_template"))
 
 
 (def build-rules-step-hcca '("rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcc_generate_missing_ggp_entities/step_a/temporary_missing_ncrna_gen"
@@ -377,6 +379,8 @@
 (def build-rules-step-hcd '("rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hcd_generate_gene_abstractions/gene_abstraction_gen"))
 
 (def build-rules-step-hce '("rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hc_ggp_abstractions/step_hce_link_to_gp_abstractions/link_proteins_to_gp_abstractions"))
+
+(def build-rules-step-hd-temp '("rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/_temp_triples"))
 
 (def build-rules-step-hd-goa '("rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_a/goa_biological_process_ice_to_bio"
                                 "rules/_1_post_identifier_merge/step_h_ice_to_bio/step_hd_bioentity_linking/class_based_kr/goa/step_a/goa_cellular_component_ice_to_bio"

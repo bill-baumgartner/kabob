@@ -14,20 +14,13 @@
                 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
                 select  ?bp_sc ?participating_bioentity_sc ?participating_bioentity_label ?biological_process_label {
 
-                    {
-                     select ?has_participant {
-                                              kice:RO_0000057 obo:IAO_0000219 ?has_participant .
-                                              filter (?has_participant != obo:RO_0000057) .
-                                              }
-                     }
-
-
                     ?bp_sc rdfs:subClassOf ccp:temp_biological_process .
                     ?bp_sc rdfs:subClassOf ?bp .
                     filter (?bp != ccp:temp_biological_process) .
 
                     ?bp_sc rdfs:subClassOf ?r1 .
                     ?r1 owl:onProperty ?has_participant .
+                    ?has_participant rdf:type kice:temp_has_participant .
                     ?r1 owl:someValuesFrom ?participating_bioentity_sc .
                     ?participating_bioentity_sc rdfs:subClassOf ?participating_bioentity .
 

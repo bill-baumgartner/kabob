@@ -29,7 +29,9 @@
                 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
                 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
                 SELECT ?participating_bioentity ?molecular_function ?has_participant ?record
-                WHERE {  ?go_mf_identifier rdfs:subClassOf ccp:IAO_EXT_0000199 . # CCP:GO_molecular_function_identifier
+                WHERE {  ?has_participant rdf:type kice:temp_has_participant .
+
+                         ?go_mf_identifier rdfs:subClassOf ccp:IAO_EXT_0000199 . # CCP:GO_molecular_function_identifier
                          ?go_identifier_field_value rdf:type ?go_mf_identifier .
                          ?go_identifier_field_value rdf:type ccp:IAO_EXT_0000014 . # ccp:GOA_GAF_v2.0_Annotation_record__ontology_term_identifier_field_value
                          ?go_mf_identifier obo:IAO_0000219 ?molecular_function .
@@ -47,12 +49,7 @@
                          # filter out the negations
                          FILTER (( ! bound(?qualifier) || ! regex(?qualifier, \"^NOT\", \"i\")))
 
-                      {
-                         select ?has_participant {
-                                 kice:RO_0000057 obo:IAO_0000219 ?has_participant .
-                                 filter (?has_participant != obo:RO_0000057) .
-                                 }
-                      }
+
                 }"
 
   :options       {:magic-prefixes [["franzOption_clauseReorderer" "franz:identity"]]}
