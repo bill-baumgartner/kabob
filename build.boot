@@ -30,7 +30,8 @@
           l server-url VAL str "Server URL"
           u username VAL str "Server username"
           p password VAL str "Server password"
-          q query VAL str "query to submit"]
+          q query VAL str "query to submit. Use either query or query-file, but not both arguments."
+          f query-file VAL str "file containing the query to submit. Use either query or query-file, but not both arguments."]
          (with-pre-wrap fileset
                         ;; ensure that only one of the server back ends has been selected, otherwise error
                         (if (not= 1 (+ (if allegrograph 1 0)
@@ -53,7 +54,9 @@
                                               (doall (map (fn [x] (print (str x " "))) bindings))
                                               (println))]
                             (println (str "params: " params))
-                            (visit-sparql kb bindings-fn query))
+                            (if (not (nil? query-file))
+                              (visit-sparql kb bindings-fn (slurp query-file))
+                              (visit-sparql kb bindings-fn query)))
                           ;(doall (map (fn [x] (println (str x))) (query-sparql kb query))))
                           (catch Exception e (println "Caught Exception while querying: ")
                                              (.printStackTrace e)
