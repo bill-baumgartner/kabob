@@ -3,7 +3,7 @@
 ;; -------------------------------------------------------------
 `{:name "step-hd_0_temp-bio_interaction-assertion"
   :description "This rule temporarily marks the bio_interaction property so that it can be easily referenced in downstream rules."
-  :head ((?/bio_interaction rdf/type kice/temp_realizes))
+  :head ((?/bio_interaction rdf/type kice/temp_bio_interaction))
   :body "prefix obo: <http://purl.obolibrary.org/obo/>
          prefix kice: <http://ccp.ucdenver.edu/kabob/ice/>
          PREFIX franzOption_chunkProcessingAllowed: <franz:yes>
